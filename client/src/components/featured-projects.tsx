@@ -15,6 +15,16 @@ const getProjectIcon = (title: string) => {
   return Zap;
 };
 
+const getProjectIconStyles = (title: string) => {
+  if (title.toLowerCase().includes('api') || title.toLowerCase().includes('backend')) {
+    return "p-3 rounded-lg bg-blue-50 text-blue-600 flex-shrink-0";
+  }
+  if (title.toLowerCase().includes('cloud') || title.toLowerCase().includes('aws')) {
+    return "p-3 rounded-lg bg-purple-50 text-purple-600 flex-shrink-0";
+  }
+  return "p-3 rounded-lg bg-amber-50 text-amber-600 flex-shrink-0";
+};
+
 export default function FeaturedProjects() {
   const { data: allProjects, isLoading } = useQuery<Project[]>({
     queryKey: ['/api/projects'],
@@ -27,38 +37,38 @@ export default function FeaturedProjects() {
     return (
       <div className="space-y-4">
         <div className="flex justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-300"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      {featuredProjects.map((project, index) => {
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featuredProjects.map((project) => {
         const IconComponent = getProjectIcon(project.title);
+        const iconStyles = getProjectIconStyles(project.title);
         return (
           <Card 
             key={project.id} 
-            className="group bg-white/95 backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-border/50 hover:scale-105 hover:bg-white hover:-translate-y-1 animate-fade-in cursor-pointer"
-            style={{ animationDelay: `${index * 0.1}s` }}
+            className="bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 h-full"
           >
             <CardContent className="p-6">
-              <div className="flex flex-col h-full min-h-[240px]">
+              <div className="flex flex-col h-full">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                  <div className={iconStyles}>
                     <IconComponent className="h-6 w-6" />
                   </div>
                   
                   <div className="flex-grow min-w-0">
-                    <h4 className="font-semibold text-foreground text-xl leading-tight mb-2 group-hover:text-primary transition-colors">
+                    <h4 className="font-semibold text-gray-900 text-xl leading-tight mb-2">
                       {project.title}
                     </h4>
                   </div>
                 </div>
                 
                 <div className="flex-grow">
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
                     {project.description}
                   </p>
                 </div>
@@ -69,7 +79,7 @@ export default function FeaturedProjects() {
                       <Badge 
                         key={index} 
                         variant="secondary" 
-                        className="bg-primary/10 text-primary border border-primary/20 text-xs px-2 py-1 rounded-md font-medium hover:bg-primary/20 transition-colors group-hover:bg-primary/20"
+                        className="bg-gray-100 text-gray-700 border-gray-200 text-xs px-2 py-1 rounded-md"
                       >
                         {tech}
                       </Badge>
@@ -81,7 +91,7 @@ export default function FeaturedProjects() {
                       <Button
                         variant="default"
                         size="sm"
-                        className="text-xs px-4 py-2 h-auto bg-primary hover:bg-primary/90 text-white flex-1 group-hover:shadow-lg transition-all"
+                        className="text-xs px-4 py-2 h-auto bg-blue-600 hover:bg-blue-700 text-white flex-1"
                         asChild
                       >
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -94,7 +104,7 @@ export default function FeaturedProjects() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="text-xs px-4 py-2 h-auto border-border hover:bg-muted/50 flex-1 group-hover:border-primary/40 transition-all"
+                        className="text-xs px-4 py-2 h-auto border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 flex-1"
                         asChild
                       >
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -112,8 +122,8 @@ export default function FeaturedProjects() {
       })}
       
       {featuredProjects.length === 0 && (
-        <div className="text-center py-8">
-          <p className="text-muted-foreground">No featured projects available.</p>
+        <div className="text-center py-8 col-span-full">
+          <p className="text-gray-500">No featured projects available.</p>
         </div>
       )}
     </div>
