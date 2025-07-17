@@ -159,7 +159,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <p className="text-sm text-muted">Email</p>
-                      <p className="font-medium text-secondary">john.doe@example.com</p>
+                      <p className="font-medium text-secondary">niteshnitp5686@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -168,7 +168,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <p className="text-sm text-muted">Phone</p>
-                      <p className="font-medium text-secondary">+1 (555) 123-4567</p>
+                      <p className="font-medium text-secondary">+91 9955328756</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -177,7 +177,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <p className="text-sm text-muted">Location</p>
-                      <p className="font-medium text-secondary">San Francisco, CA</p>
+                      <p className="font-medium text-secondary">Bengaluru, Karnataka, India</p>
                     </div>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default function ContactSection() {
                     className="flex items-center justify-center p-4 bg-neutral rounded-lg hover:bg-gray-100 transition-colors duration-200"
                     asChild
                   >
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/in/niteshnandan" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="text-primary h-6 w-6 mr-3" />
                       <span className="font-medium text-secondary">LinkedIn</span>
                     </a>
@@ -224,7 +224,7 @@ export default function ContactSection() {
                     className="flex items-center justify-center p-4 bg-neutral rounded-lg hover:bg-gray-100 transition-colors duration-200"
                     asChild
                   >
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                    <a href="mailto:niteshnitp5686@gmail.com" target="_blank" rel="noopener noreferrer">
                       <Mail className="text-primary h-6 w-6 mr-3" />
                       <span className="font-medium text-secondary">Email</span>
                     </a>
@@ -242,7 +242,7 @@ export default function ContactSection() {
                   <span className="text-green-700 font-medium">Available for new projects</span>
                 </div>
                 <p className="text-muted">
-                  I'm currently accepting new freelance projects and collaborations. Let's discuss how I can help bring your ideas to life!
+                  I'm currently exploring new opportunities in backend engineering, system design, and AI/ML projects. Let's discuss how I can help scale your systems!
                 </p>
               </CardContent>
             </Card>

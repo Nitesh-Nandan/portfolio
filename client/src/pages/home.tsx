@@ -4,7 +4,7 @@ import BookshelfSection from "@/components/bookshelf-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Server, Paintbrush } from "lucide-react";
+import { ArrowRight, Code, Server, Database, Brain, Cloud, Settings } from "lucide-react";
 
 export default function HomePage() {
   const scrollToSection = (sectionId: string) => {
@@ -24,10 +24,10 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row items-center justify-between py-20">
             <div className="lg:w-1/2 mb-10 lg:mb-0">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
-                Hi, I'm <span className="text-primary">John Doe</span>
+                Hi, I'm <span className="text-primary">Nitesh Nandan</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted mb-8 leading-relaxed">
-                Full-Stack Developer & UI/UX Designer passionate about creating beautiful, functional digital experiences.
+                Backend Engineer & GenAI Expert at Wayfair, passionate about building highly scalable distributed systems and AI-powered solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -60,7 +60,7 @@ export default function HomePage() {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Skills & Expertise</h2>
               <p className="text-xl text-muted max-w-3xl mx-auto">
-                I specialize in modern web technologies and design tools to build exceptional digital products.
+                I specialize in building highly scalable backend systems, microservices architecture, and AI-powered applications.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -68,22 +68,43 @@ export default function HomePage() {
                 <div className="text-primary text-3xl mb-4">
                   <Code className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Frontend Development</h3>
-                <p className="text-muted">React, Vue.js, TypeScript, Tailwind CSS</p>
+                <h3 className="text-xl font-semibold text-secondary mb-2">Backend Development</h3>
+                <p className="text-muted">Java, Spring Boot, Python, C++, System Design</p>
               </div>
               <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
                 <div className="text-primary text-3xl mb-4">
                   <Server className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Backend Development</h3>
-                <p className="text-muted">Node.js, Python, PostgreSQL, MongoDB</p>
+                <h3 className="text-xl font-semibold text-secondary mb-2">Microservices & Architecture</h3>
+                <p className="text-muted">Kubernetes, Docker, Redis, Kafka, RabbitMQ</p>
               </div>
               <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
                 <div className="text-primary text-3xl mb-4">
-                  <Paintbrush className="h-8 w-8" />
+                  <Database className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">UI/UX Design</h3>
-                <p className="text-muted">Figma, Adobe XD, Sketch, Prototyping</p>
+                <h3 className="text-xl font-semibold text-secondary mb-2">Database & Storage</h3>
+                <p className="text-muted">MySQL, MongoDB, ElasticSearch, S3</p>
+              </div>
+              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
+                <div className="text-primary text-3xl mb-4">
+                  <Brain className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-semibold text-secondary mb-2">Generative AI</h3>
+                <p className="text-muted">LangChain, GenAI, Machine Learning, Computer Vision</p>
+              </div>
+              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
+                <div className="text-primary text-3xl mb-4">
+                  <Cloud className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-semibold text-secondary mb-2">Cloud & DevOps</h3>
+                <p className="text-muted">AWS, GCP, EKS, Jenkins, ArgoCD</p>
+              </div>
+              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
+                <div className="text-primary text-3xl mb-4">
+                  <Settings className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-semibold text-secondary mb-2">Monitoring & Optimization</h3>
+                <p className="text-muted">Prometheus, Grafana, Telegraf, Performance Tuning</p>
               </div>
             </div>
           </div>

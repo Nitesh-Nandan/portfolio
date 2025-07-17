@@ -13,12 +13,12 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">John Doe</h3>
+            <h3 className="text-2xl font-bold mb-4">Nitesh Nandan</h3>
             <p className="text-gray-300 mb-4">
-              Full-Stack Developer & UI/UX Designer passionate about creating beautiful, functional digital experiences.
+              Backend Engineer & GenAI Expert at Wayfair, passionate about building highly scalable distributed systems and AI-powered solutions.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
+              <a href="https://www.linkedin.com/in/niteshnandan" className="text-gray-300 hover:text-white transition-colors duration-200">
                 <Linkedin className="h-6 w-6" />
               </a>
               <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
@@ -76,15 +76,15 @@ export default function Footer() {
             <div className="space-y-2">
               <p className="text-gray-300 flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                john.doe@example.com
+                niteshnitp5686@gmail.com
               </p>
               <p className="text-gray-300 flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
-                +1 (555) 123-4567
+                +91 9955328756
               </p>
               <p className="text-gray-300 flex items-center">
                 <MapPin className="h-4 w-4 mr-2" />
-                San Francisco, CA
+                Bengaluru, Karnataka, India
               </p>
             </div>
           </div>
@@ -92,7 +92,7 @@ export default function Footer() {
         
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300">
-            © 2024 John Doe. All rights reserved.
+            © 2024 Nitesh Nandan. All rights reserved.
           </p>
         </div>
       </div>

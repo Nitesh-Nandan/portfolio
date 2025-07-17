@@ -2,11 +2,12 @@
 
 ## Overview
 
-This is a full-stack portfolio website built with React (frontend) and Express.js (backend). The application showcases projects, reading lists, and provides a contact form. It features a modern design using shadcn/ui components with Tailwind CSS styling.
+This is a full-stack portfolio website built with React (frontend) and Express.js (backend) for Nitesh Nandan, a Backend Engineer & GenAI Expert at Wayfair. The application showcases backend engineering projects, technical reading lists, and provides a contact form. It features a modern design using shadcn/ui components with Tailwind CSS styling.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Profile: Backend developer skilled in Java, Python, GenAI, and building highly scalable distributed systems.
 
 ## System Architecture
 
@@ -30,20 +31,20 @@ Preferred communication style: Simple, everyday language.
 ### Database Schema
 The application uses four main tables:
 - **Users**: Basic user authentication (id, username, password)
-- **Projects**: Portfolio projects with metadata (title, description, technologies, URLs, featured status)
-- **Books**: Reading list with status tracking (title, author, rating, reading status, progress)
+- **Projects**: Backend engineering projects with metadata (title, description, technologies, URLs, featured status)
+- **Books**: Technical reading list with status tracking (title, author, rating, reading status, progress)
 - **Contact Messages**: Form submissions with timestamps
 
 ### Storage Layer
 - **Interface**: IStorage interface defining all database operations
-- **Implementation**: MemStorage class for in-memory development data with sample seeding
+- **Implementation**: MemStorage class for in-memory development data with sample seeding focused on backend/AI projects
 - **Production**: Configured for PostgreSQL with Neon Database serverless driver
 
 ### Frontend Pages & Components
-- **HomePage**: Main landing page with hero section and navigation
-- **ProjectsSection**: Displays portfolio projects with filtering
-- **BookshelfSection**: Reading list with status-based tabs (currently reading, want to read, completed)
-- **ContactSection**: Contact form with validation and submission handling
+- **HomePage**: Main landing page with hero section highlighting backend expertise and GenAI skills
+- **ProjectsSection**: Displays backend engineering projects (microservices, AI systems, cost optimization)
+- **BookshelfSection**: Technical reading list with status-based tabs (system design, Java, ML books)
+- **ContactSection**: Contact form with Nitesh's actual contact information
 - **Navigation**: Smooth scrolling navigation with active section highlighting
 
 ## Data Flow
@@ -92,3 +93,25 @@ Form submissions follow a similar pattern with additional validation using Zod s
 - **Type Safety**: Shared TypeScript types between client and server
 
 The application is structured as a monorepo with clear separation between client, server, and shared code, making it easy to develop and deploy as a unified full-stack application.
+
+## Recent Changes (January 2025)
+
+### Profile Customization
+- Updated portfolio to reflect Nitesh Nandan's background as a Backend Engineer & GenAI Expert at Wayfair
+- Replaced sample projects with real backend engineering projects:
+  - Scalable Microservices Architecture (50K-70K RPS)
+  - AI-Powered Bulk Messaging Platform
+  - Cost Optimization System (25% cost reduction)
+  - EDI Parser with multi-threading
+  - Supplier Acquisition Platform
+  - Computer Vision for crowd behavior analysis
+- Updated skills section to focus on backend technologies:
+  - Backend Development (Java, Spring Boot, Python, System Design)
+  - Microservices & Architecture (Kubernetes, Docker, Redis, Kafka)
+  - Database & Storage (MySQL, MongoDB, ElasticSearch, S3)
+  - Generative AI (LangChain, GenAI, ML, Computer Vision)
+  - Cloud & DevOps (AWS, GCP, EKS, Jenkins, ArgoCD)
+  - Monitoring & Optimization (Prometheus, Grafana, Telegraf)
+- Updated reading list with technical books relevant to backend engineering
+- Updated contact information with actual details (email, phone, location, LinkedIn)
+- Fixed TypeScript errors in storage layer for proper type handling
