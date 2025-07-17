@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter, MessageSquare } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -56,23 +56,26 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-gradient-to-br from-neutral to-white py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Get In Touch</h2>
-          <p className="text-xl text-muted max-w-3xl mx-auto">
-            I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and design.
+    <section id="contact" className="section-padding bg-gradient-to-br from-muted/30 to-background">
+      <div className="container-width">
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <MessageSquare className="h-8 w-8 text-primary" />
+            <h2>Get In Touch</h2>
+          </div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and system design.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <Card className="bg-white rounded-xl shadow-lg">
+          <Card className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-border/50 animate-fade-in">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-semibold text-secondary mb-6">Send me a message</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-6">Send me a message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <Label htmlFor="name" className="block text-sm font-medium text-secondary mb-2">
+                  <Label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Name
                   </Label>
                   <Input
@@ -83,12 +86,12 @@ export default function ContactSection() {
                     onChange={handleChange}
                     required
                     placeholder="Your full name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="email" className="block text-sm font-medium text-secondary mb-2">
+                  <Label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                     Email
                   </Label>
                   <Input
@@ -99,12 +102,12 @@ export default function ContactSection() {
                     onChange={handleChange}
                     required
                     placeholder="your.email@example.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="subject" className="block text-sm font-medium text-secondary mb-2">
+                  <Label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
                     Subject
                   </Label>
                   <Input
@@ -115,12 +118,12 @@ export default function ContactSection() {
                     onChange={handleChange}
                     required
                     placeholder="What's this about?"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="message" className="block text-sm font-medium text-secondary mb-2">
+                  <Label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                     Message
                   </Label>
                   <Textarea
@@ -131,14 +134,14 @@ export default function ContactSection() {
                     required
                     rows={6}
                     placeholder="Tell me about your project or just say hello..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent resize-none transition-all duration-300"
                   />
                 </div>
                 
                 <Button
                   type="submit"
                   disabled={contactMutation.isPending}
-                  className="w-full bg-primary text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  className="w-full gradient-subtle text-white font-medium py-3 px-6 rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   {contactMutation.isPending ? 'Sending...' : 'Send Message'}
                   <Mail className="ml-2 h-4 w-4" />
@@ -149,35 +152,35 @@ export default function ContactSection() {
 
           {/* Contact Info */}
           <div className="space-y-8">
-            <Card className="bg-white rounded-xl shadow-lg">
+            <Card className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-border/50 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-secondary mb-6">Contact Information</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Contact Information</h3>
                 <div className="space-y-6">
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
                       <Mail className="text-primary h-6 w-6" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted">Email</p>
-                      <p className="font-medium text-secondary">niteshnitp5686@gmail.com</p>
+                      <p className="text-sm text-muted-foreground">Email</p>
+                      <p className="font-medium text-foreground">niteshnitp5686@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
                       <Phone className="text-primary h-6 w-6" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted">Phone</p>
-                      <p className="font-medium text-secondary">+91 9955328756</p>
+                      <p className="text-sm text-muted-foreground">Phone</p>
+                      <p className="font-medium text-foreground">+91 9955328756</p>
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
                       <MapPin className="text-primary h-6 w-6" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted">Location</p>
-                      <p className="font-medium text-secondary">Bengaluru, Karnataka, India</p>
+                      <p className="text-sm text-muted-foreground">Location</p>
+                      <p className="font-medium text-foreground">Bengaluru, Karnataka, India</p>
                     </div>
                   </div>
                 </div>
@@ -185,48 +188,48 @@ export default function ContactSection() {
             </Card>
 
             {/* Social Links */}
-            <Card className="bg-white rounded-xl shadow-lg">
+            <Card className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-border/50 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-secondary mb-6">Connect With Me</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Connect With Me</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <Button
                     variant="outline"
-                    className="flex items-center justify-center p-4 bg-neutral rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                    className="flex items-center justify-center p-4 bg-muted/50 rounded-xl hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
                     asChild
                   >
                     <a href="https://www.linkedin.com/in/niteshnandan" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="text-primary h-6 w-6 mr-3" />
-                      <span className="font-medium text-secondary">LinkedIn</span>
+                      <span className="font-medium text-foreground">LinkedIn</span>
                     </a>
                   </Button>
                   <Button
                     variant="outline"
-                    className="flex items-center justify-center p-4 bg-neutral rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                    className="flex items-center justify-center p-4 bg-muted/50 rounded-xl hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
                     asChild
                   >
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       <Github className="text-primary h-6 w-6 mr-3" />
-                      <span className="font-medium text-secondary">GitHub</span>
+                      <span className="font-medium text-foreground">GitHub</span>
                     </a>
                   </Button>
                   <Button
                     variant="outline"
-                    className="flex items-center justify-center p-4 bg-neutral rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                    className="flex items-center justify-center p-4 bg-muted/50 rounded-xl hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
                     asChild
                   >
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       <Twitter className="text-primary h-6 w-6 mr-3" />
-                      <span className="font-medium text-secondary">Twitter</span>
+                      <span className="font-medium text-foreground">Twitter</span>
                     </a>
                   </Button>
                   <Button
                     variant="outline"
-                    className="flex items-center justify-center p-4 bg-neutral rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                    className="flex items-center justify-center p-4 bg-muted/50 rounded-xl hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
                     asChild
                   >
                     <a href="mailto:niteshnitp5686@gmail.com" target="_blank" rel="noopener noreferrer">
                       <Mail className="text-primary h-6 w-6 mr-3" />
-                      <span className="font-medium text-secondary">Email</span>
+                      <span className="font-medium text-foreground">Email</span>
                     </a>
                   </Button>
                 </div>
@@ -234,14 +237,14 @@ export default function ContactSection() {
             </Card>
 
             {/* Availability Status */}
-            <Card className="bg-white rounded-xl shadow-lg">
+            <Card className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-border/50 animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-secondary mb-6">Availability</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Availability</h3>
                 <div className="flex items-center mb-4">
-                  <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></div>
                   <span className="text-green-700 font-medium">Available for new projects</span>
                 </div>
-                <p className="text-muted">
+                <p className="text-muted-foreground leading-relaxed">
                   I'm currently exploring new opportunities in backend engineering, system design, and AI/ML projects. Let's discuss how I can help scale your systems!
                 </p>
               </CardContent>

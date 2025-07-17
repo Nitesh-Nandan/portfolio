@@ -16,7 +16,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'experience', 'projects', 'bookshelf', 'contact'];
+      const sections = ['home', 'experience', 'projects', 'reading', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -38,33 +38,38 @@ export default function Navigation() {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'My Projects' },
-    { id: 'bookshelf', label: 'BookShelf' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'reading', label: 'Reading' },
     { id: 'contact', label: 'Contact' }
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-b border-border/50 z-50 transition-all duration-300">
+      <div className="container-width">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-secondary">Nitesh Nandan</h1>
+            <h1 className="text-xl font-bold text-foreground">
+              Nitesh Nandan
+            </h1>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 flex items-center space-x-8">
               {navItems.map(item => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`font-medium transition-colors duration-200 ${
+                  className={`relative font-medium transition-all duration-300 hover:scale-105 ${
                     activeSection === item.id 
                       ? 'text-primary' 
-                      : 'text-muted hover:text-primary'
+                      : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   {item.label}
+                  {activeSection === item.id && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 gradient-subtle rounded-full transition-all duration-300" />
+                  )}
                 </button>
               ))}
             </div>
@@ -76,7 +81,7 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-secondary hover:text-primary"
+              className="text-foreground hover:text-primary hover:bg-muted/50 transition-all duration-300"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -86,16 +91,16 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="md:hidden bg-white/95 backdrop-blur-lg border-t border-border/50 animate-fade-in">
+          <div className="px-4 pt-2 pb-3 space-y-1">
             {navItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-3 py-2 font-medium transition-colors duration-200 ${
+                className={`block w-full text-left px-4 py-3 font-medium rounded-lg transition-all duration-300 ${
                   activeSection === item.id 
-                    ? 'text-primary' 
-                    : 'text-muted hover:text-primary'
+                    ? 'text-primary bg-primary/10' 
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`}
               >
                 {item.label}

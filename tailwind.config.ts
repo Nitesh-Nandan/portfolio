@@ -5,6 +5,57 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          "system-ui", 
+          "-apple-system", 
+          "BlinkMacSystemFont", 
+          "Segoe UI", 
+          "Roboto", 
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ],
+        display: [
+          "system-ui", 
+          "-apple-system", 
+          "BlinkMacSystemFont", 
+          "Segoe UI", 
+          "Roboto", 
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ],
+        mono: [
+          "SFMono-Regular", 
+          "Menlo", 
+          "Monaco", 
+          "Consolas", 
+          "Liberation Mono",
+          "Courier New",
+          "monospace"
+        ],
+      },
+      fontSize: {
+        'xs': ['0.75rem', { lineHeight: '1rem' }],
+        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+        'base': ['1rem', { lineHeight: '1.5rem' }],
+        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+        '5xl': ['3rem', { lineHeight: '1.1' }],
+        '6xl': ['3.75rem', { lineHeight: '1.1' }],
+        '7xl': ['4.5rem', { lineHeight: '1.1' }],
+        '8xl': ['6rem', { lineHeight: '1.1' }],
+        '9xl': ['8rem', { lineHeight: '1.1' }],
+      },
+      letterSpacing: {
+        tight: '-0.025em',
+        normal: '0',
+        wide: '0.025em',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -79,10 +130,32 @@ export default {
             height: "0",
           },
         },
+        "fade-in": {
+          from: {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "slide-in": {
+          from: {
+            opacity: "0",
+            transform: "translateX(-20px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.6s ease-out",
+        "slide-in": "slide-in 0.6s ease-out",
       },
     },
   },

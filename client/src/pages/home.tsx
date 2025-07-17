@@ -1,6 +1,6 @@
 import Navigation from "@/components/navigation";
 import ProjectsSection from "@/components/projects-section";
-import BookshelfSection from "@/components/bookshelf-section";
+import ReadingSection from "@/components/reading-section";
 import ContactSection from "@/components/contact-section";
 import WorkExperienceSection from "@/components/work-experience-section";
 import Footer from "@/components/footer";
@@ -16,97 +16,125 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-secondary">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       
       {/* Hero Section */}
-      <section id="home" className="min-h-screen bg-gradient-to-br from-neutral to-white pt-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between py-20">
-            <div className="lg:w-1/2 flex justify-center lg:justify-start order-2 lg:order-1">
-              <div className="w-80 h-80 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
-                <Code className="text-white text-8xl" />
+      <section id="home" className="min-h-screen bg-gradient-to-br from-muted/40 via-background to-accent/30 pt-16">
+        <div className="container-width">
+          <div className="flex flex-col lg:flex-row items-center justify-center min-h-[80vh] gap-16 lg:gap-24">
+            <div className="order-2 lg:order-1">
+              <div className="relative">
+                <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-lg border-2 border-white/50">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" 
+                    alt="Nitesh Nandan - Professional"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  />
+                </div>
               </div>
             </div>
-            <div className="lg:w-1/2 mb-10 lg:mb-0 order-1 lg:order-2">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
-                Hi, I'm <span className="text-primary">Nitesh Nandan</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-muted mb-8 leading-relaxed">
-                Backend Engineer & GenAI Expert at Wayfair, passionate about building highly scalable distributed systems and AI-powered solutions.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  onClick={() => scrollToSection('projects')}
-                  className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                >
-                  View My Work
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button 
-                  onClick={() => scrollToSection('contact')}
-                  variant="outline"
-                  className="inline-flex items-center px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-white transition-colors duration-200"
-                >
-                  Get In Touch
-                </Button>
+            <div className="text-center lg:text-left max-w-2xl order-1 lg:order-2">
+              <div className="space-y-6 animate-fade-in">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1]">
+                  <span className="block mb-2">Hi, I'm</span>
+                  <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+                    Nitesh Nandan
+                  </span>
+                </h1>
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                  Backend Engineer & GenAI Expert at Wayfair
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Building highly scalable distributed systems and AI-powered solutions that impact millions of users
+                </p>
+                <div className="flex flex-col sm:flex-row gap-6 pt-8 justify-center lg:justify-start">
+                  <Button 
+                    onClick={() => scrollToSection('projects')}
+                    size="lg"
+                    className="group gradient-subtle text-white hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 px-8 py-4 text-lg"
+                  >
+                    View My Work
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                  <Button 
+                    onClick={() => scrollToSection('contact')}
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-primary/20 text-foreground hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 px-8 py-4 text-lg"
+                  >
+                    Get In Touch
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Skills Section */}
-        <div className="bg-white py-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Skills & Expertise</h2>
-              <p className="text-xl text-muted max-w-3xl mx-auto">
+        <div className="bg-soft section-padding">
+          <div className="container-width">
+            <div className="text-center mb-16 animate-fade-in">
+              <h2 className="mb-6">Skills & Expertise</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 I specialize in building highly scalable backend systems, microservices architecture, and AI-powered applications.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div className="text-primary text-3xl mb-4">
-                  <Code className="h-8 w-8" />
+              {[
+                {
+                  icon: Code,
+                  title: "Backend Development",
+                  description: "Java, Spring Boot, Python, C++, System Design",
+                  delay: "0s"
+                },
+                {
+                  icon: Server,
+                  title: "Microservices & Architecture",
+                  description: "Kubernetes, Docker, Redis, Kafka, RabbitMQ",
+                  delay: "0.1s"
+                },
+                {
+                  icon: Database,
+                  title: "Database & Storage",
+                  description: "MySQL, MongoDB, ElasticSearch, S3",
+                  delay: "0.2s"
+                },
+                {
+                  icon: Brain,
+                  title: "Generative AI",
+                  description: "LangChain, GenAI, Machine Learning, Computer Vision",
+                  delay: "0.3s"
+                },
+                {
+                  icon: Cloud,
+                  title: "Cloud & DevOps",
+                  description: "AWS, GCP, EKS, Jenkins, ArgoCD",
+                  delay: "0.4s"
+                },
+                {
+                  icon: Settings,
+                  title: "Monitoring & Optimization",
+                  description: "Prometheus, Grafana, Telegraf, Performance Tuning",
+                  delay: "0.5s"
+                }
+              ].map((skill, index) => (
+                <div 
+                  key={skill.title}
+                  className="group bg-white/90 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:scale-105 animate-fade-in"
+                  style={{ animationDelay: skill.delay }}
+                >
+                  <div className="text-primary mb-6 transition-transform duration-300 group-hover:scale-110">
+                    <skill.icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                    {skill.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {skill.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Backend Development</h3>
-                <p className="text-muted">Java, Spring Boot, Python, C++, System Design</p>
-              </div>
-              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div className="text-primary text-3xl mb-4">
-                  <Server className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Microservices & Architecture</h3>
-                <p className="text-muted">Kubernetes, Docker, Redis, Kafka, RabbitMQ</p>
-              </div>
-              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div className="text-primary text-3xl mb-4">
-                  <Database className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Database & Storage</h3>
-                <p className="text-muted">MySQL, MongoDB, ElasticSearch, S3</p>
-              </div>
-              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div className="text-primary text-3xl mb-4">
-                  <Brain className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Generative AI</h3>
-                <p className="text-muted">LangChain, GenAI, Machine Learning, Computer Vision</p>
-              </div>
-              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div className="text-primary text-3xl mb-4">
-                  <Cloud className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Cloud & DevOps</h3>
-                <p className="text-muted">AWS, GCP, EKS, Jenkins, ArgoCD</p>
-              </div>
-              <div className="bg-neutral p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-                <div className="text-primary text-3xl mb-4">
-                  <Settings className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">Monitoring & Optimization</h3>
-                <p className="text-muted">Prometheus, Grafana, Telegraf, Performance Tuning</p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -114,7 +142,7 @@ export default function HomePage() {
 
       <WorkExperienceSection />
       <ProjectsSection />
-      <BookshelfSection />
+      <ReadingSection />
       <ContactSection />
       <Footer />
     </div>
