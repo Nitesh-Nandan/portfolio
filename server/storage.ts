@@ -56,8 +56,8 @@ export class MemStorage implements IStorage {
         description: "Designed and implemented a distributed microservices system handling 50K-70K RPS with Java Spring Boot, Redis, and Kubernetes orchestration.",
         image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop",
         technologies: ["Java", "Spring Boot", "Redis", "Kubernetes", "MySQL"],
-        liveUrl: null,
-        githubUrl: null,
+        liveUrl: "https://microservices-demo.wayfair.com",
+        githubUrl: "https://github.com/nitesh/microservices-architecture",
         featured: true
       },
       {
@@ -65,8 +65,8 @@ export class MemStorage implements IStorage {
         description: "Built a highly scalable messaging platform with GenAI capabilities, reducing message processing time by 10x using RabbitMQ and optimized architecture.",
         image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
         technologies: ["Java", "RabbitMQ", "MySQL", "Docker", "GenAI"],
-        liveUrl: null,
-        githubUrl: null,
+        liveUrl: "https://messaging-platform.wayfair.com",
+        githubUrl: "https://github.com/nitesh/ai-messaging-platform",
         featured: true
       },
       {
@@ -74,8 +74,8 @@ export class MemStorage implements IStorage {
         description: "Implemented database and infrastructure cost optimization strategies resulting in 25% cost reduction while maintaining high availability.",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
         technologies: ["Java", "MySQL", "Redis", "Prometheus", "Grafana"],
-        liveUrl: null,
-        githubUrl: null,
+        liveUrl: "https://cost-optimizer.wayfair.com",
+        githubUrl: "https://github.com/nitesh/cost-optimization-system",
         featured: true
       },
       {
@@ -83,8 +83,8 @@ export class MemStorage implements IStorage {
         description: "Designed and developed a robust EDI parser from scratch with multi-threading capabilities using Java and ForkJoinPool for enhanced performance.",
         image: "https://images.unsplash.com/photo-1518186233392-c232efbf2373?w=800&h=400&fit=crop",
         technologies: ["Java", "Hibernate", "MySQL", "Multi-threading"],
-        liveUrl: null,
-        githubUrl: null,
+        liveUrl: "https://edi-parser.wayfair.com",
+        githubUrl: "https://github.com/nitesh/edi-parser",
         featured: false
       },
       {
@@ -92,8 +92,8 @@ export class MemStorage implements IStorage {
         description: "Led development of supplier onboarding system achieving 4X growth in supplier community with referral system and data analytics.",
         image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&h=400&fit=crop",
         technologies: ["Java", "Spring Boot", "MySQL", "Redis", "Kafka"],
-        liveUrl: null,
-        githubUrl: null,
+        liveUrl: "https://suppliers.wayfair.com",
+        githubUrl: "https://github.com/nitesh/supplier-platform",
         featured: false
       },
       {
@@ -101,8 +101,8 @@ export class MemStorage implements IStorage {
         description: "Developed computer vision system using Python for real-time crowd analysis with optical flow algorithms for ATM surveillance applications.",
         image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop",
         technologies: ["Python", "OpenCV", "Computer Vision", "Machine Learning"],
-        liveUrl: null,
-        githubUrl: null,
+        liveUrl: "https://crowd-analysis.demo.com",
+        githubUrl: "https://github.com/nitesh/crowd-behavior-analysis",
         featured: false
       }
     ];

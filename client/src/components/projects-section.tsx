@@ -1,40 +1,59 @@
 import { useQuery } from "@tanstack/react-query";
-import { ExternalLink, Github, Code2, Zap, Database, Cloud } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { ExternalLink, Github, Code2, Database, Cloud, Zap } from "lucide-react";
 import type { Project } from "@shared/schema";
 
-const getProjectIcon = (title: string) => {
-  if (title.toLowerCase().includes('api') || title.toLowerCase().includes('backend')) {
-    return Database;
+const getProjectIconAndColors = (title: string) => {
+  if (title.toLowerCase().includes('api') || title.toLowerCase().includes('backend') || title.toLowerCase().includes('microservice')) {
+    return {
+      icon: Database,
+      bg: 'bg-gradient-to-br from-emerald-50 to-emerald-100',
+      text: 'text-emerald-600'
+    };
   }
   if (title.toLowerCase().includes('cloud') || title.toLowerCase().includes('aws')) {
-    return Cloud;
+    return {
+      icon: Cloud,
+      bg: 'bg-gradient-to-br from-purple-50 to-purple-100',
+      text: 'text-purple-600'
+    };
   }
-  return Zap;
+  if (title.toLowerCase().includes('ai') || title.toLowerCase().includes('messaging')) {
+    return {
+      icon: Zap,
+      bg: 'bg-gradient-to-br from-amber-50 to-amber-100',
+      text: 'text-amber-600'
+    };
+  }
+  return {
+    icon: Code2,
+    bg: 'bg-gradient-to-br from-blue-50 to-blue-100',
+    text: 'text-blue-600'
+  };
 };
 
-export default function ProjectsSection() {
-  const { data: projects, isLoading } = useQuery<Project[]>({
+interface ProjectsSectionProps {
+  showAllProjects?: boolean;
+}
+
+export default function ProjectsSection({ showAllProjects = false }: ProjectsSectionProps) {
+  const { data: allProjects, isLoading } = useQuery<Project[]>({
     queryKey: ['/api/projects'],
   });
 
+  // Filter projects based on prop
+  const projects = showAllProjects 
+    ? allProjects 
+    : allProjects?.filter(project => project.featured);
+
   if (isLoading) {
     return (
-      <section id="projects" className="section-padding bg-soft">
+      <section id="projects" className="section-padding bg-gray-50/30">
         <div className="container-width">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Code2 className="h-8 w-8 text-primary" />
-              <h2>My Projects</h2>
-            </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Loading my latest work...
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          <div className="text-center mb-20">
+            <h2 className="text-3xl font-light text-gray-900 mb-4">
+              {showAllProjects ? "Projects" : "Featured Projects"}
+            </h2>
+            <p className="text-gray-600 text-lg">Loading projects...</p>
           </div>
         </div>
       </section>
@@ -42,93 +61,89 @@ export default function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className="section-padding bg-soft">
+    <section id="projects" className={showAllProjects ? "bg-gray-50/30" : "section-padding bg-gray-50/30"}>
       <div className="container-width">
-        <div className="text-center mb-16 animate-fade-in">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Code2 className="h-8 w-8 text-primary" />
-            <h2>My Projects</h2>
+        {!showAllProjects && (
+          <div className="text-center mb-20">
+            <h2 className="text-3xl font-light text-gray-900 mb-4">Featured Projects</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              A showcase of my recent work in backend engineering and AI integration.
+            </p>
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A showcase of my recent work in backend engineering, featuring scalable systems, AI integration, and performance optimization.
-          </p>
-        </div>
+        )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects?.map((project, index) => {
-            const IconComponent = getProjectIcon(project.title);
-            return (
-              <Card 
-                key={project.id} 
-                className="group bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border/50 hover:scale-105 animate-fade-in h-full"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-8 h-full flex flex-col">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors duration-300">
-                      <IconComponent className="h-6 w-6" />
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
+            {projects?.map((project) => {
+              const { icon: IconComponent, bg, text } = getProjectIconAndColors(project.title);
+              return (
+                <div key={project.id} className="group p-6 rounded-2xl bg-white border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className={`p-3 rounded-xl ${bg} ${text} flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
+                      <IconComponent className="h-5 w-5" />
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground leading-tight">
-                      {project.title}
-                    </h3>
+                    <div className="flex-grow">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors leading-tight">
+                        {project.title}
+                      </h3>
+                    </div>
                   </div>
                   
-                  <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
+                  <p className="text-gray-600 mb-6 leading-relaxed text-base line-height-loose">
                     {project.description}
                   </p>
                   
                   <div className="space-y-6">
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, index) => (
-                        <Badge 
+                    <div className="flex flex-wrap gap-2.5">
+                      {project.technologies.slice(0, 5).map((tech, index) => (
+                        <span 
                           key={index} 
-                          variant="secondary" 
-                          className="bg-muted/50 text-foreground border border-border/50 px-3 py-1 rounded-full font-medium hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
+                          className="text-xs px-3 py-2 bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 rounded-full font-medium border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200"
                         >
                           {tech}
-                        </Badge>
+                        </span>
                       ))}
+                      {project.technologies.length > 5 && (
+                        <span className="text-xs px-3 py-2 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 rounded-full font-medium border border-gray-300 shadow-sm">
+                          +{project.technologies.length - 5} more
+                        </span>
+                      )}
                     </div>
                     
-                    <div className="flex gap-3 pt-2">
+                    <div className="flex items-center gap-4 pt-1 border-t border-gray-100">
                       {project.liveUrl && (
-                        <Button
-                          variant="default"
-                          size="sm"
-                          className="gradient-subtle text-white hover:shadow-lg transition-all duration-300 flex-1"
-                          asChild
+                        <a 
+                          href={project.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm text-blue-600 hover:text-blue-700 transition-all duration-200 flex items-center gap-2 font-medium hover:gap-3 group/link"
                         >
-                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Live Demo
-                          </a>
-                        </Button>
+                          <ExternalLink className="h-4 w-4 group-hover/link:scale-110 transition-transform duration-200" />
+                          Live Demo
+                        </a>
                       )}
                       {project.githubUrl && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300 flex-1"
-                          asChild
+                        <a 
+                          href={project.githubUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm text-gray-900 hover:text-black transition-all duration-200 flex items-center gap-2 font-bold hover:gap-3 group/link"
                         >
-                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
+                          <Github className="h-4 w-4 group-hover/link:scale-110 transition-transform duration-200" />
+                          Code
+                        </a>
                       )}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {(!projects || projects.length === 0) && (
           <div className="text-center py-12">
-            <Code2 className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4" />
-            <p className="text-muted-foreground text-lg">No projects available yet.</p>
+            <p className="text-gray-500 text-lg">No projects available yet.</p>
           </div>
         )}
       </div>

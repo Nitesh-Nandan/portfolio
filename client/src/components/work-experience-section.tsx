@@ -41,13 +41,13 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
       {/* Timeline line */}
       <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent"></div>
       
-      <div className="space-y-12">
+      <div className="space-y-8">
         {sortedExperiences.map((experience, index) => (
           <div key={experience.id} className="relative flex items-start">
             {/* Timeline dot */}
             <div className={`absolute left-4 w-4 h-4 rounded-full border-4 transition-all duration-300 ${
               experience.isCurrent 
-                ? 'gradient-subtle border-white shadow-lg scale-125' 
+                ? 'bg-primary border-white shadow-lg scale-125' 
                 : 'bg-white border-primary/40 hover:border-primary'
             }`}></div>
             
@@ -65,7 +65,10 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                       </CardDescription>
                     </div>
                     {experience.isCurrent && (
-                      <Badge className="gradient-subtle text-white border-0 px-4 py-1 rounded-full font-medium shadow-lg">
+                      <Badge 
+                        style={{ backgroundColor: 'hsl(234, 89%, 74%)', color: 'white' }}
+                        className="border-0 px-4 py-1.5 rounded-full font-medium shadow-lg text-sm"
+                      >
                         Current Position
                       </Badge>
                     )}
@@ -77,7 +80,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                       <span className="font-medium">
                         {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
                       </span>
-                      <span className="text-xs bg-muted px-2 py-1 rounded-full">
+                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-medium">
                         {calculateDuration(experience.startDate, experience.endDate)}
                       </span>
                     </div>
@@ -89,7 +92,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                 </CardHeader>
                 
                 <CardContent className="space-y-6">
-                  <p className="text-foreground leading-relaxed text-lg">
+                  <p className="text-foreground leading-relaxed">
                     {experience.description}
                   </p>
                   
@@ -102,7 +105,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                       <ul className="space-y-3">
                         {experience.achievements.map((achievement, achievementIndex) => (
                           <li key={achievementIndex} className="flex items-start gap-3">
-                            <div className="w-2 h-2 rounded-full gradient-subtle mt-2 flex-shrink-0"></div>
+                            <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
                             <span className="text-muted-foreground leading-relaxed">{achievement}</span>
                           </li>
                         ))}
@@ -118,7 +121,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                           <Badge 
                             key={techIndex} 
                             variant="secondary" 
-                            className="bg-muted/50 text-foreground border border-border/50 px-3 py-1 rounded-full font-medium hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
+                            className="bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-md font-medium hover:bg-primary/20 transition-colors"
                           >
                             {tech}
                           </Badge>
@@ -143,63 +146,27 @@ export default function WorkExperienceSection() {
 
   if (isLoading) {
     return (
-      <section id="experience" className="section-padding bg-soft-alt">
-        <div className="container-width">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Briefcase className="h-8 w-8 text-primary" />
-              <h2>Work Experience</h2>
-            </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Loading my professional journey...
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-          </div>
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
         </div>
-      </section>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <section id="experience" className="section-padding bg-soft-alt">
-        <div className="container-width">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Briefcase className="h-8 w-8 text-primary" />
-              <h2>Work Experience</h2>
-            </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              My professional journey in backend engineering and GenAI development
-            </p>
-          </div>
-          <div className="text-center text-muted-foreground">
-            <p>Unable to load work experience data</p>
-          </div>
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center text-muted-foreground py-12">
+          <p>Unable to load work experience data</p>
         </div>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section id="experience" className="section-padding bg-soft-alt">
-      <div className="container-width">
-        <div className="text-center mb-16 animate-fade-in">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Briefcase className="h-8 w-8 text-primary" />
-            <h2>Work Experience</h2>
-          </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            My professional journey in backend engineering and GenAI development
-          </p>
-        </div>
-        
-        <div className="max-w-4xl mx-auto">
-          <WorkExperienceTimeline experiences={experiences || []} />
-        </div>
-      </div>
-    </section>
+    <div className="max-w-4xl mx-auto">
+      <WorkExperienceTimeline experiences={experiences || []} />
+    </div>
   );
 }
