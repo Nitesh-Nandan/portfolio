@@ -22,7 +22,12 @@ export default function HomePage() {
       <section id="home" className="min-h-screen bg-gradient-to-br from-neutral to-white pt-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between py-20">
-            <div className="lg:w-1/2 mb-10 lg:mb-0">
+            <div className="lg:w-1/2 flex justify-center lg:justify-start order-2 lg:order-1">
+              <div className="w-80 h-80 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
+                <Code className="text-white text-8xl" />
+              </div>
+            </div>
+            <div className="lg:w-1/2 mb-10 lg:mb-0 order-1 lg:order-2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
                 Hi, I'm <span className="text-primary">Nitesh Nandan</span>
               </h1>
@@ -44,11 +49,6 @@ export default function HomePage() {
                 >
                   Get In Touch
                 </Button>
-              </div>
-            </div>
-            <div className="lg:w-1/2 flex justify-center">
-              <div className="w-80 h-80 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
-                <Code className="text-white text-8xl" />
               </div>
             </div>
           </div>
