@@ -38,6 +38,19 @@ export const contactMessages = pgTable("contact_messages", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const workExperience = pgTable("work_experience", {
+  id: serial("id").primaryKey(),
+  company: text("company").notNull(),
+  position: text("position").notNull(),
+  location: text("location").notNull(),
+  startDate: text("start_date").notNull(),
+  endDate: text("end_date"), // null for current position
+  description: text("description").notNull(),
+  achievements: text("achievements").array().notNull(),
+  technologies: text("technologies").array().notNull(),
+  isCurrent: boolean("is_current").default(false),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -56,6 +69,10 @@ export const insertContactMessageSchema = createInsertSchema(contactMessages).om
   createdAt: true,
 });
 
+export const insertWorkExperienceSchema = createInsertSchema(workExperience).omit({
+  id: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
@@ -67,3 +84,6 @@ export type Book = typeof books.$inferSelect;
 
 export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
 export type ContactMessage = typeof contactMessages.$inferSelect;
+
+export type InsertWorkExperience = z.infer<typeof insertWorkExperienceSchema>;
+export type WorkExperience = typeof workExperience.$inferSelect;

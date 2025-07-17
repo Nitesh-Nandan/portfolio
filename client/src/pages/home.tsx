@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation";
 import ProjectsSection from "@/components/projects-section";
 import BookshelfSection from "@/components/bookshelf-section";
 import ContactSection from "@/components/contact-section";
+import WorkExperienceSection from "@/components/work-experience-section";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Server, Database, Brain, Cloud, Settings } from "lucide-react";
@@ -111,6 +112,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <WorkExperienceSection />
       <ProjectsSection />
       <BookshelfSection />
       <ContactSection />

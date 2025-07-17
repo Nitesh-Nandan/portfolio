@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactMessageSchema } from "@shared/schema";
+import { insertContactMessageSchema, insertWorkExperienceSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -58,6 +58,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         res.status(500).json({ message: "Failed to send message" });
       }
+    }
+  });
+
+  // Get work experience
+  app.get("/api/work-experience", async (req, res) => {
+    try {
+      const experiences = await storage.getWorkExperience();
+      res.json(experiences);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch work experience" });
     }
   });
 

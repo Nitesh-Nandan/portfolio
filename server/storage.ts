@@ -1,4 +1,4 @@
-import { users, projects, books, contactMessages, type User, type InsertUser, type Project, type InsertProject, type Book, type InsertBook, type ContactMessage, type InsertContactMessage } from "@shared/schema";
+import { users, projects, books, contactMessages, workExperience, type User, type InsertUser, type Project, type InsertProject, type Book, type InsertBook, type ContactMessage, type InsertContactMessage, type WorkExperience, type InsertWorkExperience } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -19,6 +19,9 @@ export interface IStorage {
   
   createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
   getContactMessages(): Promise<ContactMessage[]>;
+  
+  getWorkExperience(): Promise<WorkExperience[]>;
+  createWorkExperience(experience: InsertWorkExperience): Promise<WorkExperience>;
 }
 
 export class MemStorage implements IStorage {
@@ -277,6 +280,21 @@ export class MemStorage implements IStorage {
   async getContactMessages(): Promise<ContactMessage[]> {
     return Array.from(this.contactMessages.values());
   }
+
+  async getWorkExperience(): Promise<WorkExperience[]> {
+    return [];
+  }
+
+  async createWorkExperience(insertExperience: InsertWorkExperience): Promise<WorkExperience> {
+    const id = 1;
+    const experience: WorkExperience = { 
+      ...insertExperience, 
+      id,
+      endDate: insertExperience.endDate || null,
+      isCurrent: insertExperience.isCurrent || false
+    };
+    return experience;
+  }
 }
 
 export class DatabaseStorage implements IStorage {
@@ -350,6 +368,18 @@ export class DatabaseStorage implements IStorage {
 
   async getContactMessages(): Promise<ContactMessage[]> {
     return await db.select().from(contactMessages);
+  }
+
+  async getWorkExperience(): Promise<WorkExperience[]> {
+    return await db.select().from(workExperience);
+  }
+
+  async createWorkExperience(insertExperience: InsertWorkExperience): Promise<WorkExperience> {
+    const [experience] = await db
+      .insert(workExperience)
+      .values(insertExperience)
+      .returning();
+    return experience;
   }
 }
 
