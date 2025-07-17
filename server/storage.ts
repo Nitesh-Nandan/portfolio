@@ -1,4 +1,6 @@
 import { users, projects, books, contactMessages, type User, type InsertUser, type Project, type InsertProject, type Book, type InsertBook, type ContactMessage, type InsertContactMessage } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -277,4 +279,78 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async getProjects(): Promise<Project[]> {
+    return await db.select().from(projects);
+  }
+
+  async getFeaturedProjects(): Promise<Project[]> {
+    return await db.select().from(projects).where(eq(projects.featured, true));
+  }
+
+  async getProject(id: number): Promise<Project | undefined> {
+    const [project] = await db.select().from(projects).where(eq(projects.id, id));
+    return project || undefined;
+  }
+
+  async createProject(insertProject: InsertProject): Promise<Project> {
+    const [project] = await db
+      .insert(projects)
+      .values(insertProject)
+      .returning();
+    return project;
+  }
+
+  async getBooks(): Promise<Book[]> {
+    return await db.select().from(books);
+  }
+
+  async getBooksByStatus(status: string): Promise<Book[]> {
+    return await db.select().from(books).where(eq(books.status, status));
+  }
+
+  async getBook(id: number): Promise<Book | undefined> {
+    const [book] = await db.select().from(books).where(eq(books.id, id));
+    return book || undefined;
+  }
+
+  async createBook(insertBook: InsertBook): Promise<Book> {
+    const [book] = await db
+      .insert(books)
+      .values(insertBook)
+      .returning();
+    return book;
+  }
+
+  async createContactMessage(insertMessage: InsertContactMessage): Promise<ContactMessage> {
+    const [message] = await db
+      .insert(contactMessages)
+      .values(insertMessage)
+      .returning();
+    return message;
+  }
+
+  async getContactMessages(): Promise<ContactMessage[]> {
+    return await db.select().from(contactMessages);
+  }
+}
+
+export const storage = new DatabaseStorage();

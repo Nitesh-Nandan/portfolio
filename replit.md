@@ -37,8 +37,9 @@ The application uses four main tables:
 
 ### Storage Layer
 - **Interface**: IStorage interface defining all database operations
-- **Implementation**: MemStorage class for in-memory development data with sample seeding focused on backend/AI projects
-- **Production**: Configured for PostgreSQL with Neon Database serverless driver
+- **Implementation**: DatabaseStorage class using PostgreSQL with Drizzle ORM
+- **Database**: PostgreSQL database with seeded data for projects and books
+- **Connection**: Neon Database serverless driver for optimal performance
 
 ### Frontend Pages & Components
 - **HomePage**: Main landing page with hero section highlighting backend expertise and GenAI skills
@@ -115,3 +116,11 @@ The application is structured as a monorepo with clear separation between client
 - Updated reading list with technical books relevant to backend engineering
 - Updated contact information with actual details (email, phone, location, LinkedIn)
 - Fixed TypeScript errors in storage layer for proper type handling
+
+### Database Integration (January 2025)
+- Created PostgreSQL database with proper schema using Drizzle ORM
+- Implemented DatabaseStorage class replacing in-memory storage
+- Added database connection layer with Neon serverless driver
+- Created and executed seed script to populate database with sample data
+- Verified all API endpoints working correctly with database integration
+- Contact form submissions now persist to database
