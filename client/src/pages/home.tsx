@@ -74,10 +74,13 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {/* Backend Development Card */}
               <div className="bg-blue-50/50 p-12 rounded-2xl border border-blue-100/50 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-6">
-                  <Code className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
+                    <Code className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">Backend</h3>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-6">Backend</h3>
+                <hr className="border-gray-200 mb-6" />
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">Java</span>
                   <span className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">Spring Boot</span>
@@ -90,10 +93,13 @@ export default function HomePage() {
 
               {/* Database & Cloud Card */}
               <div className="bg-green-50/50 p-12 rounded-2xl border border-green-100/50 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mb-6">
-                  <Server className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+                    <Server className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">Database & Cloud</h3>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-6">Database & Cloud</h3>
+                <hr className="border-gray-200 mb-6" />
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">AWS</span>
                   <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">MySQL</span>
@@ -107,10 +113,13 @@ export default function HomePage() {
 
               {/* Generative AI Card */}
               <div className="bg-purple-50/50 p-12 rounded-2xl border border-purple-100/50 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mb-6">
-                  <Brain className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center">
+                    <Brain className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">Generative AI</h3>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-6">Generative AI</h3>
+                <hr className="border-gray-200 mb-6" />
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">LangChain</span>
                   <span className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">GenAI</span>
