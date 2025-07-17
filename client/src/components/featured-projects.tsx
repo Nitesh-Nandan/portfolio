@@ -36,8 +36,8 @@ function ProjectCard({ project }: ProjectCardProps) {
       <CardFooter>
         <TechnologyBadges technologies={project.technologies} />
         <ProjectActions 
-          liveUrl={project.liveUrl} 
-          githubUrl={project.githubUrl} 
+          liveUrl={project.liveUrl ?? undefined}
+          githubUrl={project.githubUrl ?? undefined}
         />
       </CardFooter>
     </SectionCard>
