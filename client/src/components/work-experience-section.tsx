@@ -39,7 +39,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
   return (
     <div className="relative">
       {/* Timeline line */}
-      <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent"></div>
+      <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 via-green-400 via-emerald-400 to-gray-300 shadow-sm"></div>
       
       <div className="space-y-8">
         {sortedExperiences.map((experience, index) => (
@@ -47,28 +47,25 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
             {/* Timeline dot */}
             <div className={`absolute left-4 w-4 h-4 rounded-full border-4 transition-all duration-300 ${
               experience.isCurrent 
-                ? 'bg-primary border-white shadow-lg scale-125' 
-                : 'bg-white border-primary/40 hover:border-primary'
+                ? 'bg-green-600 border-white shadow-lg shadow-green-600/30 scale-125' 
+                : 'bg-white border-emerald-300 hover:border-emerald-400 shadow-sm'
             }`}></div>
             
             {/* Content */}
             <div className="ml-12 flex-1 animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
-              <Card className="group bg-white/95 backdrop-blur-sm border border-border/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:scale-[1.02] rounded-2xl overflow-hidden">
+              <Card className="group bg-white/95 backdrop-blur-sm border border-border/50 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300 hover:scale-[1.02] rounded-2xl overflow-hidden">
                 <CardHeader className="pb-4">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div className="flex-1">
                       <CardTitle className="text-xl font-semibold text-foreground mb-2 leading-tight">
                         {experience.position}
                       </CardTitle>
-                      <CardDescription className="text-lg font-medium text-primary mb-3">
+                      <CardDescription className="text-lg font-medium text-gray-900 mb-3">
                         {experience.company}
                       </CardDescription>
                     </div>
                     {experience.isCurrent && (
-                      <Badge 
-                        style={{ backgroundColor: 'hsl(234, 89%, 74%)', color: 'white' }}
-                        className="border-0 px-4 py-1.5 rounded-full font-medium shadow-lg text-sm"
-                      >
+                      <Badge className="bg-green-600 text-white border-0 px-4 py-1.5 rounded-full font-medium shadow-lg shadow-green-600/30 text-sm">
                         Current Position
                       </Badge>
                     )}
@@ -76,16 +73,16 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                   
                   <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-primary" />
+                      <Calendar className="h-4 w-4 text-blue-500" />
                       <span className="font-medium">
                         {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
                       </span>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-medium">
+                      <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full font-medium">
                         {calculateDuration(experience.startDate, experience.endDate)}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-primary" />
+                      <MapPin className="h-4 w-4 text-green-500" />
                       <span className="font-medium">{experience.location}</span>
                     </div>
                   </div>
@@ -99,13 +96,13 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                   {experience.achievements && experience.achievements.length > 0 && (
                     <div>
                       <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-                        <Trophy className="h-5 w-5 text-primary" />
+                        <Trophy className="h-5 w-5 text-amber-500" />
                         Key Achievements
                       </h4>
                       <ul className="space-y-3">
                         {experience.achievements.map((achievement, achievementIndex) => (
                           <li key={achievementIndex} className="flex items-start gap-3">
-                            <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                            <div className="w-2 h-2 rounded-full bg-gray-600 mt-2 flex-shrink-0"></div>
                             <span className="text-muted-foreground leading-relaxed">{achievement}</span>
                           </li>
                         ))}
@@ -121,7 +118,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
                           <Badge 
                             key={techIndex} 
                             variant="secondary" 
-                            className="bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-md font-medium hover:bg-primary/20 transition-colors"
+                            className="bg-gray-100 text-gray-700 border border-gray-200 px-3 py-1 rounded-md font-medium hover:bg-gray-200 transition-colors"
                           >
                             {tech}
                           </Badge>
@@ -148,7 +145,7 @@ export default function WorkExperienceSection() {
     return (
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
         </div>
       </div>
     );
