@@ -1,29 +1,94 @@
 import Navigation from "@/components/navigation";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
+import { Linkedin, Github, Mail, Twitter, MessageCircle } from "lucide-react";
 
 export default function ContactPage() {
+  const scrollToContactForm = () => {
+    const contactForm = document.querySelector('#contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       
-      {/* Contact Section */}
+      {/* Personal Introduction */}
       <section className="pt-24 pb-16">
         <div className="container-width">
           <div className="text-center mb-16 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Get In Touch
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8">
+              Let's Connect
             </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              I'm always interested in discussing new opportunities, 
-              exciting projects, or just having a chat about technology.
-            </p>
+            <div className="max-w-3xl mx-auto space-y-6">
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Hi there! I'm a passionate <span className="text-foreground font-semibold">Backend Engineer</span> specializing in 
+                scalable distributed systems, microservices architecture, and GenAI solutions.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Whether you want to collaborate on exciting projects, discuss technology, or just say hello - 
+                I'd love to hear from you!
+              </p>
+              
+              {/* Social Icons */}
+              <div className="flex items-center justify-center gap-6 pt-6">
+                <a
+                  href="https://www.linkedin.com/in/niteshnandan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 group"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-gray-50 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-all duration-200 group"
+                  title="GitHub"
+                >
+                  <Github className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-all duration-200 group"
+                  title="Twitter"
+                >
+                  <Twitter className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+                </a>
+                <a
+                  href="mailto:niteshnitp5686@gmail.com"
+                  className="p-3 rounded-full bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-700 transition-all duration-200 group"
+                  title="Email"
+                >
+                  <Mail className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+                </a>
+                <button
+                  onClick={scrollToContactForm}
+                  className="p-3 rounded-full bg-purple-50 text-purple-600 hover:bg-purple-100 hover:text-purple-700 transition-all duration-200 group"
+                  title="Send Message"
+                >
+                  <MessageCircle className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+                </button>
+              </div>
+              
+              <p className="text-lg text-foreground font-medium pt-4">
+                Drop me a message below!
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Form */}
-      <ContactSection />
+      <div id="contact-form">
+        <ContactSection />
+      </div>
       
       {/* Footer */}
       <Footer />
