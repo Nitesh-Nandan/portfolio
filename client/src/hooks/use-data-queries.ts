@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article } from '@shared/schema';
+import { useQuery } from '@tanstack/react-query';
 
 // Simple data fetching hook
 const useApiData = <T>(
@@ -98,6 +99,26 @@ export const useBooks = (status?: string) => {
 export const useCurrentlyReadingBooks = () => {
   return useApiData(() => api.getBooksByStatus('reading'), [] as Book[]);
 };
+
+export const useCourses = () => useQuery<Course[]>({
+  queryKey: ['/api/courses'],
+  queryFn: api.getCourses,
+});
+
+export const useCoursesByStatus = (status: string) => useQuery<Course[]>({
+  queryKey: ['/api/courses', status],
+  queryFn: () => api.getCoursesByStatus(status),
+});
+
+export const useArticles = () => useQuery<Article[]>({
+  queryKey: ['/api/articles'],
+  queryFn: api.getArticles,
+});
+
+export const useArticlesByStatus = (status: string) => useQuery<Article[]>({
+  queryKey: ['/api/articles', status],
+  queryFn: () => api.getArticlesByStatus(status),
+});
 
 // Admin hooks for your personal use
 export const useAdminActions = () => {

@@ -3,8 +3,8 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { eq, desc } from 'drizzle-orm';
 import { db } from './db';
-import { personalInfo, workExperience, projects, skills, books } from '@shared/schema';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book } from '@shared/schema';
+import { personalInfo, workExperience, projects, skills, books, courses, articles } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article } from '@shared/schema';
 
 class DataService {
   private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data');
@@ -163,6 +163,50 @@ class DataService {
     return Array.isArray(allBooks) ? allBooks.filter(b => b.status === status) : [];
   }
 
+  // === COURSES ===
+  async getCourses(): Promise<Course[]> {
+    return this.getFromDbWithFallback(
+      async () => {
+        const result = await db.select().from(courses).orderBy(desc(courses.order));
+        return result;
+      },
+      'courses.json',
+      []
+    ) as Promise<Course[]>;
+  }
+
+  async getCoursesByStatus(status: string): Promise<Course[]> {
+    const allCourses = await this.getCourses();
+    return Array.isArray(allCourses) ? allCourses.filter(c => c.status === status) : [];
+  }
+
+  async getFeaturedCourses(): Promise<Course[]> {
+    const allCourses = await this.getCourses();
+    return Array.isArray(allCourses) ? allCourses.filter(c => c.featured) : [];
+  }
+
+  // === ARTICLES ===
+  async getArticles(): Promise<Article[]> {
+    return this.getFromDbWithFallback(
+      async () => {
+        const result = await db.select().from(articles).orderBy(desc(articles.order));
+        return result;
+      },
+      'articles.json',
+      []
+    ) as Promise<Article[]>;
+  }
+
+  async getArticlesByStatus(status: string): Promise<Article[]> {
+    const allArticles = await this.getArticles();
+    return Array.isArray(allArticles) ? allArticles.filter(a => a.status === status) : [];
+  }
+
+  async getFeaturedArticles(): Promise<Article[]> {
+    const allArticles = await this.getArticles();
+    return Array.isArray(allArticles) ? allArticles.filter(a => a.featured) : [];
+  }
+
   // === SYNC METHODS ===
   async syncToDatabase(): Promise<void> {
     try {
@@ -177,9 +221,57 @@ class DataService {
         } else {
           await db.insert(personalInfo).values(personalData);
         }
+        console.log('✅ Personal info synced');
       }
 
-      // Sync other data types could be added here as needed
+      // Sync work experience
+      const workData = await this.readJsonFile('work-experience.json', []) as WorkExperience[];
+      if (Array.isArray(workData) && workData.length > 0) {
+        // Clear existing data and insert fresh data
+        await db.delete(workExperience);
+        await db.insert(workExperience).values(workData);
+        console.log(`✅ Work experience synced (${workData.length} records)`);
+      }
+
+      // Sync projects
+      const projectData = await this.readJsonFile('projects.json', []) as Project[];
+      if (Array.isArray(projectData) && projectData.length > 0) {
+        await db.delete(projects);
+        await db.insert(projects).values(projectData);
+        console.log(`✅ Projects synced (${projectData.length} records)`);
+      }
+
+      // Sync skills
+      const skillData = await this.readJsonFile('skills.json', []) as Skill[];
+      if (Array.isArray(skillData) && skillData.length > 0) {
+        await db.delete(skills);
+        await db.insert(skills).values(skillData);
+        console.log(`✅ Skills synced (${skillData.length} records)`);
+      }
+
+      // Sync books
+      const bookData = await this.readJsonFile('books.json', []) as Book[];
+      if (Array.isArray(bookData) && bookData.length > 0) {
+        await db.delete(books);
+        await db.insert(books).values(bookData);
+        console.log(`✅ Books synced (${bookData.length} records)`);
+      }
+
+      // Sync courses
+      const courseData = await this.readJsonFile('courses.json', []) as Course[];
+      if (Array.isArray(courseData) && courseData.length > 0) {
+        await db.delete(courses);
+        await db.insert(courses).values(courseData);
+        console.log(`✅ Courses synced (${courseData.length} records)`);
+      }
+
+      // Sync articles
+      const articleData = await this.readJsonFile('articles.json', []) as Article[];
+      if (Array.isArray(articleData) && articleData.length > 0) {
+        await db.delete(articles);
+        await db.insert(articles).values(articleData);
+        console.log(`✅ Articles synced (${articleData.length} records)`);
+      }
       
       console.log('Database sync completed');
     } catch (error) {
@@ -222,6 +314,18 @@ class DataService {
       writeFileSync(
         join(this.dataPath, 'books.json'),
         JSON.stringify(bookData, null, 2)
+      );
+
+      const courseData = await db.select().from(courses);
+      writeFileSync(
+        join(this.dataPath, 'courses.json'),
+        JSON.stringify(courseData, null, 2)
+      );
+
+      const articleData = await db.select().from(articles);
+      writeFileSync(
+        join(this.dataPath, 'articles.json'),
+        JSON.stringify(articleData, null, 2)
       );
 
       console.log('JSON backup completed');

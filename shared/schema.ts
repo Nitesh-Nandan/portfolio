@@ -77,6 +77,39 @@ export const books = pgTable("books", {
   featured: boolean("featured").default(false),
 });
 
+// Courses
+export const courses = pgTable("courses", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  instructor: text("instructor").notNull(),
+  url: text("url"),
+  status: text("status").notNull().default("enrolled"), // enrolled, learning, completed
+  progress: integer("progress").default(0),
+  rating: integer("rating"),
+  startDate: text("start_date"),
+  completedDate: text("completed_date"),
+  notes: text("notes"),
+  tags: text("tags").array(),
+  featured: boolean("featured").default(false),
+  order: integer("order").default(0),
+});
+
+// Articles
+export const articles = pgTable("articles", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  url: text("url"),
+  author: text("author").notNull(),
+  publishedDate: text("published_date"),
+  readDate: text("read_date"),
+  summary: text("summary"),
+  tags: text("tags").array(),
+  rating: integer("rating"),
+  featured: boolean("featured").default(false),
+  status: text("status").notNull().default("to-read"), // to-read, reading, completed
+  order: integer("order").default(0),
+});
+
 // Contact Messages (simple)
 export const contactMessages = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
@@ -95,6 +128,8 @@ export type WorkExperience = typeof workExperience.$inferSelect;
 export type Project = typeof projects.$inferSelect;
 export type Skill = typeof skills.$inferSelect;
 export type Book = typeof books.$inferSelect;
+export type Course = typeof courses.$inferSelect;
+export type Article = typeof articles.$inferSelect;
 export type ContactMessage = typeof contactMessages.$inferSelect;
 
 export type InsertPersonalInfo = typeof personalInfo.$inferInsert;
@@ -102,6 +137,8 @@ export type InsertWorkExperience = typeof workExperience.$inferInsert;
 export type InsertProject = typeof projects.$inferInsert;
 export type InsertSkill = typeof skills.$inferInsert;
 export type InsertBook = typeof books.$inferInsert;
+export type InsertCourse = typeof courses.$inferInsert;
+export type InsertArticle = typeof articles.$inferInsert;
 export type InsertContactMessage = typeof contactMessages.$inferInsert;
 
 // === SIMPLE VALIDATION SCHEMAS ===
@@ -110,6 +147,8 @@ export const insertWorkExperienceSchema = createInsertSchema(workExperience);
 export const insertProjectSchema = createInsertSchema(projects);
 export const insertSkillSchema = createInsertSchema(skills);
 export const insertBookSchema = createInsertSchema(books);
+export const insertCourseSchema = createInsertSchema(courses);
+export const insertArticleSchema = createInsertSchema(articles);
 export const insertContactMessageSchema = createInsertSchema(contactMessages);
 
 export const selectPersonalInfoSchema = createSelectSchema(personalInfo);
@@ -117,4 +156,6 @@ export const selectWorkExperienceSchema = createSelectSchema(workExperience);
 export const selectProjectSchema = createSelectSchema(projects);
 export const selectSkillSchema = createSelectSchema(skills);
 export const selectBookSchema = createSelectSchema(books);
+export const selectCourseSchema = createSelectSchema(courses);
+export const selectArticleSchema = createSelectSchema(articles);
 export const selectContactMessageSchema = createSelectSchema(contactMessages);

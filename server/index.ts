@@ -57,7 +57,7 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  const PORT = parseInt(process.env.PORT || "3000");
+  const PORT = parseInt(process.env.PORT || "8000");
   server.listen(PORT, "0.0.0.0", () => {
     log(`Server running on http://0.0.0.0:${PORT}`);
     log("🎉 Comprehensive PostgreSQL-powered personal portfolio is ready!");

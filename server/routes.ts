@@ -84,6 +84,70 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // === COURSES ===
+  app.get("/api/courses", async (req, res) => {
+    try {
+      const courses = await dataService.getCourses();
+      res.json(courses);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      res.status(500).json({ message: "Failed to fetch courses" });
+    }
+  });
+
+  app.get("/api/courses/:status", async (req, res) => {
+    try {
+      const { status } = req.params;
+      const courses = await dataService.getCoursesByStatus(status);
+      res.json(courses);
+    } catch (error) {
+      console.error("Error fetching courses by status:", error);
+      res.status(500).json({ message: "Failed to fetch courses" });
+    }
+  });
+
+  app.get("/api/courses/featured", async (req, res) => {
+    try {
+      const courses = await dataService.getFeaturedCourses();
+      res.json(courses);
+    } catch (error) {
+      console.error("Error fetching featured courses:", error);
+      res.status(500).json({ message: "Failed to fetch featured courses" });
+    }
+  });
+
+  // Articles
+  app.get("/api/articles", async (req, res) => {
+    try {
+      const articles = await dataService.getArticles();
+      res.json(articles);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      res.status(500).json({ message: "Failed to fetch articles" });
+    }
+  });
+
+  app.get("/api/articles/:status", async (req, res) => {
+    try {
+      const { status } = req.params;
+      const articles = await dataService.getArticlesByStatus(status);
+      res.json(articles);
+    } catch (error) {
+      console.error("Error fetching articles by status:", error);
+      res.status(500).json({ message: "Failed to fetch articles" });
+    }
+  });
+
+  app.get("/api/articles/featured", async (req, res) => {
+    try {
+      const articles = await dataService.getFeaturedArticles();
+      res.json(articles);
+    } catch (error) {
+      console.error("Error fetching featured articles:", error);
+      res.status(500).json({ message: "Failed to fetch featured articles" });
+    }
+  });
+
   // === ADMIN ENDPOINTS (for your personal use) ===
 
   // Sync data between JSON and database

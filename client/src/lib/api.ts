@@ -1,4 +1,4 @@
-import type { PersonalInfo, WorkExperience, Project, Skill, Book } from "@shared/schema";
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article } from "@shared/schema";
 
 // Simple fetch wrapper with error handling
 const apiCall = async <T>(endpoint: string): Promise<T> => {
@@ -44,6 +44,26 @@ export const api = {
 
   getBooksByStatus: (status: string): Promise<Book[]> => 
     apiCall(`/api/books/${encodeURIComponent(status)}`),
+
+  // Courses
+  getCourses: (): Promise<Course[]> => 
+    apiCall('/api/courses'),
+
+  getCoursesByStatus: (status: string): Promise<Course[]> => 
+    apiCall(`/api/courses/${encodeURIComponent(status)}`),
+
+  getFeaturedCourses: (): Promise<Course[]> => 
+    apiCall('/api/courses/featured'),
+
+  // Articles
+  getArticles: (): Promise<Article[]> => 
+    apiCall('/api/articles'),
+
+  getArticlesByStatus: (status: string): Promise<Article[]> => 
+    apiCall(`/api/articles/${encodeURIComponent(status)}`),
+
+  getFeaturedArticles: (): Promise<Article[]> => 
+    apiCall('/api/articles/featured'),
 
   // Admin functions (for your personal use)
   admin: {
