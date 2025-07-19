@@ -45,7 +45,8 @@ function ProjectCard({ project }: ProjectCardProps) {
 }
 
 export default function FeaturedProjects() {
-  const { projects, isLoading, isEmpty } = useFeaturedProjects(3);
+  const { data: projects, loading: isLoading, error } = useFeaturedProjects();
+  const isEmpty = !isLoading && (!projects || projects.length === 0);
 
   if (isLoading) {
     return <LoadingSpinner />;

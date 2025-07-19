@@ -40,7 +40,8 @@ function BookCard({ book }: BookCardProps) {
 }
 
 export default function RecentReads() {
-  const { books, isLoading, isEmpty } = useCurrentlyReadingBooks(3);
+  const { data: books, loading: isLoading, error } = useCurrentlyReadingBooks();
+  const isEmpty = !isLoading && (!books || books.length === 0);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -48,7 +49,7 @@ export default function RecentReads() {
 
   return (
     <div className={GRID_STYLES.responsive}>
-      {books.map((book) => (
+      {books && books.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}
       
