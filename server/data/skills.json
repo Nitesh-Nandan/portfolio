@@ -70,5 +70,149 @@
     "yearsExperience": 5,
     "featured": false,
     "order": 8
+  },
+  {
+    "id": 9,
+    "name": "Java",
+    "category": "Backend",
+    "proficiency": 9,
+    "yearsExperience": 6,
+    "featured": true,
+    "order": 9
+  },
+  {
+    "id": 10,
+    "name": "Spring Boot",
+    "category": "Backend",
+    "proficiency": 9,
+    "yearsExperience": 5,
+    "featured": true,
+    "order": 10
+  },
+  {
+    "id": 11,
+    "name": "Python",
+    "category": "Backend",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 11
+  },
+  {
+    "id": 12,
+    "name": "Microservices",
+    "category": "Backend",
+    "proficiency": 9,
+    "yearsExperience": 5,
+    "featured": true,
+    "order": 12
+  },
+  {
+    "id": 13,
+    "name": "REST APIs",
+    "category": "Backend",
+    "proficiency": 9,
+    "yearsExperience": 6,
+    "featured": true,
+    "order": 13
+  },
+  {
+    "id": 14,
+    "name": "AWS",
+    "category": "DevOps",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 14
+  },
+  {
+    "id": 15,
+    "name": "MySQL",
+    "category": "Database",
+    "proficiency": 8,
+    "yearsExperience": 5,
+    "featured": true,
+    "order": 15
+  },
+  {
+    "id": 16,
+    "name": "MongoDB",
+    "category": "Database",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 16
+  },
+  {
+    "id": 17,
+    "name": "Kubernetes",
+    "category": "DevOps",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 17
+  },
+  {
+    "id": 18,
+    "name": "Redis",
+    "category": "Database",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 18
+  },
+  {
+    "id": 19,
+    "name": "Kafka",
+    "category": "DevOps",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 19
+  },
+  {
+    "id": 20,
+    "name": "LangChain",
+    "category": "Tools",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 20
+  },
+  {
+    "id": 21,
+    "name": "GenAI",
+    "category": "Tools",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 21
+  },
+  {
+    "id": 22,
+    "name": "Machine Learning",
+    "category": "Tools",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 22
+  },
+  {
+    "id": 23,
+    "name": "AI Integration",
+    "category": "Tools",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 23
+  },
+  {
+    "id": 24,
+    "name": "Prompt Engineering",
+    "category": "Tools",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 24
   }
 ]

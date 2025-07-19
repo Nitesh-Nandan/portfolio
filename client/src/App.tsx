@@ -11,13 +11,15 @@ import ContactPage from "@/pages/contact";
 import AdminPage from "@/pages/admin";
 
 function Router() {
+  const isDevelopment = import.meta.env.DEV;
+  
   return (
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/projects" component={ProjectsPage} />
       <Route path="/experience" component={ExperiencePage} />
       <Route path="/contact" component={ContactPage} />
-      <Route path="/admin" component={AdminPage} />
+      {isDevelopment && <Route path="/admin" component={AdminPage} />}
       <Route component={NotFound} />
     </Switch>
   );
