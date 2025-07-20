@@ -1,54 +1,66 @@
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson } from "@shared/schema";
+import type { 
+  PersonalInfo, 
+  WorkExperience, 
+  Project, 
+  Skill, 
+  Book, 
+  Course, 
+  Article, 
+  ContactContentWithParsedJson, 
+  FooterContentWithParsedJson 
+} from '@shared/schema';
 
-// Simple mode detection based on environment variable only
-const getMode = (): 'static' | 'api' => {
-  const mode = import.meta.env.VITE_API_MODE;
+// Simple API configuration from environment variables
+const getApiConfig = () => {
+  const mode = import.meta.env.VITE_API_MODE || 'static';
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || '';
+  const staticPath = import.meta.env.VITE_STATIC_DATA_PATH || '/data';
   
   // Debug logging
-  console.log('🔍 Environment debug:', {
+  console.log('🔍 API Configuration:', {
     VITE_API_MODE: mode,
-    mode_type: typeof mode,
-    all_vite_env: Object.keys(import.meta.env).filter(key => key.startsWith('VITE_'))
+    VITE_API_BASE_URL: baseUrl,
+    VITE_STATIC_DATA_PATH: staticPath
   });
   
-  if (mode === 'static') {
-    console.log('📁 Static mode - loading from /data/*.json');
-    return 'static';
-  }
-  
-  if (mode === 'api') {
-    console.log('🌐 API mode - loading from /api/* endpoints');
-    return 'api';
-  }
-  
-  // Default to static if not set
-  console.log('📁 Default to static mode (no VITE_API_MODE set)');
-  return 'static';
+  return {
+    mode: mode as 'static' | 'api',
+    baseUrl: baseUrl.replace(/\/$/, ''), // Remove trailing slash
+    staticPath: staticPath.replace(/\/$/, '') // Remove trailing slash
+  };
 };
 
 // Simple fetch wrapper with error handling
-const apiCall = async <T>(endpoint: string): Promise<T> => {
+const apiCall = async <T>(endpoint: string, options?: RequestInit): Promise<T> => {
+  const config = getApiConfig();
+  const url = config.baseUrl ? `${config.baseUrl}${endpoint}` : endpoint;
+  
   try {
-    const response = await fetch(endpoint); 
+    console.log(`🌐 API Call: ${url}`);
+    const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`API Error: ${response.status} ${response.statusText}`);
     }
     return response.json();
   } catch (error) {
-    console.error(`Failed to fetch ${endpoint}:`, error);
+    console.error(`Failed to fetch ${url}:`, error);
     throw error;
   }
 };
 
 const staticApiCall = async <T>(file: string): Promise<T> => {
+  const config = getApiConfig();
+  const url = `${config.staticPath}/${file}`;
+  
   try {
-    const response = await fetch(`/data/${file}`);
+    console.log(`📁 Static Call: ${url}`);
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Static Data Error: ${response.status} ${response.statusText}`);
     }
     return response.json();
   } catch (error) {
-    console.error(`Failed to fetch static data /data/${file}:`, error);
+    console.error(`Failed to fetch static data ${url}:`, error);
     throw error;
   }
 };
@@ -57,31 +69,31 @@ const staticApiCall = async <T>(file: string): Promise<T> => {
 export const api = {
   // Personal Info
   getPersonalInfo: (): Promise<PersonalInfo> => {
-    const mode = getMode();
-    return mode === 'static' 
+    const config = getApiConfig();
+    return config.mode === 'static' 
       ? staticApiCall('personal-info.json') 
       : apiCall('/api/personal-info');
   },
 
   // Work Experience  
   getWorkExperience: (): Promise<WorkExperience[]> => {
-    const mode = getMode();
-    return mode === 'static' 
+    const config = getApiConfig();
+    return config.mode === 'static' 
       ? staticApiCall('work-experience.json') 
       : apiCall('/api/work-experience');
   },
 
   // Projects
   getProjects: (): Promise<Project[]> => {
-    const mode = getMode();
-    return mode === 'static' 
+    const config = getApiConfig();
+    return config.mode === 'static' 
       ? staticApiCall('projects.json') 
       : apiCall('/api/projects');
   },
 
   getFeaturedProjects: async (): Promise<Project[]> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       const all = await staticApiCall<Project[]>('projects.json');
       return all.filter(p => p.featured);
     }
@@ -90,15 +102,15 @@ export const api = {
 
   // Skills
   getSkills: (): Promise<Skill[]> => {
-    const mode = getMode();
-    return mode === 'static' 
+    const config = getApiConfig();
+    return config.mode === 'static' 
       ? staticApiCall('skills.json') 
       : apiCall('/api/skills');
   },
 
   getSkillsByCategory: async (category: string): Promise<Skill[]> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       const all = await staticApiCall<Skill[]>('skills.json');
       return all.filter(s => s.category === category);
     }
@@ -107,15 +119,15 @@ export const api = {
 
   // Books/Learning
   getBooks: (): Promise<Book[]> => {
-    const mode = getMode();
-    return mode === 'static' 
+    const config = getApiConfig();
+    return config.mode === 'static' 
       ? staticApiCall('books.json') 
       : apiCall('/api/books');
   },
 
   getBooksByStatus: async (status: string): Promise<Book[]> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       const all = await staticApiCall<Book[]>('books.json');
       return all.filter(b => b.status === status);
     }
@@ -124,15 +136,15 @@ export const api = {
 
   // Courses
   getCourses: (): Promise<Course[]> => {
-    const mode = getMode();
-    return mode === 'static' 
+    const config = getApiConfig();
+    return config.mode === 'static' 
       ? staticApiCall('courses.json') 
       : apiCall('/api/courses');
   },
 
   getCoursesByStatus: async (status: string): Promise<Course[]> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       const all = await staticApiCall<Course[]>('courses.json');
       return all.filter(c => c.status === status);
     }
@@ -140,8 +152,8 @@ export const api = {
   },
 
   getFeaturedCourses: async (): Promise<Course[]> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       const all = await staticApiCall<Course[]>('courses.json');
       return all.filter(c => c.featured);
     }
@@ -150,15 +162,15 @@ export const api = {
 
   // Articles
   getArticles: (): Promise<Article[]> => {
-    const mode = getMode();
-    return mode === 'static' 
+    const config = getApiConfig();
+    return config.mode === 'static' 
       ? staticApiCall('articles.json') 
       : apiCall('/api/articles');
   },
 
   getArticlesByStatus: async (status: string): Promise<Article[]> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       const all = await staticApiCall<Article[]>('articles.json');
       return all.filter(a => a.status === status);
     }
@@ -166,8 +178,8 @@ export const api = {
   },
 
   getFeaturedArticles: async (): Promise<Article[]> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       const all = await staticApiCall<Article[]>('articles.json');
       return all.filter(a => a.featured);
     }
@@ -176,8 +188,8 @@ export const api = {
 
   // Contact Content
   getContactContent: async (): Promise<ContactContentWithParsedJson> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       return staticApiCall('contact-content.json');
     }
     return apiCall('/api/contact-content');
@@ -185,37 +197,67 @@ export const api = {
 
   // Footer Content
   getFooterContent: async (): Promise<FooterContentWithParsedJson> => {
-    const mode = getMode();
-    if (mode === 'static') {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
       return staticApiCall('footer-content.json');
     }
     return apiCall('/api/footer-content');
   },
 
+  // Contact form submission
+  submitContact: async (data: {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+    phone?: string;
+    company?: string;
+  }): Promise<{ message: string }> => {
+    const config = getApiConfig();
+    if (config.mode === 'static') {
+      // In static mode, just simulate success
+      console.log('📧 Contact form submission (static mode):', data);
+      return { message: 'Thank you for your message! I will get back to you soon.' };
+    }
+    return apiCall('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  },
+
   // Admin functions (only work in API mode)
   admin: {
     syncToDatabase: (): Promise<{ message: string }> => {
-      const mode = getMode();
-      if (mode === 'static') {
+      const config = getApiConfig();
+      if (config.mode === 'static') {
         throw new Error('Admin functions not available in static mode');
       }
       return apiCall('/api/admin/sync-to-db');
     },
 
     backupToJson: (): Promise<{ message: string }> => {
-      const mode = getMode();
-      if (mode === 'static') {
+      const config = getApiConfig();
+      if (config.mode === 'static') {
         throw new Error('Admin functions not available in static mode');
       }
       return apiCall('/api/admin/backup-to-json');
     },
 
     updatePersonalInfo: (data: Partial<PersonalInfo>): Promise<{ message: string }> => {
-      const mode = getMode();
-      if (mode === 'static') {
+      const config = getApiConfig();
+      if (config.mode === 'static') {
         throw new Error('Admin functions not available in static mode');
       }
-      return apiCall('/api/admin/personal-info');
-    }
-  }
+      return apiCall('/api/admin/personal-info', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    },
+  },
 };
