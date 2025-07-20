@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "firstName": "Nitesh",
+  "lastName": "Nandan", 
+  "title": "Backend Engineer & GenAI Expert",
+  "bio": "Passionate backend engineer with expertise in distributed systems, microservices architecture, and GenAI integration. Currently working at Wayfair, building scalable solutions that handle millions of requests while maintaining high performance and reliability.",
+  "email": "niteshnitp5686@gmail.com",
+  "phone": "+91 9955328756",
+  "location": "Bengaluru, Karnataka, India",
+  "profileImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+  "resumeUrl": "/resume.pdf",
+  "availability": "available",
+  "availabilityMessage": "Open to new opportunities and exciting projects",
+  "is_deleted": false
+}
