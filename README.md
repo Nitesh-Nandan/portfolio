@@ -1,56 +1,253 @@
 # Portfolio Website
 
-A modern portfolio website built with React, TypeScript, and Vite.
+A modern, full-stack portfolio website built with React, TypeScript, Express.js, and Vite. Features a dual-mode architecture supporting both static and API-driven deployments.
 
-## Environment Variables
+## 🚀 Features
 
-The client can be configured using environment variables. Create a `.env` file in the `client/` directory:
+- **Dual Deployment Modes**: Static (JSON-based) and API (database-driven)
+- **Modern Tech Stack**: React 18, TypeScript, Vite, Express.js
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Component Library**: Custom UI components with Radix UI primitives
+- **Database Integration**: PostgreSQL with Drizzle ORM
+- **Contact Form**: Functional contact form with email integration
+- **Admin Panel**: Content management interface
+- **Performance Optimized**: Lazy loading, code splitting, and caching
 
-```bash
-# API Mode: 'static' (load from JSON files) or 'api' (load from backend)
-VITE_API_MODE=api
+## 📁 Project Structure
 
-# Backend API Base URL (only needed when VITE_API_MODE=api)
-VITE_API_BASE_URL=https://your-backend-url.com
-
-# Static Data Path (only needed when VITE_API_MODE=static)
-VITE_STATIC_DATA_PATH=/data
+```
+portfolio/
+├── client/                 # Frontend React application
+│   ├── src/
+│   │   ├── components/     # React components
+│   │   │   ├── ui/        # Reusable UI components
+│   │   │   └── ...        # Feature-specific components
+│   │   ├── pages/         # Page components
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── lib/           # Utility functions and API client
+│   │   └── main.tsx       # Application entry point
+│   ├── public/
+│   │   └── data/          # Static JSON data files
+│   └── index.html         # HTML template
+├── server/                # Backend Express.js application
+│   ├── data/              # Data storage
+│   │   ├── cache/         # Cached JSON files
+│   │   └── db/            # Database JSON files
+│   ├── scripts/           # Data synchronization scripts
+│   ├── index.ts           # Server entry point
+│   ├── routes.ts          # API route definitions
+│   ├── data-service.ts    # Data service layer
+│   └── db.ts              # Database configuration
+├── shared/                # Shared TypeScript schemas
+│   └── schema.ts          # Type definitions
+├── scripts/               # Build and deployment scripts
+├── vercel.json            # Vercel deployment configuration
+├── vite.config.ts         # Vite build configuration
+├── tailwind.config.ts     # Tailwind CSS configuration
+└── package.json           # Project dependencies and scripts
 ```
 
-### Environment Examples
+## 🛠️ Tech Stack
 
-**For Development (API mode):**
+### Frontend
+- **React 18** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Styling framework
+- **Radix UI** - Accessible component primitives
+- **React Hook Form** - Form handling
+- **Framer Motion** - Animations
+- **Wouter** - Client-side routing
+
+### Backend
+- **Express.js** - Web framework
+- **TypeScript** - Type safety
+- **Drizzle ORM** - Database ORM
+- **PostgreSQL** - Database (via Neon)
+- **Passport.js** - Authentication
+- **Zod** - Schema validation
+
+### Development & Deployment
+- **Vercel** - Hosting platform
+- **Docker** - Containerization
+- **GitHub Actions** - CI/CD
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- PostgreSQL database (for API mode)
+
+### Installation
+
 ```bash
-VITE_API_MODE=api
+# Clone the repository
+git clone <repository-url>
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+```
+
+### Environment Configuration
+
+Create a `.env.local` file in the root directory:
+
+```bash
+# API Mode: 'static' (JSON files) or 'api' (database)
+VITE_API_MODE=static
+
+# Backend API URL (required for API mode)
 VITE_API_BASE_URL=http://localhost:3000
+
+# Static data path (for static mode)
 VITE_STATIC_DATA_PATH=/data
+
+# Database URL (for API mode)
+DATABASE_URL=postgresql://user:password@host:port/database
 ```
 
-**For Production (API mode):**
+### Development
+
 ```bash
-VITE_API_MODE=api
-VITE_API_BASE_URL=https://your-production-backend.com
-VITE_STATIC_DATA_PATH=/data
+# Start both frontend and backend
+npm run dev
+
+# Start only frontend
+npm run dev:client
+
+# Start only backend
+npm run dev:server
 ```
 
-**For Static Deployment (no backend):**
+### Building
+
+```bash
+# Build for production
+npm run build
+
+# Build client only
+npm run build:client
+
+# Build for Vercel deployment
+npm run vercel-build
+```
+
+## 📊 Data Management
+
+### Static Mode
+- Data is served from JSON files in `client/public/data/`
+- No database required
+- Perfect for static hosting
+
+### API Mode
+- Data is served from PostgreSQL database
+- Real-time updates via admin panel
+- Full CRUD operations available
+
+### Data Synchronization
+
+```bash
+# Sync database to cache files
+npm run sync:db
+
+# Sync cache files to database
+npm run sync:cache
+
+# Sync static data for client
+npm run sync:static
+```
+
+## 🚀 Deployment
+
+### Vercel Deployment
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy to production
+vercel --prod
+```
+
+### Environment-Specific Deployments
+
+**Static Deployment (Recommended for portfolios):**
 ```bash
 VITE_API_MODE=static
-VITE_API_BASE_URL=
-VITE_STATIC_DATA_PATH=/data
 ```
 
-## Development
+**API Deployment (Full-stack):**
+```bash
+VITE_API_MODE=api
+VITE_API_BASE_URL=https://your-api.vercel.app
+```
+
+### Docker Deployment
 
 ```bash
-npm install
-npm run dev
+# Build and run with Docker
+docker build -t portfolio .
+docker run -p 3000:3000 portfolio
 ```
 
-## Building
+## 📝 Available Scripts
 
 ```bash
-npm run build:client
+# Development
+npm run dev              # Start both client and server
+npm run dev:client       # Start client only
+npm run dev:server       # Start server only
+
+# Building
+npm run build            # Build entire project
+npm run build:client     # Build client only
+npm run vercel-build     # Build for Vercel
+
+# Data Management
+npm run sync:static      # Sync data to client/public/data
+npm run sync:db          # Sync database to cache
+npm run sync:cache       # Sync cache to database
+npm run db:push          # Push database schema changes
+
+# Utilities
+npm run check            # TypeScript type checking
+npm run deploy           # Custom deployment script
 ```
 
-The build will use the environment variables from your `.env` file to determine the API configuration. 
+## 🔧 Configuration Files
+
+- **`vercel.json`** - Vercel deployment settings
+- **`vite.config.ts`** - Vite build configuration
+- **`tailwind.config.ts`** - Tailwind CSS customization
+- **`tsconfig.json`** - TypeScript configuration
+- **`drizzle.config.ts`** - Database schema configuration
+
+## 📚 Documentation
+
+- [Vercel CLI Commands](./VERCEL_CLI_COMMANDS.md) - Complete deployment guide
+- [API Documentation](./docs/api.md) - Backend API reference
+- [Component Library](./docs/components.md) - UI component documentation
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support and questions:
+- Create an issue in the repository
+- Check the [documentation](./docs/)
+- Review the [Vercel CLI guide](./VERCEL_CLI_COMMANDS.md) 
