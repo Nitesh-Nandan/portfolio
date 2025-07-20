@@ -5,8 +5,8 @@
   "installCommand": "npm install",
   "devCommand": "npm run dev:client",
   "env": {
-    "VITE_API_MODE": "api",
-    "VITE_API_BASE_URL": "https://portfolio-cnauki2po-nitesh-nandans-projects.vercel.app"
+    "VITE_API_MODE": "static",
+    "VITE_API_BASE_URL": "http://localhost:8080"
   },
   "rewrites": [
     {
