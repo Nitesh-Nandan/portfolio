@@ -128,7 +128,7 @@ export const useContactContent = () => useQuery<ContactContentWithParsedJson>({
 
 // Footer Content
 export const useFooterContent = () => useQuery<FooterContentWithParsedJson>({
-  queryKey: ['/api/footer-content'],
+  queryKey: ['/api/contact-content'],
   queryFn: api.getFooterContent,
 });
 
