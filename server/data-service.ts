@@ -7,7 +7,7 @@ import { personalInfo, workExperience, projects, skills, books, courses, article
 import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson, Category } from '@shared/schema';
 
 class DataService {
-  private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data');
+  private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data/cache');
   private cache = new Map<string, { data: any, timestamp: number }>();
   private cacheTimeout = 300000; // 5 minutes
 
@@ -293,123 +293,7 @@ class DataService {
     return Array.isArray(allCategories) ? allCategories.filter(c => c.type === type && !c.isDeleted) : [];
   }
 
-  // === SYNC METHODS ===
-  async syncToDatabase(): Promise<void> {
-    try {
-      console.log('Syncing local data to database...');
-      
-      // Sync personal info - simple upsert logic
-      const personalData = await this.readJsonFile('personal-info.json', {}) as PersonalInfo;
-      if (personalData && Object.keys(personalData).length > 0 && personalData.id) {
-        const existing = await db.select().from(personalInfo).where(eq(personalInfo.id, personalData.id));
-        if (existing.length > 0) {
-          await db.update(personalInfo).set(personalData).where(eq(personalInfo.id, personalData.id));
-        } else {
-          await db.insert(personalInfo).values(personalData);
-        }
-        console.log('✅ Personal info synced');
-      }
-
-      // Sync work experience
-      const workData = await this.readJsonFile('work-experience.json', []) as WorkExperience[];
-      if (Array.isArray(workData) && workData.length > 0) {
-        // Clear existing data and insert fresh data
-        await db.delete(workExperience);
-        await db.insert(workExperience).values(workData);
-        console.log(`✅ Work experience synced (${workData.length} records)`);
-      }
-
-      // Sync projects
-      const projectData = await this.readJsonFile('projects.json', []) as Project[];
-      if (Array.isArray(projectData) && projectData.length > 0) {
-        await db.delete(projects);
-        await db.insert(projects).values(projectData);
-        console.log(`✅ Projects synced (${projectData.length} records)`);
-      }
-
-      // Sync skills
-      const skillData = await this.readJsonFile('skills.json', []) as Skill[];
-      if (Array.isArray(skillData) && skillData.length > 0) {
-        await db.delete(skills);
-        await db.insert(skills).values(skillData);
-        console.log(`✅ Skills synced (${skillData.length} records)`);
-      }
-
-      // Sync books
-      const bookData = await this.readJsonFile('books.json', []) as Book[];
-      if (Array.isArray(bookData) && bookData.length > 0) {
-        await db.delete(books);
-        await db.insert(books).values(bookData);
-        console.log(`✅ Books synced (${bookData.length} records)`);
-      }
-
-      // Sync courses
-      const courseData = await this.readJsonFile('courses.json', []) as Course[];
-      if (Array.isArray(courseData) && courseData.length > 0) {
-        await db.delete(courses);
-        await db.insert(courses).values(courseData);
-        console.log(`✅ Courses synced (${courseData.length} records)`);
-      }
-
-      // Sync articles
-      const articleData = await this.readJsonFile('articles.json', []) as Article[];
-      if (Array.isArray(articleData) && articleData.length > 0) {
-        await db.delete(articles);
-        await db.insert(articles).values(articleData);
-        console.log(`✅ Articles synced (${articleData.length} records)`);
-      }
-
-      // Sync contact content
-      const contactContentData = await this.readJsonFile('contact-content.json', {}) as ContactContentWithParsedJson;
-      if (contactContentData && Object.keys(contactContentData).length > 0 && contactContentData.id) {
-        const contactDbData = {
-          ...contactContentData,
-          socialLinksJson: JSON.stringify(contactContentData.socialLinks)
-        };
-        delete (contactDbData as any).socialLinks; // Remove the parsed version
-        
-        const existingContact = await db.select().from(contactContent).where(eq(contactContent.id, contactContentData.id));
-        if (existingContact.length > 0) {
-          await db.update(contactContent).set(contactDbData).where(eq(contactContent.id, contactContentData.id));
-        } else {
-          await db.insert(contactContent).values(contactDbData);
-        }
-        console.log('✅ Contact content synced');
-      }
-
-      // Sync footer content
-      const footerContentData = await this.readJsonFile('footer-content.json', {}) as FooterContentWithParsedJson;
-      if (footerContentData && Object.keys(footerContentData).length > 0 && footerContentData.id) {
-        const footerDbData = {
-          ...footerContentData,
-          quickLinksJson: JSON.stringify(footerContentData.quickLinks),
-          socialLinksJson: JSON.stringify(footerContentData.socialLinks)
-        };
-        delete (footerDbData as any).quickLinks; // Remove the parsed version
-        delete (footerDbData as any).socialLinks; // Remove the parsed version
-        
-        const existingFooter = await db.select().from(footerContent).where(eq(footerContent.id, footerContentData.id));
-        if (existingFooter.length > 0) {
-          await db.update(footerContent).set(footerDbData).where(eq(footerContent.id, footerContentData.id));
-        } else {
-          await db.insert(footerContent).values(footerDbData);
-        }
-        console.log('✅ Footer content synced');
-      }
-
-      // Sync categories
-      const categoryData = await this.readJsonFile('categories.json', []) as Category[];
-      if (Array.isArray(categoryData) && categoryData.length > 0) {
-        await db.delete(categories);
-        await db.insert(categories).values(categoryData);
-        console.log(`✅ Categories synced (${categoryData.length} records)`);
-      }
-      
-      console.log('Database sync completed');
-    } catch (error) {
-      console.error('Database sync failed:', error);
-    }
-  }
+  // === ADMIN/BACKUP METHODS ===
 
   async backupToJson(): Promise<void> {
     try {

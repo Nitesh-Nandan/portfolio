@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "company": "Wayfair",
+    "position": "Backend Engineer & GenAI Expert",
+    "location": "Boston, MA",
+    "startDate": "2022-01",
+    "endDate": null,
+    "description": "Leading backend development initiatives and GenAI integration for e-commerce platform serving millions of customers globally.",
+    "achievements": [
+      "Architected and implemented scalable microservices handling 50K-70K RPS",
+      "Reduced system latency by 40% through optimization of database queries and caching strategies",
+      "Led GenAI integration team, implementing AI-powered product recommendations",
+      "Mentored junior developers and established best practices for backend development"
+    ],
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "Kubernetes",
+      "Redis",
+      "MySQL",
+      "GenAI",
+      "RabbitMQ"
+    ],
+    "projects": [],
+    "isCurrent": true,
+    "order": 0
+  },
+  {
+    "id": 2,
+    "company": "TechCorp Solutions",
+    "position": "Senior Software Engineer",
+    "location": "San Francisco, CA",
+    "startDate": "2020-06",
+    "endDate": "2021-12",
+    "description": "Developed and maintained distributed systems and data processing pipelines for enterprise clients.",
+    "achievements": [
+      "Built cost optimization system reducing infrastructure costs by 25%",
+      "Implemented real-time data processing pipeline handling 1M+ events per day",
+      "Led migration from monolithic to microservices architecture",
+      "Improved system reliability from 99.5% to 99.9% uptime"
+    ],
+    "technologies": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Kafka",
+      "ElasticSearch"
+    ],
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
+  },
+  {
+    "id": 3,
+    "company": "StartupFlow",
+    "position": "Full Stack Developer",
+    "location": "Austin, TX",
+    "startDate": "2019-01",
+    "endDate": "2020-05",
+    "description": "Developed end-to-end web applications and APIs for startup ecosystem, focusing on scalability and performance.",
+    "achievements": [
+      "Built supplier acquisition platform processing 10K+ applications",
+      "Implemented multi-threaded EDI parser improving processing speed by 300%",
+      "Created comprehensive testing framework reducing bugs by 60%",
+      "Developed CI/CD pipeline reducing deployment time from hours to minutes"
+    ],
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "React",
+      "MongoDB",
+      "Jenkins",
+      "Docker",
+      "AWS"
+    ],
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
+  },
+  {
+    "id": 4,
+    "company": "DataTech Analytics",
+    "position": "Junior Software Developer",
+    "location": "Chicago, IL",
+    "startDate": "2018-06",
+    "endDate": "2018-12",
+    "description": "Developed data analytics tools and machine learning models for business intelligence applications.",
+    "achievements": [
+      "Built computer vision system for crowd behavior analysis",
+      "Implemented ML models improving prediction accuracy by 35%",
+      "Created data visualization dashboards using modern web technologies",
+      "Contributed to open-source data processing libraries"
+    ],
+    "technologies": [
+      "Python",
+      "Machine Learning",
+      "Computer Vision",
+      "TensorFlow",
+      "Flask",
+      "React"
+    ],
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
+  }
+]

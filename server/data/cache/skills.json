@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "name": "JavaScript",
+    "proficiency": 9,
+    "yearsExperience": 5,
+    "featured": true,
+    "order": 1,
+    "is_deleted": false
+  },
+  {
+    "id": 2,
+    "name": "TypeScript",
+    "proficiency": 8,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 2,
+    "is_deleted": false
+  },
+  {
+    "id": 3,
+    "name": "React",
+    "proficiency": 9,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 3,
+    "is_deleted": false
+  },
+  {
+    "id": 4,
+    "name": "Node.js",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 4,
+    "is_deleted": false
+  },
+  {
+    "id": 5,
+    "name": "Express.js",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": false,
+    "order": 5,
+    "is_deleted": false
+  },
+  {
+    "id": 6,
+    "name": "PostgreSQL",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 6,
+    "is_deleted": false
+  },
+  {
+    "id": 7,
+    "name": "Docker",
+    "proficiency": 7,
+    "yearsExperience": 2,
+    "featured": false,
+    "order": 7,
+    "is_deleted": false
+  },
+  {
+    "id": 8,
+    "name": "Git",
+    "proficiency": 9,
+    "yearsExperience": 5,
+    "featured": false,
+    "order": 8,
+    "is_deleted": false
+  },
+  {
+    "id": 9,
+    "name": "Java",
+    "proficiency": 9,
+    "yearsExperience": 6,
+    "featured": true,
+    "order": 9,
+    "is_deleted": false
+  },
+  {
+    "id": 10,
+    "name": "Spring Boot",
+    "proficiency": 9,
+    "yearsExperience": 5,
+    "featured": true,
+    "order": 10,
+    "is_deleted": false
+  },
+  {
+    "id": 11,
+    "name": "Python",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 11,
+    "is_deleted": false
+  },
+  {
+    "id": 12,
+    "name": "Microservices",
+    "proficiency": 9,
+    "yearsExperience": 5,
+    "featured": true,
+    "order": 12,
+    "is_deleted": false
+  },
+  {
+    "id": 13,
+    "name": "REST APIs",
+    "proficiency": 9,
+    "yearsExperience": 6,
+    "featured": true,
+    "order": 13,
+    "is_deleted": false
+  },
+  {
+    "id": 14,
+    "name": "AWS",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 14,
+    "is_deleted": false
+  },
+  {
+    "id": 15,
+    "name": "MySQL",
+    "proficiency": 8,
+    "yearsExperience": 5,
+    "featured": true,
+    "order": 15,
+    "is_deleted": false
+  },
+  {
+    "id": 16,
+    "name": "MongoDB",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 16,
+    "is_deleted": false
+  },
+  {
+    "id": 17,
+    "name": "Kubernetes",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 17,
+    "is_deleted": false
+  },
+  {
+    "id": 18,
+    "name": "Redis",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 18,
+    "is_deleted": false
+  },
+  {
+    "id": 19,
+    "name": "Kafka",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 19,
+    "is_deleted": false
+  },
+  {
+    "id": 20,
+    "name": "LangChain",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 20,
+    "is_deleted": false
+  },
+  {
+    "id": 21,
+    "name": "GenAI",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 21,
+    "is_deleted": false
+  },
+  {
+    "id": 22,
+    "name": "Machine Learning",
+    "proficiency": 7,
+    "yearsExperience": 3,
+    "featured": true,
+    "order": 22,
+    "is_deleted": false
+  },
+  {
+    "id": 23,
+    "name": "AI Integration",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 23,
+    "is_deleted": false
+  },
+  {
+    "id": 24,
+    "name": "Prompt Engineering",
+    "proficiency": 8,
+    "yearsExperience": 2,
+    "featured": true,
+    "order": 24,
+    "is_deleted": false
+  }
+]

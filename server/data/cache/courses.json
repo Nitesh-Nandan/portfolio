@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "title": "System Design Interview",
+    "instructor": "Alex Xu",
+    "url": "https://www.educative.io/courses/grokking-the-system-design-interview",
+    "status": "completed",
+    "progress": 100,
+    "rating": 5,
+    "startDate": "2023-01",
+    "completedDate": "2023-03",
+    "notes": "Excellent course covering system design fundamentals and interview preparation.",
+    "tags": [
+      "system-design",
+      "interviews",
+      "architecture"
+    ],
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": 2,
+    "title": "Microservices with Spring Boot",
+    "instructor": "John Thompson",
+    "url": "https://www.udemy.com/course/spring-boot-microservices/",
+    "status": "learning",
+    "progress": 60,
+    "rating": null,
+    "startDate": "2024-01",
+    "completedDate": null,
+    "notes": "In-depth coverage of Spring Boot microservices patterns.",
+    "tags": [
+      "spring-boot",
+      "microservices",
+      "java"
+    ],
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": 3,
+    "title": "Building LLM Applications",
+    "instructor": "OpenAI",
+    "url": "https://platform.openai.com/docs",
+    "status": "completed",
+    "progress": 100,
+    "rating": 4,
+    "startDate": "2023-06",
+    "completedDate": "2023-08",
+    "notes": "Comprehensive guide to building applications with Large Language Models.",
+    "tags": [
+      "ai",
+      "llm",
+      "openai",
+      "genai"
+    ],
+    "featured": true,
+    "order": 3
+  }
+]

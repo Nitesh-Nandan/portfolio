@@ -19,6 +19,7 @@ export const personalInfo = pgTable("personal_info", {
   availability: text("availability").notNull().default("available"),
   availabilityMessage: text("availability_message"),
   updatedAt: timestamp("updated_at").defaultNow(),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Work Experience
@@ -34,6 +35,7 @@ export const workExperience = pgTable("work_experience", {
   technologies: text("technologies").array(),
   isCurrent: boolean("is_current").default(false),
   order: integer("order").default(0),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Projects
@@ -48,6 +50,7 @@ export const projects = pgTable("projects", {
   featured: boolean("featured").default(false),
   order: integer("order").default(0),
   status: text("status").default("completed"),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Skills
@@ -59,6 +62,7 @@ export const skills = pgTable("skills", {
   yearsExperience: integer("years_experience").default(0),
   featured: boolean("featured").default(false),
   order: integer("order").default(0),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Books/Learning
@@ -75,6 +79,7 @@ export const books = pgTable("books", {
   notes: text("notes"),
   tags: text("tags").array(),
   featured: boolean("featured").default(false),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Courses
@@ -92,6 +97,7 @@ export const courses = pgTable("courses", {
   tags: text("tags").array(),
   featured: boolean("featured").default(false),
   order: integer("order").default(0),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Articles
@@ -108,6 +114,7 @@ export const articles = pgTable("articles", {
   featured: boolean("featured").default(false),
   status: text("status").notNull().default("to-read"), // to-read, reading, completed
   order: integer("order").default(0),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Contact Messages (simple)
@@ -120,6 +127,7 @@ export const contactMessages = pgTable("contact_messages", {
   phone: text("phone"),
   company: text("company"),
   createdAt: timestamp("created_at").defaultNow(),
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Contact Content
@@ -132,6 +140,7 @@ export const contactContent = pgTable("contact_content", {
   contactInfoTitle: text("contact_info_title").notNull(),
   statusMessage: text("status_message").notNull(),
   socialLinksJson: text("social_links_json").notNull(), // JSON string for social links
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Footer Content
@@ -142,6 +151,7 @@ export const footerContent = pgTable("footer_content", {
   copyrightText: text("copyright_text").notNull(),
   quickLinksJson: text("quick_links_json").notNull(), // JSON string for quick links
   socialLinksJson: text("social_links_json").notNull(), // JSON string for social links
+  isDeleted: boolean("is_deleted").default(false),
 });
 
 // Categories

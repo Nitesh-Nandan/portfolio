@@ -1,9 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import 'dotenv/config';
 
 // Import database connection and schema
-const { Pool } = require('@neondatabase/serverless');
-const { drizzle } = require('drizzle-orm/neon-serverless');
+import { Pool } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-serverless';
+import ws from "ws";
+import { neonConfig } from "@neondatabase/serverless";
+
+neonConfig.webSocketConstructor = ws;
 
 // Script to extract data from database and update JSON files
 // Run this periodically to keep fallback data fresh
@@ -20,11 +26,11 @@ async function syncFallbackData() {
         const pool = new Pool({ connectionString: process.env.DATABASE_URL });
         const db = drizzle({ client: pool });
 
-        const dataDir = path.join(__dirname, '..', 'data');
+        const dataDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'data/cache');
 
         // Ensure data directory exists
-        if (!fs.existsSync(dataDir)) {
-            fs.mkdirSync(dataDir, { recursive: true });
+        if (!existsSync(dataDir)) {
+            mkdirSync(dataDir, { recursive: true });
         }
 
         // Sync Personal Info
@@ -77,6 +83,42 @@ async function syncFallbackData() {
         const projects = projectsData.rows.map(row => transformProject(row));
         writeJsonFile(dataDir, 'projects.json', projects);
 
+        // Sync Articles
+        console.log('📰 Syncing articles...');
+        const articlesData = await db.execute(
+            'SELECT * FROM articles WHERE is_deleted = false ORDER BY "order"'
+        );
+        const articles = articlesData.rows.map(row => transformArticle(row));
+        writeJsonFile(dataDir, 'articles.json', articles);
+
+        // Sync Courses
+        console.log('🎓 Syncing courses...');
+        const coursesData = await db.execute(
+            'SELECT * FROM courses WHERE is_deleted = false ORDER BY "order"'
+        );
+        const courses = coursesData.rows.map(row => transformCourse(row));
+        writeJsonFile(dataDir, 'courses.json', courses);
+
+        // Sync Contact Content (single record)
+        console.log('📬 Syncing contact content...');
+        const contactContentData = await db.execute(
+            'SELECT * FROM contact_content WHERE is_deleted = false ORDER BY id LIMIT 1'
+        );
+        if (contactContentData.rows.length > 0) {
+            const contactContent = transformContactContent(contactContentData.rows[0]);
+            writeJsonFile(dataDir, 'contact-content.json', contactContent);
+        }
+
+        // Sync Footer Content (single record)
+        console.log('🔗 Syncing footer content...');
+        const footerContentData = await db.execute(
+            'SELECT * FROM footer_content WHERE is_deleted = false ORDER BY id LIMIT 1'
+        );
+        if (footerContentData.rows.length > 0) {
+            const footerContent = transformFooterContent(footerContentData.rows[0]);
+            writeJsonFile(dataDir, 'footer-content.json', footerContent);
+        }
+
         await pool.end();
 
         console.log('✅ Fallback data sync completed successfully!');
@@ -90,9 +132,9 @@ async function syncFallbackData() {
 
 // Helper function to write JSON files
 function writeJsonFile(dir, filename, data) {
-    const filePath = path.join(dir, filename);
+    const filePath = join(dir, filename);
     const jsonData = JSON.stringify(data, null, 2);
-    fs.writeFileSync(filePath, jsonData, 'utf-8');
+    writeFileSync(filePath, jsonData, 'utf-8');
     console.log(`   ✓ Updated ${filename}`);
 }
 
@@ -165,7 +207,6 @@ function transformWorkExperience(row) {
         companyLogo: row.company_logo,
         isCurrent: row.is_current,
         order: row.order,
-        is_deleted: row.is_deleted
     };
 }
 
@@ -215,6 +256,66 @@ function transformProject(row) {
         metrics: row.metrics,
         order: row.order,
         is_deleted: row.is_deleted
+    };
+}
+
+// Add transformation helpers for new tables
+function transformArticle(row) {
+    return {
+        id: row.id,
+        title: row.title,
+        url: row.url,
+        author: row.author,
+        publishedDate: row.published_date,
+        readDate: row.read_date,
+        summary: row.summary,
+        tags: row.tags || [],
+        rating: row.rating,
+        featured: row.featured,
+        status: row.status,
+        order: row.order
+    };
+}
+
+function transformCourse(row) {
+    return {
+        id: row.id,
+        title: row.title,
+        instructor: row.instructor,
+        url: row.url,
+        status: row.status,
+        progress: row.progress,
+        rating: row.rating,
+        startDate: row.start_date,
+        completedDate: row.completed_date,
+        notes: row.notes,
+        tags: row.tags || [],
+        featured: row.featured,
+        order: row.order
+    };
+}
+
+function transformContactContent(row) {
+    return {
+        id: row.id,
+        heading: row.heading,
+        subheading: row.subheading,
+        formTitle: row.form_title,
+        connectTitle: row.connect_title,
+        contactInfoTitle: row.contact_info_title,
+        statusMessage: row.status_message,
+        socialLinks: JSON.parse(row.social_links_json)
+    };
+}
+
+function transformFooterContent(row) {
+    return {
+        id: row.id,
+        quickLinksTitle: row.quick_links_title,
+        contactTitle: row.contact_title,
+        copyrightText: row.copyright_text,
+        quickLinks: JSON.parse(row.quick_links_json),
+        socialLinks: JSON.parse(row.social_links_json)
     };
 }
 

@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { dataService } from "./data-service";
+import { syncData } from "./scripts/sync-db-data";
 import path from "path";
 import fs from "fs";
 
@@ -217,7 +218,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Sync data between JSON and database
   app.post("/api/admin/sync-to-db", async (req, res) => {
     try {
-      await dataService.syncToDatabase();
+      await syncData();
       res.json({ message: "Data synced to database successfully" });
     } catch (error) {
       console.error("Error syncing to database:", error);

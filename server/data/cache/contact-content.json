@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "heading": "Get In Touch",
+  "subheading": "I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and system design.",
+  "formTitle": "Send me a message",
+  "connectTitle": "Connect",
+  "contactInfoTitle": "Get in touch",
+  "statusMessage": "Feel free to reach out if you need my skills or have an exciting project to collaborate on.",
+  "socialLinks": {
+    "linkedin": "https://www.linkedin.com/in/niteshnandan",
+    "github": "#",
+    "twitter": "#",
+    "email": "mailto:niteshnitp5686@gmail.com"
+  }
+}
