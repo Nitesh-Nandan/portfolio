@@ -122,6 +122,40 @@ export const contactMessages = pgTable("contact_messages", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Contact Content
+export const contactContent = pgTable("contact_content", {
+  id: serial("id").primaryKey(),
+  heading: text("heading").notNull(),
+  subheading: text("subheading").notNull(),
+  formTitle: text("form_title").notNull(),
+  connectTitle: text("connect_title").notNull(),
+  contactInfoTitle: text("contact_info_title").notNull(),
+  statusMessage: text("status_message").notNull(),
+  socialLinksJson: text("social_links_json").notNull(), // JSON string for social links
+});
+
+// Footer Content
+export const footerContent = pgTable("footer_content", {
+  id: serial("id").primaryKey(),
+  quickLinksTitle: text("quick_links_title").notNull(),
+  contactTitle: text("contact_title").notNull(),
+  copyrightText: text("copyright_text").notNull(),
+  quickLinksJson: text("quick_links_json").notNull(), // JSON string for quick links
+  socialLinksJson: text("social_links_json").notNull(), // JSON string for social links
+});
+
+// Categories
+export const categories = pgTable("categories", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  slug: text("slug").notNull(),
+  description: text("description"),
+  color: text("color").notNull(),
+  icon: text("icon").notNull(),
+  type: text("type").notNull(), // skill, project, blog
+  isDeleted: boolean("is_deleted").default(false),
+});
+
 // === TYPE EXPORTS ===
 export type PersonalInfo = typeof personalInfo.$inferSelect;
 export type WorkExperience = typeof workExperience.$inferSelect;
@@ -131,6 +165,9 @@ export type Book = typeof books.$inferSelect;
 export type Course = typeof courses.$inferSelect;
 export type Article = typeof articles.$inferSelect;
 export type ContactMessage = typeof contactMessages.$inferSelect;
+export type ContactContent = typeof contactContent.$inferSelect;
+export type FooterContent = typeof footerContent.$inferSelect;
+export type Category = typeof categories.$inferSelect;
 
 export type InsertPersonalInfo = typeof personalInfo.$inferInsert;
 export type InsertWorkExperience = typeof workExperience.$inferInsert;
@@ -140,6 +177,9 @@ export type InsertBook = typeof books.$inferInsert;
 export type InsertCourse = typeof courses.$inferInsert;
 export type InsertArticle = typeof articles.$inferInsert;
 export type InsertContactMessage = typeof contactMessages.$inferInsert;
+export type InsertContactContent = typeof contactContent.$inferInsert;
+export type InsertFooterContent = typeof footerContent.$inferInsert;
+export type InsertCategory = typeof categories.$inferInsert;
 
 // === SIMPLE VALIDATION SCHEMAS ===
 export const insertPersonalInfoSchema = createInsertSchema(personalInfo);
@@ -150,6 +190,9 @@ export const insertBookSchema = createInsertSchema(books);
 export const insertCourseSchema = createInsertSchema(courses);
 export const insertArticleSchema = createInsertSchema(articles);
 export const insertContactMessageSchema = createInsertSchema(contactMessages);
+export const insertContactContentSchema = createInsertSchema(contactContent);
+export const insertFooterContentSchema = createInsertSchema(footerContent);
+export const insertCategorySchema = createInsertSchema(categories);
 
 export const selectPersonalInfoSchema = createSelectSchema(personalInfo);
 export const selectWorkExperienceSchema = createSelectSchema(workExperience);
@@ -159,3 +202,28 @@ export const selectBookSchema = createSelectSchema(books);
 export const selectCourseSchema = createSelectSchema(courses);
 export const selectArticleSchema = createSelectSchema(articles);
 export const selectContactMessageSchema = createSelectSchema(contactMessages);
+export const selectContactContentSchema = createSelectSchema(contactContent);
+export const selectFooterContentSchema = createSelectSchema(footerContent);
+export const selectCategorySchema = createSelectSchema(categories);
+
+// === FRONTEND TYPES WITH PARSED JSON ===
+export interface SocialLinks {
+  linkedin?: string;
+  github?: string;
+  twitter?: string;
+  email?: string;
+}
+
+export interface QuickLink {
+  label: string;
+  sectionId: string;
+}
+
+export interface ContactContentWithParsedJson extends Omit<ContactContent, 'socialLinksJson'> {
+  socialLinks: SocialLinks;
+}
+
+export interface FooterContentWithParsedJson extends Omit<FooterContent, 'quickLinksJson' | 'socialLinksJson'> {
+  quickLinks: QuickLink[];
+  socialLinks: SocialLinks;
+}

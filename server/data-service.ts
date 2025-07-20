@@ -3,8 +3,8 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { eq, desc } from 'drizzle-orm';
 import { db } from './db';
-import { personalInfo, workExperience, projects, skills, books, courses, articles } from '@shared/schema';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article } from '@shared/schema';
+import { personalInfo, workExperience, projects, skills, books, courses, articles, contactContent, footerContent, categories } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson, Category } from '@shared/schema';
 
 class DataService {
   private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data');
@@ -207,6 +207,92 @@ class DataService {
     return Array.isArray(allArticles) ? allArticles.filter(a => a.featured) : [];
   }
 
+  // === CONTACT CONTENT ===
+  async getContactContent(): Promise<ContactContentWithParsedJson> {
+    return this.getFromDbWithFallback(
+      async () => {
+        const result = await db.select().from(contactContent).limit(1);
+        if (result[0]) {
+          // Parse the JSON string from database
+          const dbData = result[0];
+          return {
+            ...dbData,
+            socialLinks: JSON.parse(dbData.socialLinksJson)
+          } as ContactContentWithParsedJson;
+        }
+        return null;
+      },
+      'contact-content.json',
+      {
+        id: 1,
+        heading: 'Get In Touch',
+        subheading: "I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and system design.",
+        formTitle: 'Send me a message',
+        connectTitle: 'Connect',
+        contactInfoTitle: 'Get in touch',
+        statusMessage: 'Feel free to reach out if you need my skills or have an exciting project to collaborate on.',
+        socialLinks: {
+          linkedin: '',
+          github: '',
+          email: ''
+        }
+      } as ContactContentWithParsedJson
+    ) as Promise<ContactContentWithParsedJson>;
+  }
+
+  // === FOOTER CONTENT ===
+  async getFooterContent(): Promise<FooterContentWithParsedJson> {
+    return this.getFromDbWithFallback(
+      async () => {
+        const result = await db.select().from(footerContent).limit(1);
+        if (result[0]) {
+          // Parse the JSON strings from database
+          const dbData = result[0];
+          return {
+            ...dbData,
+            quickLinks: JSON.parse(dbData.quickLinksJson),
+            socialLinks: JSON.parse(dbData.socialLinksJson)
+          } as FooterContentWithParsedJson;
+        }
+        return null;
+      },
+      'footer-content.json',
+      {
+        id: 1,
+        quickLinksTitle: 'Quick Links',
+        contactTitle: 'Get In Touch',
+        copyrightText: 'All rights reserved.',
+        quickLinks: [
+          { label: 'Home', sectionId: 'home' },
+          { label: 'Projects', sectionId: 'projects' },
+          { label: 'Contact', sectionId: 'contact' }
+        ],
+        socialLinks: {
+          linkedin: '',
+          github: '',
+          email: ''
+        }
+      } as FooterContentWithParsedJson
+    ) as Promise<FooterContentWithParsedJson>;
+  }
+
+  // === CATEGORIES ===
+  async getCategories(): Promise<Category[]> {
+    return this.getFromDbWithFallback(
+      async () => {
+        const result = await db.select().from(categories);
+        return result;
+      },
+      'categories.json',
+      []
+    ) as Promise<Category[]>;
+  }
+
+  async getCategoriesByType(type: string): Promise<Category[]> {
+    const allCategories = await this.getCategories();
+    return Array.isArray(allCategories) ? allCategories.filter(c => c.type === type && !c.isDeleted) : [];
+  }
+
   // === SYNC METHODS ===
   async syncToDatabase(): Promise<void> {
     try {
@@ -272,6 +358,52 @@ class DataService {
         await db.insert(articles).values(articleData);
         console.log(`✅ Articles synced (${articleData.length} records)`);
       }
+
+      // Sync contact content
+      const contactContentData = await this.readJsonFile('contact-content.json', {}) as ContactContentWithParsedJson;
+      if (contactContentData && Object.keys(contactContentData).length > 0 && contactContentData.id) {
+        const contactDbData = {
+          ...contactContentData,
+          socialLinksJson: JSON.stringify(contactContentData.socialLinks)
+        };
+        delete (contactDbData as any).socialLinks; // Remove the parsed version
+        
+        const existingContact = await db.select().from(contactContent).where(eq(contactContent.id, contactContentData.id));
+        if (existingContact.length > 0) {
+          await db.update(contactContent).set(contactDbData).where(eq(contactContent.id, contactContentData.id));
+        } else {
+          await db.insert(contactContent).values(contactDbData);
+        }
+        console.log('✅ Contact content synced');
+      }
+
+      // Sync footer content
+      const footerContentData = await this.readJsonFile('footer-content.json', {}) as FooterContentWithParsedJson;
+      if (footerContentData && Object.keys(footerContentData).length > 0 && footerContentData.id) {
+        const footerDbData = {
+          ...footerContentData,
+          quickLinksJson: JSON.stringify(footerContentData.quickLinks),
+          socialLinksJson: JSON.stringify(footerContentData.socialLinks)
+        };
+        delete (footerDbData as any).quickLinks; // Remove the parsed version
+        delete (footerDbData as any).socialLinks; // Remove the parsed version
+        
+        const existingFooter = await db.select().from(footerContent).where(eq(footerContent.id, footerContentData.id));
+        if (existingFooter.length > 0) {
+          await db.update(footerContent).set(footerDbData).where(eq(footerContent.id, footerContentData.id));
+        } else {
+          await db.insert(footerContent).values(footerDbData);
+        }
+        console.log('✅ Footer content synced');
+      }
+
+      // Sync categories
+      const categoryData = await this.readJsonFile('categories.json', []) as Category[];
+      if (Array.isArray(categoryData) && categoryData.length > 0) {
+        await db.delete(categories);
+        await db.insert(categories).values(categoryData);
+        console.log(`✅ Categories synced (${categoryData.length} records)`);
+      }
       
       console.log('Database sync completed');
     } catch (error) {
@@ -326,6 +458,45 @@ class DataService {
       writeFileSync(
         join(this.dataPath, 'articles.json'),
         JSON.stringify(articleData, null, 2)
+      );
+
+      // Backup contact content
+      const contactContentData = await db.select().from(contactContent).limit(1);
+      if (contactContentData[0]) {
+        const contactJsonData = {
+          ...contactContentData[0],
+          socialLinks: JSON.parse(contactContentData[0].socialLinksJson)
+        };
+        delete (contactJsonData as any).socialLinksJson; // Remove the raw JSON field
+        
+        writeFileSync(
+          join(this.dataPath, 'contact-content.json'),
+          JSON.stringify(contactJsonData, null, 2)
+        );
+      }
+
+      // Backup footer content
+      const footerContentData = await db.select().from(footerContent).limit(1);
+      if (footerContentData[0]) {
+        const footerJsonData = {
+          ...footerContentData[0],
+          quickLinks: JSON.parse(footerContentData[0].quickLinksJson),
+          socialLinks: JSON.parse(footerContentData[0].socialLinksJson)
+        };
+        delete (footerJsonData as any).quickLinksJson; // Remove the raw JSON fields
+        delete (footerJsonData as any).socialLinksJson;
+        
+        writeFileSync(
+          join(this.dataPath, 'footer-content.json'),
+          JSON.stringify(footerJsonData, null, 2)
+        );
+      }
+
+      // Backup categories
+      const categoryData = await db.select().from(categories);
+      writeFileSync(
+        join(this.dataPath, 'categories.json'),
+        JSON.stringify(categoryData, null, 2)
       );
 
       console.log('JSON backup completed');

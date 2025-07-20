@@ -6,11 +6,12 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Server, Database, Brain, Cloud, Settings } from "lucide-react";
 import { Link } from "wouter";
-import { useSkills } from "@/hooks/use-data-queries";
+import { useSkills, usePersonalInfo } from "@/hooks/use-data-queries";
 import type { Skill } from "@shared/schema";
 
 export default function HomePage() {
   const { data: skills, loading: skillsLoading } = useSkills();
+  const { data: personalInfo, loading: personalInfoLoading } = usePersonalInfo();
 
   // Group skills by category and map to visual categories
   const getSkillsByVisualCategory = (): { backend: Skill[]; database: Skill[]; ai: Skill[] } => {
@@ -48,23 +49,37 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20">
             <div className="order-2 lg:order-1">
               <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-lg">
-                <img 
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" 
-                  alt="Nitesh Nandan - Professional"
-                  className="w-full h-full object-cover"
-                />
+                {personalInfoLoading ? (
+                  <div className="w-full h-full bg-gray-200 animate-pulse" />
+                ) : (
+                  <img 
+                    src={personalInfo?.profileImage || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"} 
+                    alt={`${personalInfo?.firstName} ${personalInfo?.lastName} - Professional`}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
             </div>
             <div className="text-center lg:text-left max-w-2xl order-1 lg:order-2">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
-                Hi, I'm Nitesh Nandan
-              </h1>
-              <p className="text-xl text-gray-600 mb-4">
-                Backend Engineer & GenAI Expert at Wayfair
-              </p>
-              <p className="text-lg text-gray-500 leading-relaxed mb-8">
-                I build highly scalable distributed systems, microservices architecture, and AI-powered applications that serve millions of users.
-              </p>
+              {personalInfoLoading ? (
+                <div className="space-y-4">
+                  <div className="h-16 bg-gray-200 animate-pulse rounded" />
+                  <div className="h-6 bg-gray-200 animate-pulse rounded" />
+                  <div className="h-20 bg-gray-200 animate-pulse rounded" />
+                </div>
+              ) : (
+                <>
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
+                    Hi, I'm {personalInfo?.firstName} {personalInfo?.lastName}
+                  </h1>
+                  <p className="text-xl text-gray-600 mb-4">
+                    {personalInfo?.title}
+                  </p>
+                  <p className="text-lg text-gray-500 leading-relaxed mb-8">
+                    {personalInfo?.bio}
+                  </p>
+                </>
+              )}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link href="/projects">
                   <Button 
@@ -122,13 +137,7 @@ export default function HomePage() {
                         </span>
                       ))
                     ) : (
-                      <>
-                        <span className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">Java</span>
-                        <span className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">Spring Boot</span>
-                        <span className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">Python</span>
-                        <span className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">Microservices</span>
-                        <span className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">REST APIs</span>
-                      </>
+                      <span className="text-gray-500 text-sm">No backend skills available</span>
                     )}
                   </div>
                 </div>
@@ -150,14 +159,7 @@ export default function HomePage() {
                         </span>
                       ))
                     ) : (
-                      <>
-                        <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">AWS</span>
-                        <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">MySQL</span>
-                        <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">MongoDB</span>
-                        <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">Kubernetes</span>
-                        <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">Redis</span>
-                        <span className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">Kafka</span>
-                      </>
+                      <span className="text-gray-500 text-sm">No database & cloud skills available</span>
                     )}
                   </div>
                 </div>
@@ -179,13 +181,7 @@ export default function HomePage() {
                         </span>
                       ))
                     ) : (
-                      <>
-                        <span className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">LangChain</span>
-                        <span className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">GenAI</span>
-                        <span className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">Machine Learning</span>
-                        <span className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">AI Integration</span>
-                        <span className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">Prompt Engineering</span>
-                      </>
+                      <span className="text-gray-500 text-sm">No AI skills available</span>
                     )}
                   </div>
                 </div>

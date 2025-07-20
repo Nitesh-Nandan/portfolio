@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson } from '@shared/schema';
 import { useQuery } from '@tanstack/react-query';
 
 // Simple data fetching hook
@@ -118,6 +118,18 @@ export const useArticles = () => useQuery<Article[]>({
 export const useArticlesByStatus = (status: string) => useQuery<Article[]>({
   queryKey: ['/api/articles', status],
   queryFn: () => api.getArticlesByStatus(status),
+});
+
+// Contact Content
+export const useContactContent = () => useQuery<ContactContentWithParsedJson>({
+  queryKey: ['/api/contact-content'],
+  queryFn: api.getContactContent,
+});
+
+// Footer Content
+export const useFooterContent = () => useQuery<FooterContentWithParsedJson>({
+  queryKey: ['/api/footer-content'],
+  queryFn: api.getFooterContent,
 });
 
 // Admin hooks for your personal use

@@ -176,6 +176,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Contact Content
+  app.get("/api/contact-content", async (req, res) => {
+    try {
+      const contactContent = await dataService.getContactContent();
+      res.json(contactContent);
+    } catch (error) {
+      console.error("Error fetching contact content:", error);
+      res.status(500).json({ message: "Failed to fetch contact content" });
+    }
+  });
+
+  // Footer Content
+  app.get("/api/footer-content", async (req, res) => {
+    try {
+      const footerContent = await dataService.getFooterContent();
+      res.json(footerContent);
+    } catch (error) {
+      console.error("Error fetching footer content:", error);
+      res.status(500).json({ message: "Failed to fetch footer content" });
+    }
+  });
+
+  // Categories
+  app.get("/api/categories", async (req, res) => {
+    try {
+      const { type } = req.query;
+      const categories = type 
+        ? await dataService.getCategoriesByType(type as string)
+        : await dataService.getCategories();
+      res.json(categories);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      res.status(500).json({ message: "Failed to fetch categories" });
+    }
+  });
+
   // === ADMIN ENDPOINTS (for your personal use) ===
 
   // Sync data between JSON and database

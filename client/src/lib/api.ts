@@ -1,4 +1,4 @@
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article } from "@shared/schema";
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson } from "@shared/schema";
 
 // Simple mode detection based on environment variable only
 const getMode = (): 'static' | 'api' => {
@@ -172,6 +172,24 @@ export const api = {
       return all.filter(a => a.featured);
     }
     return apiCall('/api/articles/featured');
+  },
+
+  // Contact Content
+  getContactContent: async (): Promise<ContactContentWithParsedJson> => {
+    const mode = getMode();
+    if (mode === 'static') {
+      return staticApiCall('contact-content.json');
+    }
+    return apiCall('/api/contact-content');
+  },
+
+  // Footer Content
+  getFooterContent: async (): Promise<FooterContentWithParsedJson> => {
+    const mode = getMode();
+    if (mode === 'static') {
+      return staticApiCall('footer-content.json');
+    }
+    return apiCall('/api/footer-content');
   },
 
   // Admin functions (only work in API mode)
