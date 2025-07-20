@@ -6,7 +6,8 @@
     "proficiency": 9,
     "yearsExperience": 5,
     "featured": true,
-    "order": 1
+    "order": 1,
+    "is_deleted": false
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "proficiency": 8,
     "yearsExperience": 3,
     "featured": true,
-    "order": 2
+    "order": 2,
+    "is_deleted": false
   },
   {
     "id": 3,
@@ -24,7 +26,8 @@
     "proficiency": 9,
     "yearsExperience": 4,
     "featured": true,
-    "order": 3
+    "order": 3,
+    "is_deleted": false
   },
   {
     "id": 4,
@@ -33,7 +36,8 @@
     "proficiency": 8,
     "yearsExperience": 4,
     "featured": true,
-    "order": 4
+    "order": 4,
+    "is_deleted": false
   },
   {
     "id": 5,
@@ -42,7 +46,8 @@
     "proficiency": 8,
     "yearsExperience": 4,
     "featured": false,
-    "order": 5
+    "order": 5,
+    "is_deleted": false
   },
   {
     "id": 6,
@@ -51,7 +56,8 @@
     "proficiency": 7,
     "yearsExperience": 3,
     "featured": true,
-    "order": 6
+    "order": 6,
+    "is_deleted": false
   },
   {
     "id": 7,
@@ -60,7 +66,8 @@
     "proficiency": 7,
     "yearsExperience": 2,
     "featured": false,
-    "order": 7
+    "order": 7,
+    "is_deleted": false
   },
   {
     "id": 8,
@@ -69,7 +76,8 @@
     "proficiency": 9,
     "yearsExperience": 5,
     "featured": false,
-    "order": 8
+    "order": 8,
+    "is_deleted": false
   },
   {
     "id": 9,
@@ -78,7 +86,8 @@
     "proficiency": 9,
     "yearsExperience": 6,
     "featured": true,
-    "order": 9
+    "order": 9,
+    "is_deleted": false
   },
   {
     "id": 10,
@@ -87,7 +96,8 @@
     "proficiency": 9,
     "yearsExperience": 5,
     "featured": true,
-    "order": 10
+    "order": 10,
+    "is_deleted": false
   },
   {
     "id": 11,
@@ -96,7 +106,8 @@
     "proficiency": 8,
     "yearsExperience": 4,
     "featured": true,
-    "order": 11
+    "order": 11,
+    "is_deleted": false
   },
   {
     "id": 12,
@@ -105,7 +116,8 @@
     "proficiency": 9,
     "yearsExperience": 5,
     "featured": true,
-    "order": 12
+    "order": 12,
+    "is_deleted": false
   },
   {
     "id": 13,
@@ -114,7 +126,8 @@
     "proficiency": 9,
     "yearsExperience": 6,
     "featured": true,
-    "order": 13
+    "order": 13,
+    "is_deleted": false
   },
   {
     "id": 14,
@@ -123,7 +136,8 @@
     "proficiency": 8,
     "yearsExperience": 4,
     "featured": true,
-    "order": 14
+    "order": 14,
+    "is_deleted": false
   },
   {
     "id": 15,
@@ -132,7 +146,8 @@
     "proficiency": 8,
     "yearsExperience": 5,
     "featured": true,
-    "order": 15
+    "order": 15,
+    "is_deleted": false
   },
   {
     "id": 16,
@@ -141,7 +156,8 @@
     "proficiency": 7,
     "yearsExperience": 3,
     "featured": true,
-    "order": 16
+    "order": 16,
+    "is_deleted": false
   },
   {
     "id": 17,
@@ -150,7 +166,8 @@
     "proficiency": 7,
     "yearsExperience": 3,
     "featured": true,
-    "order": 17
+    "order": 17,
+    "is_deleted": false
   },
   {
     "id": 18,
@@ -159,7 +176,8 @@
     "proficiency": 8,
     "yearsExperience": 4,
     "featured": true,
-    "order": 18
+    "order": 18,
+    "is_deleted": false
   },
   {
     "id": 19,
@@ -168,7 +186,8 @@
     "proficiency": 7,
     "yearsExperience": 3,
     "featured": true,
-    "order": 19
+    "order": 19,
+    "is_deleted": false
   },
   {
     "id": 20,
@@ -177,7 +196,8 @@
     "proficiency": 8,
     "yearsExperience": 2,
     "featured": true,
-    "order": 20
+    "order": 20,
+    "is_deleted": false
   },
   {
     "id": 21,
@@ -186,7 +206,8 @@
     "proficiency": 8,
     "yearsExperience": 2,
     "featured": true,
-    "order": 21
+    "order": 21,
+    "is_deleted": false
   },
   {
     "id": 22,
@@ -195,7 +216,8 @@
     "proficiency": 7,
     "yearsExperience": 3,
     "featured": true,
-    "order": 22
+    "order": 22,
+    "is_deleted": false
   },
   {
     "id": 23,
@@ -204,7 +226,8 @@
     "proficiency": 8,
     "yearsExperience": 2,
     "featured": true,
-    "order": 23
+    "order": 23,
+    "is_deleted": false
   },
   {
     "id": 24,
@@ -213,6 +236,7 @@
     "proficiency": 8,
     "yearsExperience": 2,
     "featured": true,
-    "order": 24
+    "order": 24,
+    "is_deleted": false
   }
 ]

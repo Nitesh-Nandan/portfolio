@@ -174,12 +174,9 @@ function transformSkill(row) {
     return {
         id: row.id,
         name: row.name,
+        category: row.category,
         proficiency: row.proficiency,
-        categoryId: row.category_id,
         yearsExperience: row.years_experience,
-        description: row.description,
-        icon: row.icon,
-        color: row.color,
         featured: row.featured,
         order: row.order,
         is_deleted: row.is_deleted

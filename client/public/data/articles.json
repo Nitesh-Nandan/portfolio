@@ -7,7 +7,11 @@
     "publishedDate": "2014-03-25",
     "readDate": "2023-11-15",
     "summary": "Comprehensive guide to microservices architecture patterns and best practices.",
-    "tags": ["microservices", "architecture", "resilience"],
+    "tags": [
+      "microservices",
+      "architecture",
+      "resilience"
+    ],
     "rating": 5,
     "featured": true,
     "status": "completed",
@@ -21,7 +25,12 @@
     "publishedDate": "2022-03-17",
     "readDate": "2023-12-01",
     "summary": "Best practices for scaling Java applications in Kubernetes environments.",
-    "tags": ["java", "kubernetes", "scaling", "spring"],
+    "tags": [
+      "java",
+      "kubernetes",
+      "scaling",
+      "spring"
+    ],
     "rating": 4,
     "featured": true,
     "status": "completed",
@@ -35,7 +44,12 @@
     "publishedDate": "2023-11-08",
     "readDate": "2023-12-10",
     "summary": "Insights into emerging trends and technologies in backend development.",
-    "tags": ["backend", "trends", "future", "development"],
+    "tags": [
+      "backend",
+      "trends",
+      "future",
+      "development"
+    ],
     "rating": 4,
     "featured": false,
     "status": "completed",
@@ -49,10 +63,15 @@
     "publishedDate": "2023-08-28",
     "readDate": "2024-01-05",
     "summary": "How to implement and scale GenAI solutions in enterprise production environments.",
-    "tags": ["genai", "production", "enterprise", "ai"],
+    "tags": [
+      "genai",
+      "production",
+      "enterprise",
+      "ai"
+    ],
     "rating": 5,
     "featured": true,
     "status": "completed",
     "order": 4
   }
-] 
+]

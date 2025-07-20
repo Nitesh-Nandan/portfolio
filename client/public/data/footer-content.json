@@ -4,10 +4,22 @@
   "contactTitle": "Get In Touch",
   "copyrightText": "All rights reserved.",
   "quickLinks": [
-    { "label": "Home", "sectionId": "home" },
-    { "label": "My Projects", "sectionId": "projects" },
-    { "label": "BookShelf", "sectionId": "bookshelf" },
-    { "label": "Contact", "sectionId": "contact" }
+    {
+      "label": "Home",
+      "sectionId": "home"
+    },
+    {
+      "label": "My Projects",
+      "sectionId": "projects"
+    },
+    {
+      "label": "BookShelf",
+      "sectionId": "bookshelf"
+    },
+    {
+      "label": "Contact",
+      "sectionId": "contact"
+    }
   ],
   "socialLinks": {
     "linkedin": "https://www.linkedin.com/in/niteshnandan",
@@ -15,4 +27,4 @@
     "twitter": "#",
     "email": "mailto:niteshnitp5686@gmail.com"
   }
-} 
+}

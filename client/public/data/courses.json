@@ -10,7 +10,11 @@
     "startDate": "2023-01",
     "completedDate": "2023-03",
     "notes": "Excellent course covering system design fundamentals and interview preparation.",
-    "tags": ["system-design", "interviews", "architecture"],
+    "tags": [
+      "system-design",
+      "interviews",
+      "architecture"
+    ],
     "featured": true,
     "order": 1
   },
@@ -25,7 +29,11 @@
     "startDate": "2024-01",
     "completedDate": null,
     "notes": "In-depth coverage of Spring Boot microservices patterns.",
-    "tags": ["spring-boot", "microservices", "java"],
+    "tags": [
+      "spring-boot",
+      "microservices",
+      "java"
+    ],
     "featured": true,
     "order": 2
   },
@@ -40,8 +48,13 @@
     "startDate": "2023-06",
     "completedDate": "2023-08",
     "notes": "Comprehensive guide to building applications with Large Language Models.",
-    "tags": ["ai", "llm", "openai", "genai"],
+    "tags": [
+      "ai",
+      "llm",
+      "openai",
+      "genai"
+    ],
     "featured": true,
     "order": 3
   }
-] 
+]

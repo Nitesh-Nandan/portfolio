@@ -13,8 +13,19 @@
       "Led GenAI integration team, implementing AI-powered product recommendations",
       "Mentored junior developers and established best practices for backend development"
     ],
-    "technologies": ["Java", "Spring Boot", "Microservices", "Kubernetes", "Redis", "MySQL", "GenAI", "RabbitMQ"],
-    "isCurrent": true
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "Kubernetes",
+      "Redis",
+      "MySQL",
+      "GenAI",
+      "RabbitMQ"
+    ],
+    "projects": [],
+    "isCurrent": true,
+    "order": 0
   },
   {
     "id": 2,
@@ -30,8 +41,18 @@
       "Led migration from monolithic to microservices architecture",
       "Improved system reliability from 99.5% to 99.9% uptime"
     ],
-    "technologies": ["Python", "Django", "PostgreSQL", "Docker", "AWS", "Kafka", "ElasticSearch"],
-    "isCurrent": false
+    "technologies": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "Kafka",
+      "ElasticSearch"
+    ],
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
   },
   {
     "id": 3,
@@ -47,8 +68,18 @@
       "Created comprehensive testing framework reducing bugs by 60%",
       "Developed CI/CD pipeline reducing deployment time from hours to minutes"
     ],
-    "technologies": ["Java", "Spring Boot", "React", "MongoDB", "Jenkins", "Docker", "AWS"],
-    "isCurrent": false
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "React",
+      "MongoDB",
+      "Jenkins",
+      "Docker",
+      "AWS"
+    ],
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
   },
   {
     "id": 4,
@@ -64,7 +95,16 @@
       "Created data visualization dashboards using modern web technologies",
       "Contributed to open-source data processing libraries"
     ],
-    "technologies": ["Python", "Machine Learning", "Computer Vision", "TensorFlow", "Flask", "React"],
-    "isCurrent": false
+    "technologies": [
+      "Python",
+      "Machine Learning",
+      "Computer Vision",
+      "TensorFlow",
+      "Flask",
+      "React"
+    ],
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
   }
-] 
+]

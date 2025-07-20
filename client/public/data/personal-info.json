@@ -10,5 +10,6 @@
   "profileImage": "",
   "resumeUrl": "",
   "availability": "available",
-  "availabilityMessage": "Available for new projects"
+  "availabilityMessage": "Available for new projects",
+  "is_deleted": false
 }
