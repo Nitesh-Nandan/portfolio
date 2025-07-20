@@ -33,7 +33,10 @@ const getApiConfig = () => {
 // Simple fetch wrapper with error handling
 const apiCall = async <T>(endpoint: string, options?: RequestInit): Promise<T> => {
   const config = getApiConfig();
-  const url = config.baseUrl ? `${config.baseUrl}${endpoint}` : endpoint;
+  
+  const url = config.baseUrl 
+    ? new URL(endpoint, config.baseUrl).toString()
+    : endpoint;
   
   try {
     console.log(`🌐 API Call: ${url}`);
