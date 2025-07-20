@@ -1,8 +1,36 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { dataService } from "./data-service";
+import path from "path";
+import fs from "fs";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // === STATIC DATA ENDPOINTS (for client-side static mode) ===
+  app.get("/data/:filename", async (req, res) => {
+    try {
+      const { filename } = req.params;
+      const filePath = path.resolve(import.meta.dirname, "data", filename);
+      
+      // Security check - only allow .json files and prevent directory traversal
+      if (!filename.endsWith('.json') || filename.includes('..')) {
+        return res.status(400).json({ message: "Invalid file request" });
+      }
+      
+      // Check if file exists
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ message: "Data file not found" });
+      }
+      
+      // Read and serve the JSON file
+      const data = await fs.promises.readFile(filePath, 'utf-8');
+      res.setHeader('Content-Type', 'application/json');
+      res.send(data);
+    } catch (error) {
+      console.error("Error serving static data:", error);
+      res.status(500).json({ message: "Failed to serve static data" });
+    }
+  });
+
   // === READ-ONLY API ENDPOINTS ===
 
   // Personal Info

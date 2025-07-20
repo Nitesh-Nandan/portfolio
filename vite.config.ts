@@ -27,6 +27,10 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    sourcemap: true, // Enable source maps for debugging
+  },
+  esbuild: {
+    sourcemap: true, // Enable source maps in development
   },
   server: {
     fs: {
