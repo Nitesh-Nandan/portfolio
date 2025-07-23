@@ -97,7 +97,7 @@ export const useBooks = (status?: string) => {
 };
 
 export const useCurrentlyReadingBooks = () => {
-  return useApiData(() => api.getBooksByStatus('reading'), [] as Book[]);
+  return useApiData(() => api.getBooksByStatus('currently-reading'), [] as Book[]);
 };
 
 export const useCourses = () => useQuery<Course[]>({

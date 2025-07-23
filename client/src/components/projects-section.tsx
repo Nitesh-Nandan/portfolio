@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ExternalLink, Github, Code2, Database, Cloud, Zap } from "lucide-react";
 import type { Project } from "@shared/schema";
+import { api } from "@/lib/api";
 
 const getProjectIconAndColors = (title: string) => {
   if (title.toLowerCase().includes('api') || title.toLowerCase().includes('backend') || title.toLowerCase().includes('microservice')) {
@@ -38,6 +39,7 @@ interface ProjectsSectionProps {
 export default function ProjectsSection({ showAllProjects = false }: ProjectsSectionProps) {
   const { data: allProjects, isLoading } = useQuery<Project[]>({
     queryKey: ['/api/projects'],
+    queryFn: api.getProjects,
   });
 
   // Filter projects based on prop

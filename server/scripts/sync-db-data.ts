@@ -48,73 +48,99 @@ function readJsonFile<T>(filename: string): T | null {
   }
 }
 
+// Generic upsert function for any table with ID
+async function upsertRecords<T extends { id: number }>(
+  table: any,
+  records: T[],
+  tableName: string
+): Promise<{ updated: number; inserted: number }> {
+  if (!Array.isArray(records) || records.length === 0) {
+    console.log(`⚠️ No ${tableName} data to sync`);
+    return { updated: 0, inserted: 0 };
+  }
+
+  let updated = 0;
+  let inserted = 0;
+
+  for (const record of records) {
+    if (!record.id) {
+      console.warn(`⚠️ Skipping ${tableName} record without ID`);
+      continue;
+    }
+
+    const existing = await db.select().from(table).where(eq(table.id, record.id));
+    
+    if (existing.length > 0) {
+      await db.update(table).set(record).where(eq(table.id, record.id));
+      updated++;
+    } else {
+      await db.insert(table).values(record);
+      inserted++;
+    }
+  }
+
+  console.log(`✅ ${tableName} synced (${updated} updated, ${inserted} inserted, ${records.length} total)`);
+  return { updated, inserted };
+}
+
+// Upsert function for single record tables
+async function upsertSingleRecord<T extends { id: number }>(
+  table: any,
+  record: T | null,
+  tableName: string
+): Promise<boolean> {
+  if (!record || !record.id) {
+    console.log(`⚠️ No ${tableName} data to sync`);
+    return false;
+  }
+
+  const existing = await db.select().from(table).where(eq(table.id, record.id));
+  
+  if (existing.length > 0) {
+    await db.update(table).set(record).where(eq(table.id, record.id));
+    console.log(`✅ ${tableName} updated`);
+  } else {
+    await db.insert(table).values(record);
+    console.log(`✅ ${tableName} inserted`);
+  }
+  
+  return true;
+}
+
 async function syncData() {
   console.log('🔄 Starting data synchronization...');
-  console.log('📁 Syncing JSON files → Database');
+  console.log('📁 Syncing JSON files → Database (using upsert operations)');
   
   try {
-    // Sync personal info
+    // Sync personal info (single record)
     const personalData = readJsonFile<PersonalInfo>('personal-info.json');
-    if (personalData && personalData.id) {
-      const existing = await db.select().from(personalInfo).where(eq(personalInfo.id, personalData.id));
-      if (existing.length > 0) {
-        await db.update(personalInfo).set(personalData).where(eq(personalInfo.id, personalData.id));
-        console.log('✅ Personal info updated');
-      } else {
-        await db.insert(personalInfo).values(personalData);
-        console.log('✅ Personal info inserted');
-      }
-    }
+    await upsertSingleRecord(personalInfo, personalData, 'Personal Info');
 
-    // Sync work experience
+    // Sync work experience (multiple records)
     const workData = readJsonFile<WorkExperience[]>('work-experience.json');
-    if (Array.isArray(workData) && workData.length > 0) {
-      await db.delete(workExperience);
-      await db.insert(workExperience).values(workData);
-      console.log(`✅ Work experience synced (${workData.length} records)`);
-    }
+    await upsertRecords(workExperience, workData || [], 'Work Experience');
 
-    // Sync projects
+    // Sync projects (multiple records)
     const projectData = readJsonFile<Project[]>('projects.json');
-    if (Array.isArray(projectData) && projectData.length > 0) {
-      await db.delete(projects);
-      await db.insert(projects).values(projectData);
-      console.log(`✅ Projects synced (${projectData.length} records)`);
-    }
+    await upsertRecords(projects, projectData || [], 'Projects');
 
-    // Sync skills
+    // Sync skills (multiple records)
     const skillData = readJsonFile<Skill[]>('skills.json');
-    if (Array.isArray(skillData) && skillData.length > 0) {
-      await db.delete(skills);
-      await db.insert(skills).values(skillData);
-      console.log(`✅ Skills synced (${skillData.length} records)`);
-    }
+    await upsertRecords(skills, skillData || [], 'Skills');
 
-    // Sync books
+    // Sync books (multiple records)
     const bookData = readJsonFile<Book[]>('books.json');
-    if (Array.isArray(bookData) && bookData.length > 0) {
-      await db.delete(books);
-      await db.insert(books).values(bookData);
-      console.log(`✅ Books synced (${bookData.length} records)`);
-    }
+    await upsertRecords(books, bookData || [], 'Books');
 
-    // Sync courses
+    // Sync courses (multiple records)
     const courseData = readJsonFile<Course[]>('courses.json');
-    if (Array.isArray(courseData) && courseData.length > 0) {
-      await db.delete(courses);
-      await db.insert(courses).values(courseData);
-      console.log(`✅ Courses synced (${courseData.length} records)`);
-    }
+    await upsertRecords(courses, courseData || [], 'Courses');
 
-    // Sync articles
+    // Sync articles (multiple records)
     const articleData = readJsonFile<Article[]>('articles.json');
-    if (Array.isArray(articleData) && articleData.length > 0) {
-      await db.delete(articles);
-      await db.insert(articles).values(articleData);
-      console.log(`✅ Articles synced (${articleData.length} records)`);
-    }
+    await upsertRecords(articles, articleData || [], 'Articles');
 
-    // Sync contact content
+    // Sync contact content (single record with JSON parsing)
     const contactContentData = readJsonFile<ContactContentWithParsedJson>('contact-content.json');
     if (contactContentData && contactContentData.id) {
       const contactDbData = {
@@ -123,17 +149,10 @@ async function syncData() {
       };
       delete (contactDbData as any).socialLinks; // Remove the parsed version
       
-      const existingContact = await db.select().from(contactContent).where(eq(contactContent.id, contactContentData.id));
-      if (existingContact.length > 0) {
-        await db.update(contactContent).set(contactDbData).where(eq(contactContent.id, contactContentData.id));
-        console.log('✅ Contact content updated');
-      } else {
-        await db.insert(contactContent).values(contactDbData);
-        console.log('✅ Contact content inserted');
-      }
+      await upsertSingleRecord(contactContent, contactDbData, 'Contact Content');
     }
 
-    // Sync footer content
+    // Sync footer content (single record with JSON parsing)
     const footerContentData = readJsonFile<FooterContentWithParsedJson>('footer-content.json');
     if (footerContentData && footerContentData.id) {
       const footerDbData = {
@@ -144,20 +163,11 @@ async function syncData() {
       delete (footerDbData as any).quickLinks; // Remove the parsed version
       delete (footerDbData as any).socialLinks; // Remove the parsed version
       
-      const existingFooter = await db.select().from(footerContent).where(eq(footerContent.id, footerContentData.id));
-      if (existingFooter.length > 0) {
-        await db.update(footerContent).set(footerDbData).where(eq(footerContent.id, footerContentData.id));
-        console.log('✅ Footer content updated');
-      } else {
-        await db.insert(footerContent).values(footerDbData);
-        console.log('✅ Footer content inserted');
-      }
+      await upsertSingleRecord(footerContent, footerDbData, 'Footer Content');
     }
 
-
-
     console.log('✅ Data synchronized successfully!');
-    console.log('📊 All JSON data has been synced to the database');
+    console.log('📊 All JSON data has been synced to the database using upsert operations');
     
     // Show summary by counting records directly from database
     try {

@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, Calendar, MapPin, Trophy } from "lucide-react";
 import type { WorkExperience } from "@shared/schema";
+import { api } from "@/lib/api";
 
 interface WorkExperienceTimelineProps {
   experiences: WorkExperience[];
@@ -39,7 +40,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
   return (
     <div className="relative">
       {/* Timeline line */}
-      <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 via-green-400 via-emerald-400 to-gray-300 shadow-sm"></div>
+      <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 via-yellow-400 via-emerald-400 to-gray-300 shadow-sm"></div>
       
       <div className="space-y-8">
         {sortedExperiences.map((experience, index) => (
@@ -139,6 +140,7 @@ function WorkExperienceTimeline({ experiences }: WorkExperienceTimelineProps) {
 export default function WorkExperienceSection() {
   const { data: experiences, isLoading, error } = useQuery<WorkExperience[]>({
     queryKey: ['/api/work-experience'],
+    queryFn: api.getWorkExperience,
   });
 
   if (isLoading) {
