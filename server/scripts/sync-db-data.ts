@@ -14,8 +14,7 @@ import {
   courses, 
   articles, 
   contactContent, 
-  footerContent, 
-  categories 
+  footerContent
 } from '@shared/schema';
 import type { 
   PersonalInfo, 
@@ -26,8 +25,7 @@ import type {
   Course, 
   Article, 
   ContactContentWithParsedJson, 
-  FooterContentWithParsedJson, 
-  Category 
+  FooterContentWithParsedJson
 } from '@shared/schema';
 
 const dataPath = join(dirname(fileURLToPath(import.meta.url)), '../data/db');
@@ -156,13 +154,7 @@ async function syncData() {
       }
     }
 
-    // Sync categories
-    const categoryData = readJsonFile<Category[]>('categories.json');
-    if (Array.isArray(categoryData) && categoryData.length > 0) {
-      await db.delete(categories);
-      await db.insert(categories).values(categoryData);
-      console.log(`✅ Categories synced (${categoryData.length} records)`);
-    }
+
 
     console.log('✅ Data synchronized successfully!');
     console.log('📊 All JSON data has been synced to the database');
@@ -177,8 +169,7 @@ async function syncData() {
         coursesCount,
         articlesCount,
         contactCount,
-        footerCount,
-        categoriesCount
+        footerCount
       ] = await Promise.all([
         db.select().from(skills).then(rows => rows.length),
         db.select().from(projects).then(rows => rows.length),
@@ -187,8 +178,7 @@ async function syncData() {
         db.select().from(courses).then(rows => rows.length),
         db.select().from(articles).then(rows => rows.length),
         db.select().from(contactContent).then(rows => rows.length),
-        db.select().from(footerContent).then(rows => rows.length),
-        db.select().from(categories).then(rows => rows.length)
+        db.select().from(footerContent).then(rows => rows.length)
       ]);
       
       console.log('\n📈 Sync Summary:');
@@ -200,7 +190,7 @@ async function syncData() {
       console.log(`   • Articles: ${articlesCount} items`);
       console.log(`   • Contact Content: ${contactCount} item`);
       console.log(`   • Footer Content: ${footerCount} item`);
-      console.log(`   • Categories: ${categoriesCount} items`);
+
     } catch (summaryError) {
       console.log('📊 Data synced (summary unavailable)');
     }

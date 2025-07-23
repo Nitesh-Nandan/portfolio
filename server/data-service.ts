@@ -3,8 +3,8 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { eq, desc } from 'drizzle-orm';
 import { db } from './db';
-import { personalInfo, workExperience, projects, skills, books, courses, articles, contactContent, footerContent, categories } from '@shared/schema';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson, Category } from '@shared/schema';
+import { personalInfo, workExperience, projects, skills, books, courses, articles, contactContent, footerContent } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson } from '@shared/schema';
 
 class DataService {
   private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data/cache');
@@ -276,22 +276,7 @@ class DataService {
     ) as Promise<FooterContentWithParsedJson>;
   }
 
-  // === CATEGORIES ===
-  async getCategories(): Promise<Category[]> {
-    return this.getFromDbWithFallback(
-      async () => {
-        const result = await db.select().from(categories);
-        return result;
-      },
-      'categories.json',
-      []
-    ) as Promise<Category[]>;
-  }
 
-  async getCategoriesByType(type: string): Promise<Category[]> {
-    const allCategories = await this.getCategories();
-    return Array.isArray(allCategories) ? allCategories.filter(c => c.type === type && !c.isDeleted) : [];
-  }
 
   // === ADMIN/BACKUP METHODS ===
 
@@ -376,12 +361,7 @@ class DataService {
         );
       }
 
-      // Backup categories
-      const categoryData = await db.select().from(categories);
-      writeFileSync(
-        join(this.dataPath, 'categories.json'),
-        JSON.stringify(categoryData, null, 2)
-      );
+
 
       console.log('JSON backup completed');
     } catch (error) {

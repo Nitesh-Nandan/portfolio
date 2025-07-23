@@ -43,13 +43,7 @@ async function syncFallbackData() {
             writeJsonFile(dataDir, 'personal-info.json', personalInfo);
         }
 
-        // Sync Categories
-        console.log('📂 Syncing categories...');
-        const categoriesData = await db.execute(
-            'SELECT * FROM categories WHERE is_deleted = false ORDER BY name'
-        );
-        const categories = categoriesData.rows.map(row => transformCategory(row));
-        writeJsonFile(dataDir, 'categories.json', categories);
+        
 
         // Sync Skills
         console.log('🛠️ Syncing skills...');
@@ -157,18 +151,7 @@ function transformPersonalInfo(row) {
     };
 }
 
-function transformCategory(row) {
-    return {
-        id: row.id,
-        name: row.name,
-        slug: row.slug,
-        description: row.description,
-        color: row.color,
-        icon: row.icon,
-        type: row.type,
-        is_deleted: row.is_deleted
-    };
-}
+
 
 function transformSkill(row) {
     return {

@@ -45,7 +45,7 @@ export default function Footer() {
   const firstName = contactInfo.firstName || 'Nitesh';
   const lastName = contactInfo.lastName || 'Nandan';
   const fullName = `${firstName} ${lastName}`;
-  const bio = contactInfo.bio || 'Backend Engineer & GenAI Expert at Wayfair, passionate about building highly scalable distributed systems and AI-powered solutions.';
+  const bio = contactInfo.title || 'Backend Engineer & GenAI Expert at Wayfair, passionate about building highly scalable distributed systems and AI-powered solutions.';
   const email = contactInfo.email || 'niteshnitp5686@gmail.com';
   const phone = contactInfo.phone || '+91 9955328756';
   const location = contactInfo.location || 'Bengaluru, Karnataka, India';
@@ -70,60 +70,77 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-12">
+    <footer className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-16 relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-2xl font-bold mb-4">{fullName}</h3>
-            <p className="text-gray-300 mb-4">
-              {bio}
-            </p>
-            <div className="flex space-x-4">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Brand Section */}
+          <div className="md:col-span-2 lg:col-span-2">
+            <div className="mb-6">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-white">
+                {fullName}
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-base lg:text-lg max-w-lg">
+                {bio}
+              </p>
+            </div>
+            
+            {/* Social Links */}
+            <div className="flex flex-wrap gap-3">
               {footer.socialLinks?.linkedin && (
                 <a 
                   href={footer.socialLinks.linkedin} 
-                  className="text-gray-300 hover:text-white transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 p-2.5 rounded-lg hover:scale-105"
                   title="LinkedIn"
                 >
-                  <Linkedin className="h-6 w-6" />
+                  <Linkedin className="h-5 w-5" />
                 </a>
               )}
               {footer.socialLinks?.github && (
                 <a 
                   href={footer.socialLinks.github} 
-                  className="text-gray-300 hover:text-white transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 p-2.5 rounded-lg hover:scale-105"
                   title="GitHub"
                 >
-                  <Github className="h-6 w-6" />
+                  <Github className="h-5 w-5" />
                 </a>
               )}
               {footer.socialLinks?.twitter && (
                 <a 
                   href={footer.socialLinks.twitter} 
-                  className="text-gray-300 hover:text-white transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 p-2.5 rounded-lg hover:scale-105"
                   title="Twitter"
                 >
-                  <Twitter className="h-6 w-6" />
+                  <Twitter className="h-5 w-5" />
                 </a>
               )}
               <a 
                 href={`mailto:${email}`} 
-                className="text-gray-300 hover:text-white transition-colors duration-200"
+                className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 p-2.5 rounded-lg hover:scale-105"
                 title="Email"
               >
-                <Mail className="h-6 w-6" />
+                <Mail className="h-5 w-5" />
               </a>
             </div>
           </div>
           
+          {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">{footer.quickLinksTitle}</h4>
-            <ul className="space-y-2">
+            <h4 className="text-lg font-semibold mb-4 text-white">
+              {footer.quickLinksTitle}
+            </h4>
+            <ul className="space-y-3">
               {footer.quickLinks?.map((link, index) => (
                 <li key={index}>
                   <button
                     onClick={() => scrollToSection(link.sectionId)}
-                    className="text-gray-300 hover:text-white transition-colors duration-200"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left w-full"
                   >
                     {link.label}
                   </button>
@@ -132,33 +149,49 @@ export default function Footer() {
             </ul>
           </div>
           
+          {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">{footer.contactTitle}</h4>
-            <div className="space-y-2">
-              <p className="text-gray-300 flex items-center">
-                <Mail className="h-4 w-4 mr-2" />
-                {email}
-              </p>
+            <h4 className="text-lg font-semibold mb-4 text-white">
+              {footer.contactTitle}
+            </h4>
+            <div className="space-y-3">
+              <a 
+                href={`mailto:${email}`}
+                className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"
+              >
+                <Mail className="h-4 w-4 mr-3 flex-shrink-0" />
+                <span className="break-all text-sm">{email}</span>
+              </a>
               {phone && (
-                <p className="text-gray-300 flex items-center">
-                  <Phone className="h-4 w-4 mr-2" />
-                  {phone}
-                </p>
+                <a 
+                  href={`tel:${phone}`}
+                  className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center"
+                >
+                  <Phone className="h-4 w-4 mr-3 flex-shrink-0" />
+                  <span className="text-sm">{phone}</span>
+                </a>
               )}
               {location && (
-                <p className="text-gray-300 flex items-center">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  {location}
-                </p>
+                <div className="text-gray-300 flex items-start">
+                  <MapPin className="h-4 w-4 mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-sm">{location}</span>
+                </div>
               )}
             </div>
           </div>
         </div>
         
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-300">
-            © 2024 {fullName}. {footer.copyrightText}
-          </p>
+        {/* Copyright Section */}
+        <div className="border-t border-gray-700 pt-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+            <p className="text-gray-400 text-sm">
+              © 2025 {fullName}. {footer.copyrightText}
+            </p>
+            <div className="flex items-center space-x-4 text-sm text-gray-400">
+              <span>Built with ❤️</span>
+              <span>React + TypeScript</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

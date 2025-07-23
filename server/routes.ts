@@ -199,19 +199,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Categories
-  app.get("/api/categories", async (req, res) => {
-    try {
-      const { type } = req.query;
-      const categories = type 
-        ? await dataService.getCategoriesByType(type as string)
-        : await dataService.getCategories();
-      res.json(categories);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-      res.status(500).json({ message: "Failed to fetch categories" });
-    }
-  });
+
 
   // === ADMIN ENDPOINTS (for your personal use) ===
 

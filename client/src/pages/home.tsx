@@ -4,16 +4,17 @@ import RecentReads from "@/components/recent-reads";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Server, Database, Brain, Cloud, Settings } from "lucide-react";
+import { ArrowRight, Code, Server, Database, Brain, Cloud, Settings, Linkedin, Github, Twitter, Mail } from "lucide-react";
 import { Link } from "wouter";
-import { useSkills, usePersonalInfo } from "@/hooks/use-data-queries";
+import { useSkills, usePersonalInfo, useFooterContent } from "@/hooks/use-data-queries";
 import type { Skill } from "@shared/schema";
 
 export default function HomePage() {
   const { data: skills, loading: skillsLoading } = useSkills();
   const { data: personalInfo, loading: personalInfoLoading } = usePersonalInfo();
+  const { data: footerContent } = useFooterContent();
 
-  // Group skills by category and map to visual categories
+  // Group skills by category for display
   const getSkillsByVisualCategory = (): { backend: Skill[]; database: Skill[]; ai: Skill[] } => {
     if (!skills || skills.length === 0) return { backend: [], database: [], ai: [] };
     
@@ -40,7 +41,7 @@ export default function HomePage() {
   const skillGroups = getSkillsByVisualCategory();
 
   return (
-    <div className="min-h-screen bg-white text-foreground">
+    <div className="min-h-screen bg-white text-foreground flex flex-col">
       <Navigation />
       
       {/* Hero Section */}
@@ -75,11 +76,57 @@ export default function HomePage() {
                   <p className="text-xl text-gray-600 mb-4">
                     {personalInfo?.title}
                   </p>
-                  <p className="text-lg text-gray-500 leading-relaxed mb-8">
-                    {personalInfo?.bio}
-                  </p>
+                  <p 
+                    className="text-lg text-gray-600 leading-7 font-normal tracking-wide mb-8 hyphens-none break-words max-w-full"
+                    dangerouslySetInnerHTML={{ __html: personalInfo?.bio || '' }}
+                  />
                 </>
               )}
+              
+              {/* Social Media Links */}
+              <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
+                {footerContent?.socialLinks?.linkedin && (
+                  <a
+                    href={footerContent.socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 group"
+                    title="LinkedIn"
+                  >
+                    <Linkedin className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+                  </a>
+                )}
+                {footerContent?.socialLinks?.github && (
+                  <a
+                    href={footerContent.socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-gray-50 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-all duration-200 group"
+                    title="GitHub"
+                  >
+                    <Github className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+                  </a>
+                )}
+                {footerContent?.socialLinks?.twitter && (
+                  <a
+                    href={footerContent.socialLinks.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-all duration-200 group"
+                    title="Twitter"
+                  >
+                    <Twitter className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+                  </a>
+                )}
+                <a
+                  href={`mailto:${personalInfo?.email || 'niteshnitp5686@gmail.com'}`}
+                  className="p-3 rounded-full bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-700 transition-all duration-200 group"
+                  title="Email"
+                >
+                  <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+                </a>
+              </div>
+              
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link href="/projects">
                   <Button 
@@ -237,7 +284,9 @@ export default function HomePage() {
       <ContactSection />
       
       {/* Footer */}
-      <Footer />
+      <div className="mt-auto">
+        <Footer />
+      </div>
     </div>
   );
 }
