@@ -16,7 +16,7 @@ export default function ContactPage() {
       <Navigation />
       
       {/* Personal Introduction */}
-      <section className="pt-24 pb-16">
+      <section className="pt-40 pb-16">
         <div className="container-width">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8">

@@ -42,7 +42,7 @@ export const workExperience = pgTable("work_experience", {
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
-  description: text("description").notNull(),
+  description: text("description").array().notNull(), // Changed to array of strings
   image: text("image").notNull(),
   technologies: text("technologies").array().notNull(),
   liveUrl: text("live_url"),
@@ -154,6 +154,19 @@ export const footerContent = pgTable("footer_content", {
   isDeleted: boolean("is_deleted").default(false),
 });
 
+// Testimonials
+export const testimonials = pgTable("testimonials", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  company: text("company").notNull(),
+  content: text("content").notNull(),
+  rating: integer("rating").notNull().default(5),
+  avatar: text("avatar").notNull(),
+  order: integer("order").default(0),
+  isDeleted: boolean("is_deleted").default(false),
+});
+
 
 
 // === TYPE EXPORTS ===
@@ -167,6 +180,7 @@ export type Article = typeof articles.$inferSelect;
 export type ContactMessage = typeof contactMessages.$inferSelect;
 export type ContactContent = typeof contactContent.$inferSelect;
 export type FooterContent = typeof footerContent.$inferSelect;
+export type Testimonial = typeof testimonials.$inferSelect;
 
 
 export type InsertPersonalInfo = typeof personalInfo.$inferInsert;
@@ -179,6 +193,7 @@ export type InsertArticle = typeof articles.$inferInsert;
 export type InsertContactMessage = typeof contactMessages.$inferInsert;
 export type InsertContactContent = typeof contactContent.$inferInsert;
 export type InsertFooterContent = typeof footerContent.$inferInsert;
+export type InsertTestimonial = typeof testimonials.$inferInsert;
 
 
 // === SIMPLE VALIDATION SCHEMAS ===
@@ -192,6 +207,7 @@ export const insertArticleSchema = createInsertSchema(articles);
 export const insertContactMessageSchema = createInsertSchema(contactMessages);
 export const insertContactContentSchema = createInsertSchema(contactContent);
 export const insertFooterContentSchema = createInsertSchema(footerContent);
+export const insertTestimonialSchema = createInsertSchema(testimonials);
 
 
 export const selectPersonalInfoSchema = createSelectSchema(personalInfo);
@@ -204,6 +220,7 @@ export const selectArticleSchema = createSelectSchema(articles);
 export const selectContactMessageSchema = createSelectSchema(contactMessages);
 export const selectContactContentSchema = createSelectSchema(contactContent);
 export const selectFooterContentSchema = createSelectSchema(footerContent);
+export const selectTestimonialSchema = createSelectSchema(testimonials);
 
 
 // === FRONTEND TYPES WITH PARSED JSON ===

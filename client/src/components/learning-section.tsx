@@ -2,14 +2,109 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { 
   BookOpen, GraduationCap, FileText, ExternalLink, 
-  CheckCircle, Clock, Code, Database, Brain
+  CheckCircle, Clock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { api } from "@/lib/api";
 import type { Book, Course, Article } from "@shared/schema";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { EmptyState } from "@/components/ui/empty-state";
+
+interface LearningCardProps {
+  item: Book | Course | Article;
+  type: 'books' | 'courses' | 'articles';
+}
+
+function LearningCard({ item, type }: LearningCardProps) {
+  const getTypeIcon = () => {
+    switch (type) {
+      case 'books': return <BookOpen className="w-5 h-5 text-blue-500" />;
+      case 'courses': return <GraduationCap className="w-5 h-5 text-purple-500" />;
+      case 'articles': return <FileText className="w-5 h-5 text-green-500" />;
+      default: return <BookOpen className="w-5 h-5 text-gray-500" />;
+    }
+  };
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'completed': return <CheckCircle className="w-5 h-5 text-green-500" />;
+      case 'learning': case 'reading': case 'currently-reading': return <Clock className="w-5 h-5 text-blue-500" />;
+      default: return <Clock className="w-5 h-5 text-gray-400" />;
+    }
+  };
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'completed': return <Badge className="bg-green-50 text-green-700 border-green-200">Completed</Badge>;
+      case 'learning': case 'reading': case 'currently-reading': return <Badge className="bg-blue-50 text-blue-700 border-blue-200">In Progress</Badge>;
+      default: return <Badge className="bg-gray-50 text-gray-700 border-gray-200">Planned</Badge>;
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow min-h-[200px] w-full">
+      <div className="flex items-start gap-3 mb-4">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          {getTypeIcon()}
+          <h3 className="font-semibold text-gray-900 text-base leading-tight line-clamp-2">
+            {item.title}
+          </h3>
+        </div>
+      </div>
+      
+      <p className="text-gray-600 text-sm mb-4 line-clamp-1">
+        {type === 'books' && 'author' in item && `by ${item.author}`}
+        {type === 'courses' && 'instructor' in item && `by ${item.instructor}`}
+        {type === 'articles' && 'author' in item && `by ${item.author}`}
+      </p>
+      
+      {/* Notes section if available */}
+      {('notes' in item && item.notes) && (
+        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          {item.notes}
+        </p>
+      )}
+      
+      {/* Tags section if available */}
+      {('tags' in item && item.tags && item.tags.length > 0) && (
+        <div className="flex flex-wrap gap-1 mb-4">
+          {item.tags.slice(0, 3).map((tag: string, index: number) => (
+            <span key={index} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+              {tag}
+            </span>
+          ))}
+          {item.tags.length > 3 && (
+            <span className="text-gray-500 text-xs px-2 py-1">
+              +{item.tags.length - 3} more
+            </span>
+          )}
+        </div>
+      )}
+      
+      <div className="flex items-center justify-between mt-auto">
+        <div className="flex items-center gap-2">
+          {getStatusIcon(item.status)}
+          {getStatusBadge(item.status)}
+        </div>
+        {'url' in item && item.url && (
+          <a 
+            href={item.url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-600 transition-colors"
+            title="Open link"
+          >
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function LearningSection() {
-  const [activeTab, setActiveTab] = useState('reading');
+  const [activeTab, setActiveTab] = useState('courses');
   
   const { data: books, isLoading: booksLoading } = useQuery<Book[]>({
     queryKey: ['/api/books'],
@@ -27,202 +122,33 @@ export default function LearningSection() {
   });
 
   const tabs = [
-    { id: 'reading', label: 'Reading', icon: BookOpen },
     { id: 'courses', label: 'Courses', icon: GraduationCap },
-    { id: 'articles', label: 'Articles', icon: FileText }
+    { id: 'articles', label: 'Articles', icon: FileText },
+    { id: 'books', label: 'Books', icon: BookOpen }
   ];
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'completed': return <CheckCircle className="w-4 h-4 text-green-500" />;
-      case 'learning': case 'reading': return <Clock className="w-4 h-4 text-blue-500" />;
-      default: return <Clock className="w-4 h-4 text-gray-400" />;
+  const getTabData = () => {
+    switch (activeTab) {
+      case 'books':
+        return books || [];
+      case 'courses':
+        return courses || [];
+      case 'articles':
+        return articles || [];
+      default:
+        return [];
     }
   };
 
-  const renderBooksContent = () => {
-    if (booksLoading) {
-      return <div className="text-center py-8">Loading books...</div>;
-    }
+  const isLoading = (activeTab === 'books' && booksLoading) || 
+                   (activeTab === 'courses' && coursesLoading) || 
+                   (activeTab === 'articles' && articlesLoading);
 
-    if (!books || books.length === 0) {
-      return <div className="text-center py-8 text-gray-500">No books found.</div>;
-    }
+  const currentData = getTabData();
+  const isEmpty = !isLoading && currentData.length === 0;
 
-    return (
-      <div className="grid gap-6">
-        {books.map((book) => (
-          <div key={book.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  {getStatusIcon(book.status)}
-                  <h3 className="font-semibold text-lg text-gray-900">{book.title}</h3>
-                </div>
-                <p className="text-gray-600 mb-3">by {book.author}</p>
-                {book.notes && (
-                  <p className="text-gray-600 text-sm mb-3">{book.notes}</p>
-                )}
-                {book.progress !== null && book.progress > 0 && (
-                  <div className="mb-3">
-                    <div className="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Progress</span>
-                      <span>{book.progress}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-blue-500 h-2 rounded-full transition-all" 
-                        style={{ width: `${book.progress}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
-                {book.tags && book.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mb-2">
-                    {book.tags.map((tag: string, index: number) => (
-                      <span key={index} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {book.rating && (
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm text-gray-600">Rating:</span>
-                    <span className="text-sm font-medium text-gray-900">{book.rating}/5</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  const renderCoursesContent = () => {
-    if (coursesLoading) {
-      return <div className="text-center py-8">Loading courses...</div>;
-    }
-
-    if (!courses || courses.length === 0) {
-      return <div className="text-center py-8 text-gray-500">No courses found.</div>;
-    }
-
-    return (
-      <div className="grid gap-6">
-        {courses.map((course) => (
-          <div key={course.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  {getStatusIcon(course.status)}
-                  <h3 className="font-semibold text-lg text-gray-900">{course.title}</h3>
-                </div>
-                <p className="text-gray-600 mb-3">by {course.instructor}</p>
-                {course.notes && (
-                  <p className="text-gray-600 text-sm mb-3">{course.notes}</p>
-                )}
-                {course.progress !== null && course.progress > 0 && (
-                  <div className="mb-3">
-                    <div className="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Progress</span>
-                      <span>{course.progress}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-blue-500 h-2 rounded-full transition-all" 
-                        style={{ width: `${course.progress}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
-                {course.tags && course.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {course.tags.map((tag: string, index: number) => (
-                      <span key={index} className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {course.url && (
-                <Button variant="outline" size="sm" asChild>
-                  <a href={course.url} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  const renderArticlesContent = () => {
-    if (articlesLoading) {
-      return <div className="text-center py-8">Loading articles...</div>;
-    }
-
-    if (!articles || articles.length === 0) {
-      return <div className="text-center py-8 text-gray-500">No articles found.</div>;
-    }
-
-    return (
-      <div className="grid gap-4">
-        {articles.map((article) => (
-          <div key={article.id} className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  {getStatusIcon(article.status)}
-                  <h3 className="font-medium text-gray-900">{article.title}</h3>
-                </div>
-                {article.author && (
-                  <p className="text-gray-600 text-sm mb-2">by {article.author}</p>
-                )}
-                {article.summary && (
-                  <p className="text-gray-600 text-sm mb-3">{article.summary}</p>
-                )}
-                {article.tags && article.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mb-2">
-                    {article.tags.map((tag: string, index: number) => (
-                      <span key={index} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {article.url && (
-                <Button variant="outline" size="sm" asChild>
-                  <a href={article.url} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  if ((booksLoading && activeTab === 'reading') || 
-      (coursesLoading && activeTab === 'courses') || 
-      (articlesLoading && activeTab === 'articles')) {
-    return (
-      <section id="learning" className="section-padding bg-gray-50/30">
-        <div className="container-width">
-          <div className="text-center mb-20">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Learning & Development</h1>
-            <p className="text-gray-600 text-lg">Loading...</p>
-          </div>
-        </div>
-      </section>
-    );
+  if (isLoading) {
+    return <LoadingSpinner />;
   }
 
   return (
@@ -237,14 +163,14 @@ export default function LearningSection() {
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="bg-white rounded-lg p-1 shadow-sm border border-gray-200">
+          <div className="bg-white rounded-lg p-1 shadow-sm border border-gray-200 flex">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-md transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all text-sm ${
                     activeTab === tab.id 
                       ? 'bg-blue-500 text-white shadow-sm' 
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -258,11 +184,24 @@ export default function LearningSection() {
           </div>
         </div>
 
-        {/* Tab Content */}
-        <div className="max-w-4xl mx-auto">
-          {activeTab === 'reading' && renderBooksContent()}
-          {activeTab === 'courses' && renderCoursesContent()}
-          {activeTab === 'articles' && renderArticlesContent()}
+        {/* Content */}
+        <div className="max-w-7xl mx-auto">
+          {isEmpty ? (
+            <EmptyState 
+              icon={<BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-4" />}
+              message={`No ${activeTab} found.`}
+            />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentData.map((item) => (
+                <LearningCard 
+                  key={item.id} 
+                  item={item} 
+                  type={activeTab as 'books' | 'courses' | 'articles'} 
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

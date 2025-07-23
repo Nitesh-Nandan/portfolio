@@ -1,6 +1,10 @@
+import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ExternalLink, Github, Code2, Database, Cloud, Zap } from "lucide-react";
+import { ExternalLink, Github, Code2, Database, Cloud, Zap, Search, Filter } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import type { Project } from "@shared/schema";
+import { api } from "@/lib/api";
 
 const getProjectIconAndColors = (title: string) => {
   if (title.toLowerCase().includes('api') || title.toLowerCase().includes('backend') || title.toLowerCase().includes('microservice')) {
@@ -36,14 +40,48 @@ interface ProjectsSectionProps {
 }
 
 export default function ProjectsSection({ showAllProjects = false }: ProjectsSectionProps) {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTechnology, setSelectedTechnology] = useState('');
+  
   const { data: allProjects, isLoading } = useQuery<Project[]>({
     queryKey: ['/api/projects'],
+    queryFn: api.getProjects,
   });
 
-  // Filter projects based on prop
-  const projects = showAllProjects 
-    ? allProjects 
-    : allProjects?.filter(project => project.featured);
+  // Get all unique technologies for filter
+  const allTechnologies = useMemo(() => {
+    if (!allProjects) return [];
+    const techSet = new Set<string>();
+    allProjects.forEach(project => {
+      project.technologies?.forEach(tech => techSet.add(tech));
+    });
+    return Array.from(techSet).sort();
+  }, [allProjects]);
+
+  // Filter projects based on search term and technology
+  const filteredProjects = useMemo(() => {
+    if (!allProjects) return [];
+    
+    let filtered = showAllProjects ? allProjects : allProjects.filter(project => project.featured);
+    
+    // Filter by search term (project name)
+    if (searchTerm) {
+      filtered = filtered.filter(project => 
+        project.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Filter by technology
+    if (selectedTechnology) {
+      filtered = filtered.filter(project => 
+        project.technologies?.some(tech => 
+          tech.toLowerCase() === selectedTechnology.toLowerCase()
+        )
+      );
+    }
+    
+    return filtered;
+  }, [allProjects, showAllProjects, searchTerm, selectedTechnology]);
 
   if (isLoading) {
     return (
@@ -72,14 +110,62 @@ export default function ProjectsSection({ showAllProjects = false }: ProjectsSec
           </div>
         )}
 
+        {/* Filter Section */}
+        {showAllProjects && (
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+              {/* Search by project name */}
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Input
+                  type="text"
+                  placeholder="Search projects..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              
+              {/* Filter by technology */}
+              <div className="relative">
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <select
+                  value={selectedTechnology}
+                  onChange={(e) => setSelectedTechnology(e.target.value)}
+                  className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="">All Technologies</option>
+                  {allTechnologies.map((tech: string) => (
+                    <option key={tech} value={tech}>{tech}</option>
+                  ))}
+                </select>
+              </div>
+              
+              {/* Clear filters */}
+              {(searchTerm || selectedTechnology) && (
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedTechnology('');
+                  }}
+                  className="px-4 py-2"
+                >
+                  Clear Filters
+                </Button>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
-            {projects?.map((project) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+            {filteredProjects?.map((project: Project) => {
               const { icon: IconComponent, bg, text } = getProjectIconAndColors(project.title);
               return (
-                <div key={project.id} className="group p-6 rounded-2xl bg-white border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className={`p-3 rounded-xl ${bg} ${text} flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
+                <div key={project.id} className="group p-5 rounded-2xl bg-white border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className={`p-2.5 rounded-xl ${bg} ${text} flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow duration-300`}>
                       <IconComponent className="h-5 w-5" />
                     </div>
                     <div className="flex-grow">
@@ -89,11 +175,17 @@ export default function ProjectsSection({ showAllProjects = false }: ProjectsSec
                     </div>
                   </div>
                   
-                  <p className="text-gray-600 mb-6 leading-relaxed text-base line-height-loose">
-                    {project.description}
-                  </p>
+                  <div className="text-gray-600 mb-5 leading-relaxed text-base space-y-2">
+                    {Array.isArray(project.description) ? (
+                      project.description.map((desc, index) => (
+                        <p key={index} dangerouslySetInnerHTML={{ __html: desc }} />
+                      ))
+                    ) : (
+                      <p dangerouslySetInnerHTML={{ __html: project.description }} />
+                    )}
+                  </div>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-5">
                     <div className="flex flex-wrap gap-2.5">
                       {project.technologies.slice(0, 5).map((tech, index) => (
                         <span 
@@ -141,9 +233,14 @@ export default function ProjectsSection({ showAllProjects = false }: ProjectsSec
           </div>
         </div>
 
-        {(!projects || projects.length === 0) && (
+        {(!filteredProjects || filteredProjects.length === 0) && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No projects available yet.</p>
+            <p className="text-gray-500 text-lg">
+              {searchTerm || selectedTechnology 
+                ? "No projects match your filters." 
+                : "No projects available yet."
+              }
+            </p>
           </div>
         )}
       </div>

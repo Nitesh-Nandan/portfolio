@@ -4,7 +4,7 @@ import RecentReads from "@/components/recent-reads";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Server, Database, Brain, Cloud, Settings, Linkedin, Github, Twitter, Mail } from "lucide-react";
+import { ArrowRight, Code, Server, Database, Brain, Cloud, Settings, Linkedin, Github, Twitter, Mail, Briefcase, MessageCircle, BookOpen } from "lucide-react";
 import { Link } from "wouter";
 import { useSkills, usePersonalInfo, useFooterContent } from "@/hooks/use-data-queries";
 import type { Skill } from "@shared/schema";
@@ -45,11 +45,11 @@ export default function HomePage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-white via-blue-50/30 to-white">
         <div className="container-width">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20">
-            <div className="order-2 lg:order-1">
-              <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-lg">
+            <div className="order-2 lg:order-1 animate-slide-in-left">
+              <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105">
                 {personalInfoLoading ? (
                   <div className="w-full h-full bg-gray-200 animate-pulse" />
                 ) : (
@@ -61,7 +61,7 @@ export default function HomePage() {
                 )}
               </div>
             </div>
-            <div className="text-center lg:text-left max-w-2xl order-1 lg:order-2">
+            <div className="text-center lg:text-left max-w-2xl order-1 lg:order-2 animate-slide-in-right">
               {personalInfoLoading ? (
                 <div className="space-y-4">
                   <div className="h-16 bg-gray-200 animate-pulse rounded" />
@@ -70,21 +70,28 @@ export default function HomePage() {
                 </div>
               ) : (
                 <>
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
-                    Hi, I'm {personalInfo?.firstName} {personalInfo?.lastName}
-                  </h1>
-                  <p className="text-xl text-gray-600 mb-4">
-                    {personalInfo?.title}
-                  </p>
-                  <p 
-                    className="text-lg text-gray-600 leading-7 font-normal tracking-wide mb-8 hyphens-none break-words max-w-full"
-                    dangerouslySetInnerHTML={{ __html: personalInfo?.bio || '' }}
-                  />
+                  <div className="mb-6">
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight">
+                      Hi, I'm{' '}
+                      <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent font-black tracking-tight">
+                        {personalInfo?.firstName} {personalInfo?.lastName}
+                      </span>
+                    </h1>
+                  </div>
+                  <div className="mb-8">
+                    <p className="text-xl text-gray-700 font-medium mb-6 border-l-4 border-blue-500 pl-4">
+                      {personalInfo?.title}
+                    </p>
+                    <p 
+                      className="text-lg text-gray-600 leading-7 font-normal tracking-wide hyphens-none break-words max-w-full"
+                      dangerouslySetInnerHTML={{ __html: personalInfo?.bio || '' }}
+                    />
+                  </div>
                 </>
               )}
               
               {/* Social Media Links */}
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
+              <div className="flex items-center justify-center lg:justify-start gap-4 mb-10">
                 {footerContent?.socialLinks?.linkedin && (
                   <a
                     href={footerContent.socialLinks.linkedin}
@@ -127,23 +134,24 @@ export default function HomePage() {
                 </a>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in">
                 <Link href="/projects">
                   <Button 
                     size="lg"
-                    className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 w-full sm:w-auto"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300"
                   >
+                    <Briefcase className="mr-2 h-5 w-5" />
                     View My Work
-                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="/contact">
                   <Button 
                     variant="outline"
                     size="lg"
-                    className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 w-full sm:w-auto"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    Get In Touch
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Contact Me
                   </Button>
                 </Link>
               </div>
@@ -153,85 +161,28 @@ export default function HomePage() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container-width">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Expertise</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Professional Toolkit</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Specialized in building scalable backend systems and AI-powered applications
+              Here are some of the key technologies I work with.
             </p>
           </div>
           
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {skillsLoading ? (
               <div className="text-center text-gray-500">Loading skills...</div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                {/* Backend Development Card */}
-                <div className="bg-blue-50/50 p-12 rounded-2xl border border-blue-100/50 hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
-                      <Code className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Backend</h3>
-                  </div>
-                  <hr className="border-gray-200 mb-6" />
-                  <div className="flex flex-wrap gap-2">
-                    {skillGroups.backend?.length > 0 ? (
-                      skillGroups.backend.map((skill: Skill) => (
-                        <span key={skill.id} className="px-3 py-1 bg-blue-100 text-gray-900 text-sm font-normal rounded-full">
-                          {skill.name}
-                        </span>
-                      ))
-                    ) : (
-                      <span className="text-gray-500 text-sm">No backend skills available</span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Database & Cloud Card */}
-                <div className="bg-green-50/50 p-12 rounded-2xl border border-green-100/50 hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
-                      <Server className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Database & Cloud</h3>
-                  </div>
-                  <hr className="border-gray-200 mb-6" />
-                  <div className="flex flex-wrap gap-2">
-                    {skillGroups.database?.length > 0 ? (
-                      skillGroups.database.map((skill: Skill) => (
-                        <span key={skill.id} className="px-3 py-1 bg-green-100 text-gray-900 text-sm font-normal rounded-full">
-                          {skill.name}
-                        </span>
-                      ))
-                    ) : (
-                      <span className="text-gray-500 text-sm">No database & cloud skills available</span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Generative AI Card */}
-                <div className="bg-purple-50/50 p-12 rounded-2xl border border-purple-100/50 hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center">
-                      <Brain className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Generative AI</h3>
-                  </div>
-                  <hr className="border-gray-200 mb-6" />
-                  <div className="flex flex-wrap gap-2">
-                    {skillGroups.ai?.length > 0 ? (
-                      skillGroups.ai.map((skill: Skill) => (
-                        <span key={skill.id} className="px-3 py-1 bg-purple-100 text-gray-900 text-sm font-normal rounded-full">
-                          {skill.name}
-                        </span>
-                      ))
-                    ) : (
-                      <span className="text-gray-500 text-sm">No AI skills available</span>
-                    )}
-                  </div>
-                </div>
+              <div className="flex flex-wrap justify-center gap-3">
+                {skills?.map((skill: Skill) => (
+                  <span 
+                    key={skill.id} 
+                    className="px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium rounded-full hover:bg-blue-200 transition-colors duration-200"
+                  >
+                    {skill.name}
+                  </span>
+                ))}
               </div>
             )}
           </div>
@@ -242,7 +193,10 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container-width">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Recent Projects</h2>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Briefcase className="h-6 w-6 text-blue-600" />
+              <h2 className="text-4xl font-bold text-gray-900">Recent Projects</h2>
+            </div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Projects showcasing my expertise in backend engineering, microservices architecture, and AI integration.
             </p>
@@ -250,9 +204,12 @@ export default function HomePage() {
           <FeaturedProjects />
           <div className="text-center mt-12">
             <Link href="/projects">
-              <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3">
+              <Button 
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <Briefcase className="mr-2 h-5 w-5" />
                 View All Projects
-                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
           </div>
@@ -265,15 +222,18 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Recent Learning</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Books I'm actively reading to stay updated with the latest technologies and best practices.
+              Books, courses, and articles I'm actively engaging with to stay updated with the latest technologies and best practices.
             </p>
           </div>
           <RecentReads />
           <div className="text-center mt-12">
             <Link href="/projects">
-              <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3">
-                View All Readings
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button 
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <BookOpen className="mr-2 h-5 w-5" />
+                View All Learning
               </Button>
             </Link>
           </div>

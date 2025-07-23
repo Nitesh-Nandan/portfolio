@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Linkedin, Github, Mail } from "lucide-react";
+import { Linkedin, Github, Mail, MessageCircle, Send, Handshake, Wifi, Phone, User, Mail as MailIcon, Clock, MapPin, Calendar, CheckCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { usePersonalInfo, useContactContent } from "@/hooks/use-data-queries";
 import type { InsertContactMessage } from "@shared/schema";
+import React from "react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -18,10 +19,19 @@ export default function ContactSection() {
     message: ''
   });
   
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [isTyping, setIsTyping] = useState(true);
+  
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const { data: personalInfo, loading: personalInfoLoading, error: personalInfoError } = usePersonalInfo();
   const { data: contactContent, isLoading: contactContentLoading, error: contactContentError } = useContactContent();
+
+  // Typing animation effect
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsTyping(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContactMessage) => {
@@ -31,9 +41,10 @@ export default function ContactSection() {
     onSuccess: () => {
       toast({
         title: "Message sent successfully!",
-        description: "I'll get back to you soon.",
+        description: "I'll get back to you within 24 hours.",
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormErrors({});
       queryClient.invalidateQueries({ queryKey: ['/api/contact'] });
     },
     onError: (error) => {
@@ -45,17 +56,59 @@ export default function ContactSection() {
     }
   });
 
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.subject.trim()) {
+      errors.subject = 'Subject is required';
+    }
+    
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      errors.message = 'Message must be at least 10 characters';
+    }
+    
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    contactMutation.mutate(formData);
+    if (validateForm()) {
+      contactMutation.mutate(formData);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (formErrors[name]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
+
+
 
   // Show loading state while fetching data
   const isLoading = personalInfoLoading || contactContentLoading;
@@ -64,7 +117,10 @@ export default function ContactSection() {
       <section id="contact" className="section-padding" style={{ backgroundColor: '#f1f5f9' }}>
         <div className="container-width">
           <div className="text-center mb-20">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Get In Touch</h1>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Phone className="h-8 w-8 text-blue-600" />
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Contact Me</h1>
+            </div>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">Loading contact information...</p>
           </div>
         </div>
@@ -79,7 +135,10 @@ export default function ContactSection() {
       <section id="contact" className="section-padding" style={{ backgroundColor: '#f1f5f9' }}>
         <div className="container-width">
           <div className="text-center mb-20">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Get In Touch</h1>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Phone className="h-8 w-8 text-blue-600" />
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Contact Me</h1>
+            </div>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Unable to load contact information. Please try again later.
             </p>
@@ -99,7 +158,7 @@ export default function ContactSection() {
 
   // Content with fallbacks
   const content = contactContent || {
-    heading: 'Get In Touch',
+    heading: 'Contact Me',
     subheading: "I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and system design.",
     formTitle: 'Send me a message',
     connectTitle: 'Connect',
@@ -115,23 +174,35 @@ export default function ContactSection() {
   return (
     <section id="contact" className="section-padding" style={{ backgroundColor: '#f1f5f9' }}>
       <div className="container-width">
+        {/* Header Section */}
         <div className="text-center mb-20">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            {content.heading}
-          </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Phone className="h-8 w-8 text-blue-600" />
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+              {content.heading}
+            </h1>
+          </div>
+          <p className={`text-gray-600 text-lg max-w-2xl mx-auto transition-all duration-1000 ${
+            isTyping ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+          }`}>
             {content.subheading}
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32">
           {/* Contact Form */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">{content.formTitle}</h3>
+            <div className="flex items-center gap-3 mb-8">
+              <Send className="h-6 w-6 text-blue-600" />
+              <h3 className="text-xl font-semibold text-gray-900">{content.formTitle}</h3>
+            </div>
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Name
+                  Name *
                 </Label>
                 <Input
                   type="text"
@@ -141,13 +212,21 @@ export default function ContactSection() {
                   onChange={handleChange}
                   required
                   placeholder="Your full name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                    formErrors.name ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  }`}
                 />
+                {formErrors.name && (
+                  <div className="flex items-center gap-2 mt-2 text-red-600 text-sm">
+                    <AlertCircle className="h-4 w-4" />
+                    {formErrors.name}
+                  </div>
+                )}
               </div>
               
               <div>
                 <Label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email
+                  Email *
                 </Label>
                 <Input
                   type="email"
@@ -157,13 +236,21 @@ export default function ContactSection() {
                   onChange={handleChange}
                   required
                   placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                    formErrors.email ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  }`}
                 />
+                {formErrors.email && (
+                  <div className="flex items-center gap-2 mt-2 text-red-600 text-sm">
+                    <AlertCircle className="h-4 w-4" />
+                    {formErrors.email}
+                  </div>
+                )}
               </div>
               
               <div>
                 <Label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                  Subject
+                  Subject *
                 </Label>
                 <Input
                   type="text"
@@ -173,13 +260,21 @@ export default function ContactSection() {
                   onChange={handleChange}
                   required
                   placeholder="What's this about?"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                    formErrors.subject ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  }`}
                 />
+                {formErrors.subject && (
+                  <div className="flex items-center gap-2 mt-2 text-red-600 text-sm">
+                    <AlertCircle className="h-4 w-4" />
+                    {formErrors.subject}
+                  </div>
+                )}
               </div>
               
               <div>
                 <Label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
+                  Message *
                 </Label>
                 <Textarea
                   id="message"
@@ -189,8 +284,16 @@ export default function ContactSection() {
                   required
                   rows={6}
                   placeholder="Tell me about your project or just say hello..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-200 ${
+                    formErrors.message ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  }`}
                 />
+                {formErrors.message && (
+                  <div className="flex items-center gap-2 mt-2 text-red-600 text-sm">
+                    <AlertCircle className="h-4 w-4" />
+                    {formErrors.message}
+                  </div>
+                )}
               </div>
               
               <Button
@@ -198,47 +301,78 @@ export default function ContactSection() {
                 disabled={contactMutation.isPending}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
               >
-                {contactMutation.isPending ? 'Sending...' : 'Send Message'}
+                {contactMutation.isPending ? (
+                  <div className="flex items-center gap-2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <Send className="h-5 w-5" />
+                    Send Message
+                  </div>
+                )}
               </Button>
             </form>
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div className="space-y-10">
+            {/* Contact Information */}
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">{content.contactInfoTitle}</h3>
+              <div className="flex items-center gap-3 mb-8">
+                <Handshake className="h-6 w-6 text-blue-600" />
+                <h3 className="text-xl font-semibold text-gray-900">{content.contactInfoTitle}</h3>
+              </div>
+              
               <div className="space-y-5">
-                <div className="group">
-                  <p className="text-sm text-gray-600 mb-1">Email</p>
-                  <a 
-                    href={`mailto:${email}`}
-                    className="text-gray-900 font-medium hover:text-blue-600 transition-colors duration-200"
-                  >
-                    {email}
-                  </a>
-                </div>
-                {phone && (
+                <div className="group flex items-center gap-3">
+                  <Mail className="h-5 w-5 text-blue-600" />
                   <div>
-                    <p className="text-sm text-gray-600 mb-1">Phone</p>
+                    <p className="text-sm text-gray-600 mb-1">Email</p>
                     <a 
-                      href={`tel:${phone}`}
+                      href={`mailto:${email}`}
                       className="text-gray-900 font-medium hover:text-blue-600 transition-colors duration-200"
                     >
-                      {phone}
+                      {email}
                     </a>
                   </div>
+                </div>
+                
+                {phone && (
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-green-600" />
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Phone</p>
+                      <a 
+                        href={`tel:${phone}`}
+                        className="text-gray-900 font-medium hover:text-green-600 transition-colors duration-200"
+                      >
+                        {phone}
+                      </a>
+                    </div>
+                  </div>
                 )}
+                
                 {location && (
-                  <div>
-                    <p className="text-sm text-gray-600 mb-1">Location</p>
-                    <p className="text-gray-900 font-medium">{location}</p>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-purple-600" />
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Location</p>
+                      <p className="text-gray-900 font-medium">{location}</p>
+                    </div>
                   </div>
                 )}
               </div>
             </div>
 
+            {/* Social Links */}
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">{content.connectTitle}</h3>
+              <div className="flex items-center gap-3 mb-8">
+                <Wifi className="h-6 w-6 text-blue-600" />
+                <h3 className="text-xl font-semibold text-gray-900">{content.connectTitle}</h3>
+              </div>
+              
               <div className="flex items-center gap-4">
                 {content.socialLinks?.linkedin && (
                   <a
@@ -272,8 +406,13 @@ export default function ContactSection() {
               </div>
             </div>
 
+            {/* Status */}
             <div>
-              <p className="text-sm text-gray-600 mb-1">Status</p>
+              <div className="flex items-center gap-3 mb-4">
+                <Clock className="h-5 w-5 text-yellow-600" />
+                <h3 className="text-lg font-semibold text-gray-900">Status</h3>
+              </div>
+              
               <div className="flex items-center mb-3">
                 <div className={`w-2 h-2 rounded-full mr-2 ${
                   availability === 'available' ? 'bg-green-500' : 
@@ -281,9 +420,15 @@ export default function ContactSection() {
                 }`}></div>
                 <span className="text-gray-900 font-medium text-sm">{availabilityMessage}</span>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              
+              <p className="text-gray-600 text-sm leading-relaxed mb-3">
                 {content.statusMessage}
               </p>
+              
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <Clock className="h-4 w-4" />
+                <span>Response time: Usually within 24 hours</span>
+              </div>
             </div>
           </div>
         </div>
