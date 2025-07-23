@@ -1,60 +1,139 @@
 [
   {
     "id": 1,
-    "title": "System Design Interview",
-    "instructor": "Alex Xu",
-    "url": "https://www.educative.io/courses/grokking-the-system-design-interview",
+    "title": "MCP Masterclass: Complete Guide to MCP in Python",
+    "instructor": "Henry Habib",
+    "url": "https://www.udemy.com/course/learn-mcp-model-context-protocol-complete-guide/",
     "status": "completed",
     "progress": 100,
     "rating": 5,
-    "startDate": "2023-01",
-    "completedDate": "2023-03",
-    "notes": "Excellent course covering system design fundamentals and interview preparation.",
+    "startDate": "2025-05",
+    "completedDate": "2025-07",
+    "notes": "Excellent course covering MCP server and client implementation in Python.",
     "tags": [
-      "system-design",
-      "interviews",
-      "architecture"
+      "GenAI",
+      "Software Engineering",
+      "Python",
+      "MCP"
     ],
     "featured": true,
     "order": 1
   },
   {
     "id": 2,
-    "title": "Microservices with Spring Boot",
-    "instructor": "John Thompson",
-    "url": "https://www.udemy.com/course/spring-boot-microservices/",
+    "title": "LLM Engineering: Master AI, Large Language Models & Agents",
+    "instructor": "Ed Donner",
+    "url": "https://www.udemy.com/course/llm-engineering-master-ai-and-large-language-models",
     "status": "learning",
-    "progress": 60,
-    "rating": null,
-    "startDate": "2024-01",
-    "completedDate": null,
-    "notes": "In-depth coverage of Spring Boot microservices patterns.",
+    "progress": 40,
+    "rating": 4,
+    "startDate": "2025-05",
+    "completedDate": "2023-08",
+    "notes": "Mastering Generative AI and LLMs",
     "tags": [
-      "spring-boot",
-      "microservices",
-      "java"
+      "llm",
+      "vector-embedding",
+      "openai",
+      "huggingface",
+      "llama",
+      "LangChain"
     ],
     "featured": true,
     "order": 2
   },
   {
     "id": 3,
-    "title": "Building LLM Applications",
-    "instructor": "OpenAI",
-    "url": "https://platform.openai.com/docs",
+    "title": "Java Multithreading, Concurrency & Performance Optimization",
+    "instructor": "Michael Pogrebinsky",
+    "url": "https://www.udemy.com/course/java-multithreading-concurrency-performance-optimization",
     "status": "completed",
     "progress": 100,
     "rating": 4,
-    "startDate": "2023-06",
-    "completedDate": "2023-08",
-    "notes": "Comprehensive guide to building applications with Large Language Models.",
+    "startDate": "2020-10",
+    "completedDate": "2020-11",
+    "notes": "Multithreading, Concurrency & Parallel programming in Java, with strong emphasis on high performance",
     "tags": [
-      "ai",
-      "llm",
-      "openai",
-      "genai"
+      "Multithreading",
+      "Concurrency",
+      "Parallel Programming",
+      "Java"
     ],
     "featured": true,
     "order": 3
+  },
+  {
+    "id": 4,
+    "title": "Kubernetes for the Absolute Beginners - Hands-on",
+    "instructor": "Mumshad Mannambeth ",
+    "url": "https://www.udemy.com/course/learn-kubernetes/",
+    "status": "learning",
+    "progress": 100,
+    "rating": null,
+    "startDate": "2024-01",
+    "completedDate": null,
+    "notes": "Gain basic understanding of Kubernetes Fundamentals and Deploy Kubernetes Clusters",
+    "tags": [
+      "spring-boot",
+      "microservices",
+      "java"
+    ],
+    "featured": false,
+    "order": 4
+  },
+  {
+    "id": 5,
+    "title": "Productivity, Personal Development & Time Management ",
+    "instructor": "Alex Genadinik",
+    "url": "https://www.udemy.com/course/productivity-for-entrepreneurs-and-professionals",
+    "status": "learning",
+    "progress": 20,
+    "rating": null,
+    "startDate": "2025-05",
+    "completedDate": null,
+    "notes": "Personal transformation to be a top-1% performer! Personal development, business productivity skills, time management",
+    "tags": [
+      "Productivity",
+      "Time Management",
+      "Personal Development"
+    ],
+    "featured": false,
+    "order": 5
+  },
+  {
+    "id": 6,
+    "title": "Product Management Fundamentals",
+    "instructor": "Institute of Product Leadership",
+    "url": "https://www.udemy.com/course/product-management-fundamental/",
+    "status": "completed",
+    "progress": 100,
+    "rating": null,
+    "startDate": "2024-01",
+    "completedDate": null,
+    "notes": "Comprehensive exploration of product management fundamentals",
+    "tags": [
+      "Product Management",
+      "Business",
+      "java"
+    ],
+    "featured": false,
+    "order": 6
+  },
+  {
+    "id": 7,
+    "title": "Fundamentals of Retrieval-Augmented Generation",
+    "instructor": "Educative",
+    "url": "https://www.educative.io/courses/rag-llm",
+    "status": "completed",
+    "progress": 100,
+    "rating": null,
+    "startDate": "2024-07",
+    "completedDate": null,
+    "notes": "Understand the retrieval-augmented generation (RAG) principles, its architecture, and how it enhances AI accuracy for practical applications",
+    "tags": [
+      "GenAI",
+      "LLMs"
+    ],
+    "featured": false,
+    "order": 7
   }
 ]
