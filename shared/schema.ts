@@ -33,6 +33,7 @@ export const workExperience = pgTable("work_experience", {
   description: text("description"),
   achievements: text("achievements").array(),
   technologies: text("technologies").array(),
+  projects: text("projects").array(),
   isCurrent: boolean("is_current").default(false),
   order: integer("order").default(0),
   isDeleted: boolean("is_deleted").default(false),

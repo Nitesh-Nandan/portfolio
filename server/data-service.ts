@@ -3,8 +3,8 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { eq, desc } from 'drizzle-orm';
 import { db } from './db';
-import { personalInfo, workExperience, projects, skills, books, courses, articles, contactContent, footerContent, contactMessages } from '@shared/schema';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson, ContactMessage, InsertContactMessage } from '@shared/schema';
+import { personalInfo, workExperience, projects, skills, books, courses, articles, testimonials, contactContent, footerContent, contactMessages } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, Testimonial, ContactContentWithParsedJson, FooterContentWithParsedJson, ContactMessage, InsertContactMessage } from '@shared/schema';
 
 class DataService {
   private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data/cache');
@@ -205,6 +205,25 @@ class DataService {
   async getFeaturedArticles(): Promise<Article[]> {
     const allArticles = await this.getArticles();
     return Array.isArray(allArticles) ? allArticles.filter(a => a.featured) : [];
+  }
+
+  // === TESTIMONIALS ===
+  async getTestimonials(): Promise<Testimonial[]> {
+    return this.getFromDbWithFallback(
+      async () => {
+        const result = await db.select().from(testimonials)
+          .where(eq(testimonials.isDeleted, false))
+          .orderBy(desc(testimonials.order), desc(testimonials.id));
+        return result;
+      },
+      'testimonials.json',
+      []
+    ) as Promise<Testimonial[]>;
+  }
+
+  async getActiveTestimonials(): Promise<Testimonial[]> {
+    const allTestimonials = await this.getTestimonials();
+    return Array.isArray(allTestimonials) ? allTestimonials.filter(t => !t.isDeleted) : [];
   }
 
   // === CONTACT CONTENT ===

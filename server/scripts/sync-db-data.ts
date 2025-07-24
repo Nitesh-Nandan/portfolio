@@ -14,7 +14,8 @@ import {
   courses, 
   articles, 
   contactContent, 
-  footerContent
+  footerContent,
+  testimonials
 } from '@shared/schema';
 import type { 
   PersonalInfo, 
@@ -25,7 +26,8 @@ import type {
   Course, 
   Article, 
   ContactContentWithParsedJson, 
-  FooterContentWithParsedJson
+  FooterContentWithParsedJson,
+  Testimonial
 } from '@shared/schema';
 
 const dataPath = join(dirname(fileURLToPath(import.meta.url)), '../data/db');
@@ -140,6 +142,10 @@ async function syncData() {
     const articleData = readJsonFile<Article[]>('articles.json');
     await upsertRecords(articles, articleData || [], 'Articles');
 
+    // Sync testimonials (multiple records)
+    const testimonialData = readJsonFile<Testimonial[]>('testimonials.json');
+    await upsertRecords(testimonials, testimonialData || [], 'Testimonials');
+
     // Sync contact content (single record with JSON parsing)
     const contactContentData = readJsonFile<ContactContentWithParsedJson>('contact-content.json');
     if (contactContentData && contactContentData.id) {
@@ -178,6 +184,7 @@ async function syncData() {
         booksCount,
         coursesCount,
         articlesCount,
+        testimonialsCount,
         contactCount,
         footerCount
       ] = await Promise.all([
@@ -187,6 +194,7 @@ async function syncData() {
         db.select().from(books).then(rows => rows.length),
         db.select().from(courses).then(rows => rows.length),
         db.select().from(articles).then(rows => rows.length),
+        db.select().from(testimonials).then(rows => rows.length),
         db.select().from(contactContent).then(rows => rows.length),
         db.select().from(footerContent).then(rows => rows.length)
       ]);
@@ -198,6 +206,7 @@ async function syncData() {
       console.log(`   • Books: ${booksCount} items`);
       console.log(`   • Courses: ${coursesCount} items`);
       console.log(`   • Articles: ${articlesCount} items`);
+      console.log(`   • Testimonials: ${testimonialsCount} items`);
       console.log(`   • Contact Content: ${contactCount} item`);
       console.log(`   • Footer Content: ${footerCount} item`);
 
