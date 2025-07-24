@@ -85,6 +85,14 @@ async function syncFallbackData() {
         const articles = articlesData.rows.map(row => transformArticle(row));
         writeJsonFile(dataDir, 'articles.json', articles);
 
+        // Sync Testimonials
+        console.log('💬 Syncing testimonials...');
+        const testimonialsData = await db.execute(
+            'SELECT * FROM testimonials WHERE is_deleted = false ORDER BY "order"'
+        );
+        const testimonials = testimonialsData.rows.map(row => transformTestimonial(row));
+        writeJsonFile(dataDir, 'testimonials.json', testimonials);
+
         // Sync Courses
         console.log('🎓 Syncing courses...');
         const coursesData = await db.execute(
@@ -139,7 +147,7 @@ function transformPersonalInfo(row) {
         firstName: row.first_name,
         lastName: row.last_name,
         title: row.title,
-        bio: row.bio,
+        bio: JSON.parse(row.bio), // Parse the JSON string into an array
         email: row.email,
         phone: row.phone,
         location: row.location,
@@ -171,20 +179,13 @@ function transformWorkExperience(row) {
         id: row.id,
         company: row.company,
         position: row.position,
-        department: row.department,
         location: row.location,
-        workType: row.work_type,
-        remote: row.remote,
         startDate: row.start_date,
         endDate: row.end_date,
         description: row.description,
         achievements: row.achievements || [],
         technologies: row.technologies || [],
         projects: row.projects || [],
-        teamSize: row.team_size,
-        reportingTo: row.reporting_to,
-        companyWebsite: row.company_website,
-        companyLogo: row.company_logo,
         isCurrent: row.is_current,
         order: row.order,
     };
@@ -195,7 +196,6 @@ function transformBook(row) {
         id: row.id,
         title: row.title,
         author: row.author,
-        isbn: row.isbn,
         image: row.image,
         rating: row.rating,
         status: row.status,
@@ -205,9 +205,6 @@ function transformBook(row) {
         notes: row.notes,
         quotes: row.quotes || [],
         tags: row.tags || [],
-        recommendedBy: row.recommended_by,
-        genre: row.genre,
-        pages: row.pages,
         featured: row.featured,
         is_deleted: row.is_deleted
     };
@@ -272,6 +269,19 @@ function transformCourse(row) {
         tags: row.tags || [],
         featured: row.featured,
         order: row.order
+    };
+}
+
+function transformTestimonial(row) {
+    return {
+        id: row.id,
+        name: row.name,
+        role: row.role,
+        company: row.company,
+        content: row.content,
+        rating: row.rating,
+        avatar: row.avatar,
+        is_deleted: row.is_deleted
     };
 }
 

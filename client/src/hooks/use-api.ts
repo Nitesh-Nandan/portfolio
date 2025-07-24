@@ -23,7 +23,6 @@ export function useApiCall<T>(
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch data';
       setError(errorMessage);
-      console.error('❌ Data fetch error:', err);
     } finally {
       setLoading(false);
     }
@@ -44,7 +43,6 @@ export function useApiCall<T>(
         if (isMounted) {
           const errorMessage = err instanceof Error ? err.message : 'Failed to fetch data';
           setError(errorMessage);
-          console.error('❌ Data fetch error:', err);
         }
       } finally {
         if (isMounted) {
