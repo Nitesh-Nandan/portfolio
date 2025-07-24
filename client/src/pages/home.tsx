@@ -49,7 +49,7 @@ function HeroSection() {
                 <div className="w-full h-full bg-gray-200 animate-pulse" />
               ) : (
                 <img 
-                  src={personalInfo?.profileImage || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"} 
+                  src={personalInfo?.profileImage || "/images/profile-4.png"} 
                   alt={`${personalInfo?.firstName} ${personalInfo?.lastName} - Professional`}
                   className="w-full h-full object-cover"
                 />
