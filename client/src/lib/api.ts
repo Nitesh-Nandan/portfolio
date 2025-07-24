@@ -249,37 +249,4 @@ export const api = {
       body: JSON.stringify(data),
     });
   },
-
-  // Admin functions (only work in API mode)
-  admin: {
-    syncToDatabase: (): Promise<{ message: string }> => {
-      const config = getApiConfig();
-      if (config.mode === 'static') {
-        throw new Error('Admin functions not available in static mode');
-      }
-      return apiCall('/api/admin/sync-to-db');
-    },
-
-    backupToJson: (): Promise<{ message: string }> => {
-      const config = getApiConfig();
-      if (config.mode === 'static') {
-        throw new Error('Admin functions not available in static mode');
-      }
-      return apiCall('/api/admin/backup-to-json');
-    },
-
-    updatePersonalInfo: (data: Partial<PersonalInfo>): Promise<{ message: string }> => {
-      const config = getApiConfig();
-      if (config.mode === 'static') {
-        throw new Error('Admin functions not available in static mode');
-      }
-      return apiCall('/api/admin/personal-info', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-    },
-  },
 };
