@@ -10,11 +10,12 @@ import type {
   FooterContentWithParsedJson,
   Testimonial
 } from '@shared/schema';
+import { config } from '@/config/env';
 
 // Simple API configuration from environment variables
 const getApiConfig = () => {
   const mode = import.meta.env.VITE_API_MODE || 'static';
-  const baseUrl = import.meta.env.VITE_API_BASE_URL || '';
+  const baseUrl = config.api.baseUrl;
   const staticPath = import.meta.env.VITE_STATIC_DATA_PATH || '/data';
   
   // Debug logging
@@ -33,15 +34,24 @@ const getApiConfig = () => {
 
 // Simple fetch wrapper with error handling
 const apiCall = async <T>(endpoint: string, options?: RequestInit): Promise<T> => {
-  const config = getApiConfig();
+  const apiConfig = getApiConfig();
   
-  const url = config.baseUrl 
-    ? new URL(endpoint, config.baseUrl).toString()
+  const url = apiConfig.baseUrl 
+    ? new URL(endpoint, apiConfig.baseUrl).toString()
     : endpoint;
   
   try {
     console.log(`🌐 API Call: ${url}`);
-    const response = await fetch(url, options);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), config.api.timeout);
+    
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
+    
+    clearTimeout(timeoutId);
+    
     if (!response.ok) {
       throw new Error(`API Error: ${response.status} ${response.statusText}`);
     }

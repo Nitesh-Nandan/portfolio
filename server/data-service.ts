@@ -3,8 +3,8 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { eq, desc } from 'drizzle-orm';
 import { db } from './db';
-import { personalInfo, workExperience, projects, skills, books, courses, articles, contactContent, footerContent } from '@shared/schema';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson } from '@shared/schema';
+import { personalInfo, workExperience, projects, skills, books, courses, articles, contactContent, footerContent, contactMessages } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson, ContactMessage, InsertContactMessage } from '@shared/schema';
 
 class DataService {
   private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data/cache');
@@ -276,6 +276,48 @@ class DataService {
     ) as Promise<FooterContentWithParsedJson>;
   }
 
+  // === CONTACT MESSAGES ===
+  async submitContactMessage(data: InsertContactMessage): Promise<ContactMessage> {
+    try {
+      // Insert into database
+      const [result] = await db.insert(contactMessages).values(data).returning();
+      
+      // Also save to JSON file for backup
+      const contactMessagesPath = join(this.dataPath, 'contact-messages.json');
+      let existingMessages: ContactMessage[] = [];
+      
+      try {
+        if (existsSync(contactMessagesPath)) {
+          existingMessages = JSON.parse(readFileSync(contactMessagesPath, 'utf-8'));
+        }
+      } catch (error) {
+        console.warn('Could not read existing contact messages, starting fresh');
+      }
+      
+      existingMessages.push(result);
+      writeFileSync(contactMessagesPath, JSON.stringify(existingMessages, null, 2));
+      
+      // Clear cache
+      this.cache.delete('contact-messages.json');
+      
+      return result;
+    } catch (error) {
+      console.error('Error submitting contact message:', error);
+      throw error;
+    }
+  }
+
+  async getContactMessages(): Promise<ContactMessage[]> {
+    return this.getFromDbWithFallback(
+      async () => {
+        const result = await db.select().from(contactMessages).orderBy(desc(contactMessages.createdAt));
+        return result;
+      },
+      'contact-messages.json',
+      []
+    ) as Promise<ContactMessage[]>;
+  }
+
 
 
   // === ADMIN/BACKUP METHODS ===
@@ -327,6 +369,13 @@ class DataService {
       writeFileSync(
         join(this.dataPath, 'articles.json'),
         JSON.stringify(articleData, null, 2)
+      );
+
+      // Backup contact messages
+      const contactMessageData = await db.select().from(contactMessages);
+      writeFileSync(
+        join(this.dataPath, 'contact-messages.json'),
+        JSON.stringify(contactMessageData, null, 2)
       );
 
       // Backup contact content

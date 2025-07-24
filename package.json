@@ -16,7 +16,8 @@
     "sync:static": "mkdir -p client/public/data && cp server/data/cache/*.json client/public/data/",
     "sync:db": "tsx server/scripts/sync-db-data.ts",
     "sync:cache": "tsx server/scripts/sync-cache-data.js",
-    "deploy": "tsx scripts/build-deploy.ts"
+    "deploy": "tsx scripts/build-deploy.ts",
+    "setup:env": "./scripts/setup-env.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
