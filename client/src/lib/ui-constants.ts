@@ -1,7 +1,7 @@
 // UI Constants for consistent styling across components
 
 export const CARD_STYLES = {
-  base: "bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200 h-full",
+  base: "bg-white rounded-lg hover:shadow-md transition-shadow duration-200 h-full relative z-10",
   content: "p-6",
 } as const;
 

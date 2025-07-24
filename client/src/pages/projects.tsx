@@ -3,7 +3,6 @@ import { useLocation } from "wouter";
 import Navigation from "@/components/navigation";
 import ProjectsSection from "@/components/projects-section";
 import LearningSection from "@/components/learning-section";
-import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { Code2, Briefcase } from "lucide-react";
 
@@ -58,9 +57,6 @@ export default function ProjectsPage() {
 
       {/* Learning Section */}
       <LearningSection />
-
-      {/* Contact Section */}
-      <ContactSection />
       
       {/* Footer */}
       <Footer />
