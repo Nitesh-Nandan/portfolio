@@ -3,7 +3,6 @@ import { useLocation } from "wouter";
 import Navigation from "@/components/navigation";
 import WorkExperienceSection from "@/components/work-experience-section";
 import TestimonialsSection from "@/components/testimonials-section";
-import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
@@ -68,9 +67,6 @@ export default function ExperiencePage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <ContactSection />
-      
       {/* Footer */}
       <Footer />
     </div>
