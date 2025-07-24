@@ -225,7 +225,7 @@ function LearningSection() {
         </div>
         <RecentReads />
         <div className="text-center mt-12">
-          <Link href="/projects">
+          <Link href="/projects#learning">
             <Button 
               size="lg"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
