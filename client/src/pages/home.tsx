@@ -79,10 +79,22 @@ function HeroSection() {
                   <p className="text-xl text-gray-700 font-medium mb-6 border-l-4 border-blue-500 pl-4">
                     {personalInfo?.title}
                   </p>
-                  <p 
-                    className="text-lg text-gray-600 leading-7 font-normal tracking-wide hyphens-none break-words max-w-full"
-                    dangerouslySetInnerHTML={{ __html: personalInfo?.bio || '' }}
-                  />
+                  <div className="space-y-3">
+                    {Array.isArray(personalInfo?.bio) ? (
+                      personalInfo.bio.map((bioLine, index) => (
+                        <p 
+                          key={index}
+                          className="text-lg text-gray-600 leading-7 font-normal tracking-wide hyphens-none break-words max-w-full"
+                          dangerouslySetInnerHTML={{ __html: bioLine }}
+                        />
+                      ))
+                    ) : (
+                      <p 
+                        className="text-lg text-gray-600 leading-7 font-normal tracking-wide hyphens-none break-words max-w-full"
+                        dangerouslySetInnerHTML={{ __html: personalInfo?.bio || '' }}
+                      />
+                    )}
+                  </div>
                 </div>
               </>
             )}
