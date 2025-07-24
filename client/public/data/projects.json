@@ -9,11 +9,20 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Jupyter Notebook", "Python", "Data Science"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/Collab-Notebooks",
+    "technologies": [
+      "Jupyter Notebook",
+      "Python",
+      "Data Science"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Collab-Notebooks",
     "featured": true,
-    "last_commit_date": "2025-01-21T09:03:03Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-01-21T09:03:03Z",
+    "isDeleted": false
   },
   {
     "id": 2,
@@ -25,11 +34,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["React", "TypeScript", "Tailwind CSS", "Vercel"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/portfolio",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vercel"
+    ],
     "liveUrl": "https://portfolio-gamma-black-32.vercel.app",
+    "githubUrl": "https://github.com/Nitesh-Nandan/portfolio",
     "featured": true,
-    "last_commit_date": "2025-07-24T17:21:54Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-07-24T17:21:54Z",
+    "isDeleted": false
   },
   {
     "id": 3,
@@ -41,11 +60,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Python", "MCP", "Trading API", "WebSocket"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/upstox-mcp-server",
+    "technologies": [
+      "Python",
+      "MCP",
+      "Trading API",
+      "WebSocket"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/upstox-mcp-server",
     "featured": true,
-    "last_commit_date": "2025-07-15T18:48:18Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-07-15T18:48:18Z",
+    "isDeleted": false
   },
   {
     "id": 4,
@@ -57,11 +86,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Python", "Docker", "CI/CD", "Cloud Deployment"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/mcp-server-deployment",
+    "technologies": [
+      "Python",
+      "Docker",
+      "CI/CD",
+      "Cloud Deployment"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/mcp-server-deployment",
     "featured": false,
-    "last_commit_date": "2025-07-05T06:50:02Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-07-05T06:50:02Z",
+    "isDeleted": false
   },
   {
     "id": 5,
@@ -73,11 +112,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Python", "AI/ML", "NLP", "Research Tools"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/Research-Paper-AI-Assistant",
+    "technologies": [
+      "Python",
+      "AI/ML",
+      "NLP",
+      "Research Tools"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Research-Paper-AI-Assistant",
     "featured": false,
-    "last_commit_date": "2025-03-23T16:24:15Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-03-23T16:24:15Z",
+    "isDeleted": false
   },
   {
     "id": 6,
@@ -89,11 +138,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Python", "AI/ML", "Generative Models", "Deep Learning"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/Generative-AI",
+    "technologies": [
+      "Python",
+      "AI/ML",
+      "Generative Models",
+      "Deep Learning"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Generative-AI",
     "featured": false,
-    "last_commit_date": "2025-01-10T08:30:04Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-01-10T08:30:04Z",
+    "isDeleted": false
   },
   {
     "id": 7,
@@ -105,11 +164,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Design Patterns", "OOP", "System Design"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/low-level-design",
+    "technologies": [
+      "Java",
+      "Design Patterns",
+      "OOP",
+      "System Design"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/low-level-design",
     "featured": false,
-    "last_commit_date": "2024-05-20T17:52:16Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-05-20T17:52:16Z",
+    "isDeleted": false
   },
   {
     "id": 8,
@@ -121,11 +190,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Python", "System Design", "Microservices", "Distributed Systems"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/master-system-python",
+    "technologies": [
+      "Python",
+      "System Design",
+      "Microservices",
+      "Distributed Systems"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/master-system-python",
     "featured": false,
-    "last_commit_date": "2024-09-24T08:15:03Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-09-24T08:15:03Z",
+    "isDeleted": false
   },
   {
     "id": 9,
@@ -137,11 +216,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "System Design", "Enterprise Architecture", "Design Patterns"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/master-system-java",
+    "technologies": [
+      "Java",
+      "System Design",
+      "Enterprise Architecture",
+      "Design Patterns"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/master-system-java",
     "featured": false,
-    "last_commit_date": "2024-08-06T12:53:24Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-06T12:53:24Z",
+    "isDeleted": false
   },
   {
     "id": 10,
@@ -153,11 +242,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Python", "DevOps", "Infrastructure", "Cloud Computing"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/system-infra-setups",
+    "technologies": [
+      "Python",
+      "DevOps",
+      "Infrastructure",
+      "Cloud Computing"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/system-infra-setups",
     "featured": false,
-    "last_commit_date": "2024-07-03T16:48:53Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-07-03T16:48:53Z",
+    "isDeleted": false
   },
   {
     "id": 11,
@@ -169,11 +268,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Python", "SSE", "Real-time", "Event-driven"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/server-sent-events",
+    "technologies": [
+      "Python",
+      "SSE",
+      "Real-time",
+      "Event-driven"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/server-sent-events",
     "featured": false,
-    "last_commit_date": "2024-08-15T12:02:10Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-15T12:02:10Z",
+    "isDeleted": false
   },
   {
     "id": 12,
@@ -185,11 +294,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Spring Boot", "Testing", "JUnit"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/spring-test-project",
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Testing",
+      "JUnit"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/spring-test-project",
     "featured": false,
-    "last_commit_date": "2024-06-10T19:01:53Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-06-10T19:01:53Z",
+    "isDeleted": false
   },
   {
     "id": 13,
@@ -201,11 +320,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["JavaScript", "HTML", "CSS", "Game Development"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/quiz-game",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Game Development"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/quiz-game",
     "featured": false,
-    "last_commit_date": "2024-08-16T21:11:11Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-16T21:11:11Z",
+    "isDeleted": false
   },
   {
     "id": 14,
@@ -217,11 +346,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["GitHub Actions", "CI/CD", "Automation", "DevOps"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/github-actions-hero",
+    "technologies": [
+      "GitHub Actions",
+      "CI/CD",
+      "Automation",
+      "DevOps"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/github-actions-hero",
     "featured": false,
-    "last_commit_date": "2024-08-15T14:00:48Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-15T14:00:48Z",
+    "isDeleted": false
   },
   {
     "id": 15,
@@ -233,11 +372,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["GitHub Pages", "HTML", "CSS", "Static Site"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/nitesh-nandan.github.io",
+    "technologies": [
+      "GitHub Pages",
+      "HTML",
+      "CSS",
+      "Static Site"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/nitesh-nandan.github.io",
     "featured": false,
-    "last_commit_date": "2024-08-15T12:04:07Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-15T12:04:07Z",
+    "isDeleted": false
   },
   {
     "id": 16,
@@ -249,11 +398,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Obsidian", "Markdown", "Knowledge Management", "Documentation"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/obsidian",
+    "technologies": [
+      "Obsidian",
+      "Markdown",
+      "Knowledge Management",
+      "Documentation"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/obsidian",
     "featured": false,
-    "last_commit_date": "2023-05-28T18:35:25Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-05-28T18:35:25Z",
+    "isDeleted": false
   },
   {
     "id": 17,
@@ -265,11 +424,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Microservices", "API Design", "Distributed Systems", "Architecture"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/microservice-architecture",
+    "technologies": [
+      "Microservices",
+      "API Design",
+      "Distributed Systems",
+      "Architecture"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/microservice-architecture",
     "featured": false,
-    "last_commit_date": "2023-07-29T12:08:43Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-07-29T12:08:43Z",
+    "isDeleted": false
   },
   {
     "id": 18,
@@ -281,11 +450,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Apache Kafka", "Event Streaming", "Real-time Processing"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/kafka-learn",
+    "technologies": [
+      "Java",
+      "Apache Kafka",
+      "Event Streaming",
+      "Real-time Processing"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/kafka-learn",
     "featured": false,
-    "last_commit_date": "2023-02-19T01:17:02Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-02-19T01:17:02Z",
+    "isDeleted": false
   },
   {
     "id": 19,
@@ -297,11 +476,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "System Design", "Architecture", "Scalability"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/system-design",
+    "technologies": [
+      "Java",
+      "System Design",
+      "Architecture",
+      "Scalability"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/system-design",
     "featured": false,
-    "last_commit_date": "2022-11-09T16:38:28Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2022-11-09T16:38:28Z",
+    "isDeleted": false
   },
   {
     "id": 20,
@@ -313,11 +502,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Data Structures", "Algorithms", "Problem Solving"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/dsa-java",
+    "technologies": [
+      "Java",
+      "Data Structures",
+      "Algorithms",
+      "Problem Solving"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/dsa-java",
     "featured": false,
-    "last_commit_date": "2023-07-17T14:02:55Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-07-17T14:02:55Z",
+    "isDeleted": false
   },
   {
     "id": 21,
@@ -329,11 +528,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Interview Prep", "Coding Challenges", "Problem Solving"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/interviewroom",
+    "technologies": [
+      "Java",
+      "Interview Prep",
+      "Coding Challenges",
+      "Problem Solving"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/interviewroom",
     "featured": false,
-    "last_commit_date": "2023-08-10T19:15:53Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-08-10T19:15:53Z",
+    "isDeleted": false
   },
   {
     "id": 22,
@@ -345,11 +554,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Spring", "Transactions", "Database"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/spring-transaction",
+    "technologies": [
+      "Java",
+      "Spring",
+      "Transactions",
+      "Database"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/spring-transaction",
     "featured": false,
-    "last_commit_date": "2022-03-01T11:39:27Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2022-03-01T11:39:27Z",
+    "isDeleted": false
   },
   {
     "id": 23,
@@ -361,11 +580,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Data Structures", "Algorithms", "Programming"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/dsa",
+    "technologies": [
+      "Java",
+      "Data Structures",
+      "Algorithms",
+      "Programming"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/dsa",
     "featured": false,
-    "last_commit_date": "2021-12-13T05:10:38Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-12-13T05:10:38Z",
+    "isDeleted": false
   },
   {
     "id": 24,
@@ -377,11 +606,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Kubernetes", "Argo CD", "GitOps", "DevOps"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/kubernetes-argo",
+    "technologies": [
+      "Kubernetes",
+      "Argo CD",
+      "GitOps",
+      "DevOps"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/kubernetes-argo",
     "featured": false,
-    "last_commit_date": "2023-01-11T19:50:52Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-01-11T19:50:52Z",
+    "isDeleted": false
   },
   {
     "id": 25,
@@ -393,11 +632,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Microservices", "API Design", "Architecture"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/microservice",
+    "technologies": [
+      "Java",
+      "Microservices",
+      "API Design",
+      "Architecture"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/microservice",
     "featured": false,
-    "last_commit_date": "2021-10-10T20:06:53Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-10-10T20:06:53Z",
+    "isDeleted": false
   },
   {
     "id": 26,
@@ -409,11 +658,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "OOP", "Application Development", "Core Java"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/my-app",
+    "technologies": [
+      "Java",
+      "OOP",
+      "Application Development",
+      "Core Java"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/my-app",
     "featured": false,
-    "last_commit_date": "2021-10-20T02:33:23Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-10-20T02:33:23Z",
+    "isDeleted": false
   },
   {
     "id": 27,
@@ -425,11 +684,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Programming", "Fundamentals", "Core Java"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/java-project",
+    "technologies": [
+      "Java",
+      "Programming",
+      "Fundamentals",
+      "Core Java"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/java-project",
     "featured": false,
-    "last_commit_date": "2021-10-10T17:02:14Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-10-10T17:02:14Z",
+    "isDeleted": false
   },
   {
     "id": 28,
@@ -441,11 +710,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Simulation", "State Management", "OOP"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/coffee_machine",
+    "technologies": [
+      "Java",
+      "Simulation",
+      "State Management",
+      "OOP"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/coffee_machine",
     "featured": false,
-    "last_commit_date": "2021-05-26T00:47:14Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-05-26T00:47:14Z",
+    "isDeleted": false
   },
   {
     "id": 29,
@@ -457,11 +736,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["JavaScript", "Scheduling", "Time Management", "Web App"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/Availability-Tracker",
+    "technologies": [
+      "JavaScript",
+      "Scheduling",
+      "Time Management",
+      "Web App"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Availability-Tracker",
     "featured": false,
-    "last_commit_date": "2021-05-08T14:01:09Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-05-08T14:01:09Z",
+    "isDeleted": false
   },
   {
     "id": 30,
@@ -473,11 +762,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "File I/O", "Data Processing", "Utilities"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/file-handling",
+    "technologies": [
+      "Java",
+      "File I/O",
+      "Data Processing",
+      "Utilities"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/file-handling",
     "featured": false,
-    "last_commit_date": "2021-08-03T13:52:32Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-08-03T13:52:32Z",
+    "isDeleted": false
   },
   {
     "id": 31,
@@ -489,11 +788,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Scala", "Gatling", "Performance Testing", "Load Testing"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/gatling_project",
+    "technologies": [
+      "Scala",
+      "Gatling",
+      "Performance Testing",
+      "Load Testing"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/gatling_project",
     "featured": false,
-    "last_commit_date": "2021-08-12T16:04:50Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-08-12T16:04:50Z",
+    "isDeleted": false
   },
   {
     "id": 32,
@@ -505,11 +814,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Kubernetes", "Containers", "Cloud Native", "DevOps"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/kuber",
+    "technologies": [
+      "Kubernetes",
+      "Containers",
+      "Cloud Native",
+      "DevOps"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/kuber",
     "featured": false,
-    "last_commit_date": "2021-10-10T16:56:23Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-10-10T16:56:23Z",
+    "isDeleted": false
   },
   {
     "id": 33,
@@ -521,11 +840,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["React", "JavaScript", "Frontend", "Web Development"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/React-Step-By-Step",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "Frontend",
+      "Web Development"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/React-Step-By-Step",
     "featured": false,
-    "last_commit_date": "2022-12-04T04:29:52Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2022-12-04T04:29:52Z",
+    "isDeleted": false
   },
   {
     "id": 34,
@@ -537,11 +866,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["React", "JavaScript", "Frontend", "Web Development"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/React-Fundamental",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "Frontend",
+      "Web Development"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/React-Fundamental",
     "featured": false,
-    "last_commit_date": "2021-05-10T02:59:17Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-05-10T02:59:17Z",
+    "isDeleted": false
   },
   {
     "id": 35,
@@ -553,11 +892,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "OOP", "Design Patterns", "Object-Oriented Design"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/ood-design",
+    "technologies": [
+      "Java",
+      "OOP",
+      "Design Patterns",
+      "Object-Oriented Design"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/ood-design",
     "featured": false,
-    "last_commit_date": "2020-11-16T05:10:04Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2020-11-16T05:10:04Z",
+    "isDeleted": false
   },
   {
     "id": 36,
@@ -569,11 +918,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Java", "Concurrency", "Multithreading", "Synchronization"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/concurrency",
+    "technologies": [
+      "Java",
+      "Concurrency",
+      "Multithreading",
+      "Synchronization"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/concurrency",
     "featured": false,
-    "last_commit_date": "2020-11-08T17:43:07Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2020-11-08T17:43:07Z",
+    "isDeleted": false
   },
   {
     "id": 37,
@@ -585,11 +944,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["PDF", "Document Management", "File Organization", "Storage"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/pdfs",
+    "technologies": [
+      "PDF",
+      "Document Management",
+      "File Organization",
+      "Storage"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/pdfs",
     "featured": false,
-    "last_commit_date": "2020-08-06T05:26:06Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2020-08-06T05:26:06Z",
+    "isDeleted": false
   },
   {
     "id": 38,
@@ -601,11 +970,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Shell", "Automation", "Scripting", "System Administration"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/Automation",
+    "technologies": [
+      "Shell",
+      "Automation",
+      "Scripting",
+      "System Administration"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Automation",
     "featured": false,
-    "last_commit_date": "2018-09-17T08:37:11Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2018-09-17T08:37:11Z",
+    "isDeleted": false
   },
   {
     "id": 39,
@@ -617,11 +996,21 @@
     ],
     "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["Node.js", "JavaScript", "Backend", "Server-side"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/node-101",
+    "technologies": [
+      "Node.js",
+      "JavaScript",
+      "Backend",
+      "Server-side"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/node-101",
     "featured": false,
-    "last_commit_date": "2023-11-13T07:08:22Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-11-13T07:08:22Z",
+    "isDeleted": false
   },
   {
     "id": 40,
@@ -633,10 +1022,20 @@
     ],
     "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
     "images": [],
-    "technologies": ["GitHub", "Profile", "Portfolio", "Personal Branding"],
-    "githubUrl": "https://github.com/Nitesh-Nandan/Nitesh-Nandan",
+    "technologies": [
+      "GitHub",
+      "Profile",
+      "Portfolio",
+      "Personal Branding"
+    ],
     "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Nitesh-Nandan",
     "featured": false,
-    "last_commit_date": "2024-08-08T10:46:46Z"
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-08T10:46:46Z",
+    "isDeleted": false
   }
-] 
+]
