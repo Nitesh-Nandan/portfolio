@@ -6,13 +6,13 @@
   "quickLinks": [
     { "label": "Home", "sectionId": "home" },
     { "label": "My Projects", "sectionId": "projects" },
-    { "label": "BookShelf", "sectionId": "bookshelf" },
+    { "label": "Work Experience", "sectionId": "experience" },
     { "label": "Contact", "sectionId": "contact" }
   ],
   "socialLinks": {
     "linkedin": "https://www.linkedin.com/in/niteshnandan",
-    "github": "#",
-    "twitter": "#",
+    "github": "https://github.com/Nitesh-Nandan/",
+    "twitter": "https://x.com/TryNitesh",
     "email": "mailto:niteshnitp5686@gmail.com"
   }
 } 
