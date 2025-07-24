@@ -1,10 +1,13 @@
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ExternalLink, Github, Code2, Database, Cloud, Zap, Search, Filter } from "lucide-react";
+import { ExternalLink, Github, Code2, Database, Cloud, Zap, Search, Filter, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { Project } from "@shared/schema";
 import { api } from "@/lib/api";
+import { formatDate } from "@/lib/utils";
+import { getLastCommitDate } from "@/components/ui/project-actions";
 
 const getProjectIconAndColors = (title: string) => {
   if (title.toLowerCase().includes('api') || title.toLowerCase().includes('backend') || title.toLowerCase().includes('microservice')) {
@@ -99,16 +102,17 @@ export default function ProjectsSection({ showAllProjects = false }: ProjectsSec
   }
 
   return (
-    <section id="projects" className={showAllProjects ? "bg-gray-50/30" : "section-padding bg-gray-50/30"}>
-      <div className="container-width">
-        {!showAllProjects && (
-          <div className="text-center mb-20">
-            <h2 className="text-3xl font-light text-gray-900 mb-4">Featured Projects</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              A showcase of my recent work in backend engineering and AI integration.
-            </p>
-          </div>
-        )}
+    <TooltipProvider>
+      <section id="projects" className={showAllProjects ? "bg-gray-50/30" : "section-padding bg-gray-50/30"}>
+        <div className="container-width">
+          {!showAllProjects && (
+            <div className="text-center mb-20">
+              <h2 className="text-3xl font-light text-gray-900 mb-4">Featured Projects</h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                A showcase of my recent work in backend engineering and AI integration.
+              </p>
+            </div>
+          )}
 
         {/* Filter Section */}
         {showAllProjects && (
@@ -202,30 +206,62 @@ export default function ProjectsSection({ showAllProjects = false }: ProjectsSec
                       )}
                     </div>
                     
-                    <div className="flex items-center gap-4 pt-1 border-t border-gray-100">
-                      {project.liveUrl && (
-                        <a 
-                          href={project.liveUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-sm text-blue-600 hover:text-blue-700 transition-all duration-200 flex items-center gap-2 font-medium hover:gap-3 group/link"
-                        >
-                          <ExternalLink className="h-4 w-4 group-hover/link:scale-110 transition-transform duration-200" />
-                          Live Demo
-                        </a>
-                      )}
-                      {project.githubUrl && (
-                        <a 
-                          href={project.githubUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-sm text-gray-900 hover:text-black transition-all duration-200 flex items-center gap-2 font-bold hover:gap-3 group/link"
-                        >
-                          <Github className="h-4 w-4 group-hover/link:scale-110 transition-transform duration-200" />
-                          Code
-                        </a>
-                      )}
-                    </div>
+                    {(() => {
+                      const lastCommit = getLastCommitDate(project);
+                      const hasLiveUrl = !!project.liveUrl;
+                      const hasGithubUrl = !!project.githubUrl;
+                      const hasLastCommit = !!lastCommit;
+                      const totalElements = [hasLiveUrl, hasGithubUrl, hasLastCommit].filter(Boolean).length;
+                      
+                      const getLayoutClasses = (total: number): string => {
+                        if (total === 3) return 'grid grid-cols-3 gap-4';
+                        if (total === 2) return 'flex items-center justify-between';
+                        return 'flex items-center justify-start';
+                      };
+                      
+                      return (
+                        <div className={`pt-1 border-t border-gray-100 px-4 ${getLayoutClasses(totalElements)}`}>
+                          {project.liveUrl && (
+                            <a 
+                              href={project.liveUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-sm text-blue-600 hover:text-blue-700 transition-all duration-200 flex items-center gap-2 font-medium hover:gap-3 group/link"
+                            >
+                              <ExternalLink className="h-4 w-4 group-hover/link:scale-110 transition-transform duration-200" />
+                              Live Demo
+                            </a>
+                          )}
+                          {project.githubUrl && (
+                            <a 
+                              href={project.githubUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-sm text-gray-900 hover:text-black transition-all duration-200 flex items-center gap-2 font-bold hover:gap-3 group/link"
+                            >
+                              <Github className="h-4 w-4 group-hover/link:scale-110 transition-transform duration-200" />
+                              Code
+                            </a>
+                          )}
+                          
+                          {lastCommit && (
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <div className={`flex items-center gap-1.5 text-sm text-gray-900 hover:text-black transition-all duration-200 font-bold ${
+                                  totalElements === 3 ? 'justify-self-end' : ''
+                                }`}>
+                                  <Calendar className="h-4 w-4" />
+                                  <span>{formatDate(lastCommit)}</span>
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Last commit: {formatDate(lastCommit)}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          )}
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
               );
@@ -245,5 +281,6 @@ export default function ProjectsSection({ showAllProjects = false }: ProjectsSec
         )}
       </div>
     </section>
+    </TooltipProvider>
   );
 }
