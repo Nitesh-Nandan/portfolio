@@ -68,7 +68,7 @@ export default function TestimonialsSection() {
   }
 
   // Filter out deleted testimonials
-  const activeTestimonials = testimonials?.filter(testimonial => !testimonial.is_deleted) || [];
+  const activeTestimonials = testimonials?.filter(testimonial => !testimonial.isDeleted) || [];
 
   // Don't render anything if there are no active testimonials
   if (activeTestimonials.length === 0) {

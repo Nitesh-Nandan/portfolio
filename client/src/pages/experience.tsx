@@ -24,7 +24,7 @@ export default function ExperiencePage() {
   });
 
   // Check if there are any active testimonials
-  const hasActiveTestimonials = testimonials?.some(testimonial => !testimonial.is_deleted) || false;
+  const hasActiveTestimonials = testimonials?.some(testimonial => !testimonial.isDeleted) || false;
 
   return (
     <div className="min-h-screen bg-background text-foreground">

@@ -93,7 +93,7 @@ class DataService {
     }
 
     // Fallback to JSON file (bio is already an array)
-    return this.readJsonFile('personal-info.json', {
+    const result = await this.readJsonFile('personal-info.json', {
       id: 1,
       firstName: '',
       lastName: '',
@@ -108,6 +108,9 @@ class DataService {
       availabilityMessage: '',
       updatedAt: new Date()
     } as PersonalInfoWithParsedBio);
+    
+    // Ensure we return a single object, not an array
+    return Array.isArray(result) ? result[0] : result;
   }
 
   async updatePersonalInfo(data: Partial<PersonalInfo>): Promise<void> {
@@ -316,15 +319,16 @@ class DataService {
         contactTitle: 'Get In Touch',
         copyrightText: 'All rights reserved.',
         quickLinks: [
-          { label: 'Home', sectionId: 'home' },
-          { label: 'Projects', sectionId: 'projects' },
-          { label: 'Contact', sectionId: 'contact' }
+          { label: 'Home', path: 'home' },
+          { label: 'Projects', path: 'projects' },
+          { label: 'Contact', path: 'contact' }
         ],
         socialLinks: {
           linkedin: '',
           github: '',
           email: ''
-        }
+        },
+        isDeleted: false
       } as FooterContentWithParsedJson
     ) as Promise<FooterContentWithParsedJson>;
   }

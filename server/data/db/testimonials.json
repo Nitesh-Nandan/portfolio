@@ -7,7 +7,7 @@
     "content": "Nitesh is an exceptional backend engineer who consistently delivers high-quality, scalable solutions. His expertise in microservices architecture and GenAI has been invaluable to our team.",
     "rating": 5,
     "avatar": "SJ",
-    "is_deleted": false
+    "isDeleted": false
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "content": "Working with Nitesh was a game-changer for our platform. His deep understanding of distributed systems and ability to lead technical initiatives made him an invaluable team member.",
     "rating": 5,
     "avatar": "MC",
-    "is_deleted": true
+    "isDeleted": true
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "content": "Nitesh's technical leadership and problem-solving skills are outstanding. He has a unique ability to translate complex technical concepts into actionable solutions that drive business value.",
     "rating": 5,
     "avatar": "ER",
-    "is_deleted": true
+    "isDeleted": true
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "content": "Nitesh's contributions to our microservices architecture were transformative. His attention to detail and commitment to best practices elevated our entire engineering team.",
     "rating": 5,
     "avatar": "DK",
-    "is_deleted": true
+    "isDeleted": true
   },
   {
     "id": 5,
@@ -47,7 +47,7 @@
     "content": "Nitesh's expertise in GenAI and his ability to architect scalable solutions has been instrumental in our platform's success. He's a true technical leader.",
     "rating": 5,
     "avatar": "LW",
-    "is_deleted": true
+    "isDeleted": true
   },
   {
     "id": 6,
@@ -57,6 +57,6 @@
     "content": "Collaborating with Nitesh on our distributed systems was an incredible experience. His knowledge of microservices and performance optimization is exceptional.",
     "rating": 5,
     "avatar": "AT",
-    "is_deleted": true
+    "isDeleted": true
   }
 ] 
