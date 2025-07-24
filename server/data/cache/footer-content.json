@@ -6,19 +6,19 @@
   "quickLinks": [
     {
       "label": "Home",
-      "sectionId": "home"
+      "path": "/"
     },
     {
       "label": "My Projects",
-      "sectionId": "projects"
+      "path": "/projects"
     },
     {
-      "label": "BookShelf",
-      "sectionId": "bookshelf"
+      "label": "Work Experience",
+      "path": "/experience"
     },
     {
       "label": "Contact",
-      "sectionId": "contact"
+      "path": "/contact"
     }
   ],
   "socialLinks": {

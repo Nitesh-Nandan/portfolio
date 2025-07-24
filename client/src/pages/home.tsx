@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import Navigation from "@/components/navigation";
 import FeaturedProjects from "@/components/featured-projects";
 import RecentReads from "@/components/recent-reads";
@@ -244,6 +246,16 @@ function LearningSection() {
  * Main Home Page Component
  */
 export default function HomePage() {
+  const [location] = useLocation();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    if (location === '/') {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
+    }
+  }, [location]);
   return (
     <div className="min-h-screen bg-white text-foreground flex flex-col">
       <Navigation />

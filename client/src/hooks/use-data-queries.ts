@@ -28,7 +28,8 @@ const DEFAULT_PERSONAL_INFO: PersonalInfo = {
   resumeUrl: '',
   availability: 'available',
   availabilityMessage: '',
-  updatedAt: new Date()
+  updatedAt: new Date(),
+  isDeleted: false
 };
 
 // Personal Information Hooks
@@ -76,36 +77,36 @@ export const useCurrentlyReadingBooks = () => {
 };
 
 // Courses Hooks
-export const useCourses = () => useApiQuery<Course[]>({
-  queryKey: ['/api/courses'],
-  queryFn: api.getCourses,
-});
+export const useCourses = () => useApiQuery<Course[]>(
+  ['/api/courses'],
+  api.getCourses
+);
 
-export const useCoursesByStatus = (status: string) => useApiQuery<Course[]>({
-  queryKey: ['/api/courses', status],
-  queryFn: () => api.getCoursesByStatus(status),
-});
+export const useCoursesByStatus = (status: string) => useApiQuery<Course[]>(
+  ['/api/courses', status],
+  () => api.getCoursesByStatus(status)
+);
 
-export const useFeaturedCourses = () => useApiQuery<Course[]>({
-  queryKey: ['/api/courses/featured'],
-  queryFn: api.getFeaturedCourses,
-});
+export const useFeaturedCourses = () => useApiQuery<Course[]>(
+  ['/api/courses/featured'],
+  api.getFeaturedCourses
+);
 
 // Articles Hooks
-export const useArticles = () => useApiQuery<Article[]>({
-  queryKey: ['/api/articles'],
-  queryFn: api.getArticles,
-});
+export const useArticles = () => useApiQuery<Article[]>(
+  ['/api/articles'],
+  api.getArticles
+);
 
-export const useArticlesByStatus = (status: string) => useApiQuery<Article[]>({
-  queryKey: ['/api/articles', status],
-  queryFn: () => api.getArticlesByStatus(status),
-});
+export const useArticlesByStatus = (status: string) => useApiQuery<Article[]>(
+  ['/api/articles', status],
+  () => api.getArticlesByStatus(status)
+);
 
-export const useFeaturedArticles = () => useApiQuery<Article[]>({
-  queryKey: ['/api/articles/featured'],
-  queryFn: api.getFeaturedArticles,
-});
+export const useFeaturedArticles = () => useApiQuery<Article[]>(
+  ['/api/articles/featured'],
+  api.getFeaturedArticles
+);
 
 // Content Hooks
 export const useContactContent = () => useApiCall(
@@ -134,16 +135,17 @@ export const useFooterContent = () => useApiCall(
     quickLinksTitle: 'Quick Links',
     contactTitle: 'Get In Touch',
     copyrightText: 'All rights reserved.',
+    isDeleted: false,
     quickLinks: [
-      { label: 'Home', sectionId: 'home' },
-      { label: 'My Projects', sectionId: 'projects' },
-      { label: 'BookShelf', sectionId: 'bookshelf' },
-      { label: 'Contact', sectionId: 'contact' }
+      { label: 'Home', href: '/' },
+      { label: 'Projects', href: '/projects' },
+      { label: 'Experience', href: '/experience' },
+      { label: 'Contact', href: '/contact' }
     ],
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/niteshnandan',
-      github: '#',
-      twitter: '#',
+      github: 'https://github.com/Nitesh-Nandan/',
+      twitter: 'https://x.com/TryNitesh',
       email: 'mailto:niteshnitp5686@gmail.com'
     }
   } as FooterContentWithParsedJson

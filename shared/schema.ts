@@ -233,7 +233,7 @@ export interface SocialLinks {
 
 export interface QuickLink {
   label: string;
-  sectionId: string;
+  path: string;
 }
 
 export interface ContactContentWithParsedJson extends Omit<ContactContent, 'socialLinksJson'> {

@@ -1,16 +1,14 @@
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
 import { usePersonalInfo, useFooterContent } from "@/hooks/use-data-queries";
 import { DataLoadingState, DataErrorState } from "@/components/ui/loading-states";
+import { Link } from "wouter";
 
 export default function Footer() {
   const { data: personalInfo, loading: personalInfoLoading, error: personalInfoError } = usePersonalInfo();
   const { data: footerContent, loading: footerContentLoading, error: footerContentError } = useFooterContent();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
   };
 
   // Show loading state while fetching data
@@ -63,10 +61,10 @@ export default function Footer() {
     contactTitle: 'Get In Touch',
     copyrightText: 'All rights reserved.',
     quickLinks: [
-      { label: 'Home', sectionId: 'home' },
-      { label: 'My Projects', sectionId: 'projects' },
-      { label: 'BookShelf', sectionId: 'bookshelf' },
-      { label: 'Contact', sectionId: 'contact' }
+      { label: 'Home', path: '/' },
+      { label: 'My Projects', path: '/projects' },
+      { label: 'Work Experience', path: '/experience' },
+      { label: 'Contact', path: '/contact' }
     ],
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/niteshnandan',
@@ -145,12 +143,11 @@ export default function Footer() {
             <ul className="space-y-3">
               {footer.quickLinks?.map((link, index) => (
                 <li key={index}>
-                  <button
-                    onClick={() => scrollToSection(link.sectionId)}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left w-full"
-                  >
-                    {link.label}
-                  </button>
+                  <Link href={link.path}>
+                    <span className="text-gray-300 hover:text-white transition-colors duration-200 text-left w-full cursor-pointer block">
+                      {link.label}
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
