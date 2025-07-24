@@ -95,9 +95,27 @@ cp .env.example .env.local
 
 ### Environment Configuration
 
-Create a `.env.local` file in the root directory:
+You can configure the backend database and API settings using environment variables. Create a `.env.local` file in the root directory or a `.env` file in the `client/` directory:
 
+**Client Environment Variables (`client/.env` or `.env.local`):**
 ```bash
+# Backend API Configuration
+VITE_API_BASE_URL=http://localhost:8000
+VITE_API_TIMEOUT=10000
+
+# Development Settings
+VITE_DEV_MODE=true
+```
+
+**Server Environment Variables (`.env` in root):**
+```bash
+# Server Configuration
+PORT=8000
+NODE_ENV=development
+
+# Database Configuration (if using PostgreSQL)
+DATABASE_URL=your_database_url_here
+```
 # API Mode: 'static' (JSON files) or 'api' (database)
 VITE_API_MODE=static
 

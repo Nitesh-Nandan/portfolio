@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+import { api } from "@/lib/api";
 import { usePersonalInfo, useContactContent } from "@/hooks/use-data-queries";
+import { DataLoadingState, DataErrorState } from "@/components/ui/loading-states";
 import type { InsertContactMessage } from "@shared/schema";
 import React from "react";
 
@@ -25,7 +26,7 @@ export default function ContactSection() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const { data: personalInfo, loading: personalInfoLoading, error: personalInfoError } = usePersonalInfo();
-  const { data: contactContent, isLoading: contactContentLoading, error: contactContentError } = useContactContent();
+  const { data: contactContent, loading: contactContentLoading, error: contactContentError } = useContactContent();
 
   // Typing animation effect
   React.useEffect(() => {
@@ -35,8 +36,7 @@ export default function ContactSection() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContactMessage) => {
-      const response = await apiRequest('POST', '/api/contact', data);
-      return response.json();
+      return api.submitContact(data);
     },
     onSuccess: () => {
       toast({
@@ -121,7 +121,7 @@ export default function ContactSection() {
               <Phone className="h-8 w-8 text-blue-600" />
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Contact Me</h1>
             </div>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">Loading contact information...</p>
+            <DataLoadingState message="Loading contact information..." />
           </div>
         </div>
       </section>
@@ -139,9 +139,13 @@ export default function ContactSection() {
               <Phone className="h-8 w-8 text-blue-600" />
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">Contact Me</h1>
             </div>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Unable to load contact information. Please try again later.
-            </p>
+            <DataErrorState 
+              message="Unable to load contact information. Please try again later."
+              onRetry={() => {
+                // Refetch both data sources
+                window.location.reload();
+              }}
+            />
           </div>
         </div>
       </section>

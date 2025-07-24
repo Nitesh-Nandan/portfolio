@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import Navigation from "@/components/navigation";
 import ProjectsSection from "@/components/projects-section";
 import LearningSection from "@/components/learning-section";
@@ -6,6 +8,29 @@ import Footer from "@/components/footer";
 import { Code2, Briefcase } from "lucide-react";
 
 export default function ProjectsPage() {
+  const [location] = useLocation();
+  
+  // Ensure proper scroll behavior when navigating to projects page
+  useEffect(() => {
+    // If navigating to /projects without a hash, scroll to top
+    if (location === '/projects' && !window.location.hash) {
+      // Use setTimeout to ensure this runs after the browser's default scroll restoration
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
+    }
+    // If navigating to /projects#learning, scroll to the learning section with proper offset
+    if (location === '/projects' && window.location.hash === '#learning') {
+      setTimeout(() => {
+        const learningSection = document.getElementById('learning');
+        if (learningSection) {
+          const navHeight = 80; // Approximate height of fixed navigation
+          const elementTop = learningSection.offsetTop - navHeight;
+          window.scrollTo(0, elementTop);
+        }
+      }, 100); // Slightly longer delay to ensure DOM is ready
+    }
+  }, [location]);
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />

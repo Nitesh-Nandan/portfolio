@@ -1,9 +1,21 @@
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import Navigation from "@/components/navigation";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { Linkedin, Github, Mail, Twitter, MessageCircle } from "lucide-react";
 
 export default function ContactPage() {
+  const [location] = useLocation();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    if (location === '/contact') {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
+    }
+  }, [location]);
   const scrollToContactForm = () => {
     const contactForm = document.querySelector('#contact-form');
     if (contactForm) {

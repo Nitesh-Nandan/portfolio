@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import Navigation from "@/components/navigation";
 import WorkExperienceSection from "@/components/work-experience-section";
 import TestimonialsSection from "@/components/testimonials-section";
@@ -7,6 +9,16 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 
 export default function ExperiencePage() {
+  const [location] = useLocation();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    if (location === '/experience') {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
+    }
+  }, [location]);
   const { data: testimonials } = useQuery({
     queryKey: ['/api/testimonials'],
     queryFn: api.getTestimonials,

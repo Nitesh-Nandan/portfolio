@@ -1,138 +1,159 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useApiCall, useApiQuery } from './use-api';
 import { api } from '@/lib/api';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, ContactContentWithParsedJson, FooterContentWithParsedJson } from '@shared/schema';
-import { useQuery } from '@tanstack/react-query';
+import type { 
+  PersonalInfo, 
+  WorkExperience, 
+  Project, 
+  Skill, 
+  Book, 
+  Course, 
+  Article, 
+  ContactContentWithParsedJson, 
+  FooterContentWithParsedJson,
+  Testimonial
+} from '@shared/schema';
 
-// Simple data fetching hook
-const useApiData = <T>(
-  fetchFn: () => Promise<T>,
-  fallback: T,
-  deps: any[] = []
-) => {
-  const [data, setData] = useState<T>(fallback);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const result = await fetchFn();
-        if (isMounted) {
-          setData(result);
-        }
-      } catch (err) {
-        if (isMounted) {
-          setError(err instanceof Error ? err.message : 'Failed to fetch data');
-          console.error('Data fetch error:', err);
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, deps);
-
-  return { data, loading, error, refetch: () => setData(fallback) };
+// Default fallback data
+const DEFAULT_PERSONAL_INFO: PersonalInfo = {
+  id: 1,
+  firstName: '',
+  lastName: '',
+  title: '',
+  bio: '',
+  email: '',
+  phone: '',
+  location: '',
+  profileImage: '',
+  resumeUrl: '',
+  availability: 'available',
+  availabilityMessage: '',
+  updatedAt: new Date(),
+  isDeleted: false
 };
 
-// Simplified data hooks
+// Personal Information Hooks
 export const usePersonalInfo = () => {
-  return useApiData(
+  return useApiCall(
     api.getPersonalInfo,
-    {
-      id: 1,
-      firstName: '',
-      lastName: '',
-      title: '',
-      bio: '',
-      email: '',
-      phone: '',
-      location: '',
-      profileImage: '',
-      resumeUrl: '',
-      availability: 'available',
-      availabilityMessage: '',
-      updatedAt: new Date()
-    } as PersonalInfo
+    DEFAULT_PERSONAL_INFO
   );
 };
 
+// Work Experience Hooks
 export const useWorkExperience = () => {
-  return useApiData(api.getWorkExperience, [] as WorkExperience[]);
+  return useApiCall(api.getWorkExperience, []);
 };
 
+// Projects Hooks
 export const useProjects = () => {
-  return useApiData(api.getProjects, [] as Project[]);
+  return useApiCall(api.getProjects, []);
 };
 
 export const useFeaturedProjects = () => {
-  return useApiData(api.getFeaturedProjects, [] as Project[]);
+  return useApiCall(api.getFeaturedProjects, []);
 };
 
+// Skills Hooks
 export const useSkills = (category?: string) => {
-  return useApiData(
+  return useApiCall(
     category ? () => api.getSkillsByCategory(category) : api.getSkills,
-    [] as Skill[],
+    [],
     [category]
   );
 };
 
+// Books/Learning Hooks
 export const useBooks = (status?: string) => {
-  return useApiData(
+  return useApiCall(
     status ? () => api.getBooksByStatus(status) : api.getBooks,
-    [] as Book[],
+    [],
     [status]
   );
 };
 
 export const useCurrentlyReadingBooks = () => {
-  return useApiData(() => api.getBooksByStatus('currently-reading'), [] as Book[]);
+  return useApiCall(() => api.getBooksByStatus('currently-reading'), []);
 };
 
-export const useCourses = () => useQuery<Course[]>({
-  queryKey: ['/api/courses'],
-  queryFn: api.getCourses,
-});
+// Courses Hooks
+export const useCourses = () => useApiQuery<Course[]>(
+  ['/api/courses'],
+  api.getCourses
+);
 
-export const useCoursesByStatus = (status: string) => useQuery<Course[]>({
-  queryKey: ['/api/courses', status],
-  queryFn: () => api.getCoursesByStatus(status),
-});
+export const useCoursesByStatus = (status: string) => useApiQuery<Course[]>(
+  ['/api/courses', status],
+  () => api.getCoursesByStatus(status)
+);
 
-export const useArticles = () => useQuery<Article[]>({
-  queryKey: ['/api/articles'],
-  queryFn: api.getArticles,
-});
+export const useFeaturedCourses = () => useApiQuery<Course[]>(
+  ['/api/courses/featured'],
+  api.getFeaturedCourses
+);
 
-export const useArticlesByStatus = (status: string) => useQuery<Article[]>({
-  queryKey: ['/api/articles', status],
-  queryFn: () => api.getArticlesByStatus(status),
-});
+// Articles Hooks
+export const useArticles = () => useApiQuery<Article[]>(
+  ['/api/articles'],
+  api.getArticles
+);
 
-// Contact Content
-export const useContactContent = () => useQuery<ContactContentWithParsedJson>({
-  queryKey: ['/api/contact-content'],
-  queryFn: api.getContactContent,
-});
+export const useArticlesByStatus = (status: string) => useApiQuery<Article[]>(
+  ['/api/articles', status],
+  () => api.getArticlesByStatus(status)
+);
 
-// Footer Content
-export const useFooterContent = () => useQuery<FooterContentWithParsedJson>({
-  queryKey: ['/api/contact-content'],
-  queryFn: api.getFooterContent,
-});
+export const useFeaturedArticles = () => useApiQuery<Article[]>(
+  ['/api/articles/featured'],
+  api.getFeaturedArticles
+);
 
-// Admin hooks for your personal use
+// Content Hooks
+export const useContactContent = () => useApiCall(
+  api.getContactContent,
+  {
+    id: 1,
+    heading: 'Contact Me',
+    subheading: "I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and system design.",
+    formTitle: 'Send me a message',
+    connectTitle: 'Connect',
+    contactInfoTitle: 'Get in touch',
+    statusMessage: 'Feel free to reach out if you need my skills or have an exciting project to collaborate on.',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/niteshnandan',
+      github: '#',
+      twitter: '#',
+      email: 'mailto:niteshnitp5686@gmail.com'
+    }
+  } as ContactContentWithParsedJson
+);
+
+export const useFooterContent = () => useApiCall(
+  api.getFooterContent,
+  {
+    id: 1,
+    quickLinksTitle: 'Quick Links',
+    contactTitle: 'Get In Touch',
+    copyrightText: 'All rights reserved.',
+    isDeleted: false,
+    quickLinks: [
+      { label: 'Home', href: '/' },
+      { label: 'Projects', href: '/projects' },
+      { label: 'Experience', href: '/experience' },
+      { label: 'Contact', href: '/contact' }
+    ],
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/niteshnandan',
+      github: 'https://github.com/Nitesh-Nandan/',
+      twitter: 'https://x.com/TryNitesh',
+      email: 'mailto:niteshnitp5686@gmail.com'
+    }
+  } as FooterContentWithParsedJson
+);
+
+export const useTestimonials = () => useApiCall(api.getTestimonials, []);
+
+// Admin Hooks
 export const useAdminActions = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
