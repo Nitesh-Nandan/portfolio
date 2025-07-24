@@ -25,32 +25,6 @@
     "isDeleted": false
   },
   {
-    "id": 2,
-    "title": "Portfolio",
-    "description": [
-      "Modern portfolio website built with React and TypeScript",
-      "Responsive design with dark mode and smooth animations",
-      "Deployed on Vercel with CI/CD pipeline"
-    ],
-    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
-    "images": [],
-    "technologies": [
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Vercel"
-    ],
-    "liveUrl": "https://portfolio-gamma-black-32.vercel.app",
-    "githubUrl": "https://github.com/Nitesh-Nandan/portfolio",
-    "featured": true,
-    "status": "completed",
-    "challenges": [],
-    "learnings": [],
-    "order": 0,
-    "lastCommitDate": "2025-07-24T17:21:54Z",
-    "isDeleted": false
-  },
-  {
     "id": 3,
     "title": "Upstox MCP Server",
     "description": [
@@ -77,55 +51,29 @@
     "isDeleted": false
   },
   {
-    "id": 4,
-    "title": "MCP Server Deployment",
+    "id": 2,
+    "title": "Portfolio",
     "description": [
-      "Deployment configurations for MCP servers",
-      "Docker containerization and cloud deployment",
-      "Automated CI/CD pipeline setup"
+      "Modern portfolio website built with React and TypeScript",
+      "Responsive design with dark mode and smooth animations",
+      "Deployed on Vercel with CI/CD pipeline"
     ],
-    "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
+    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
     "images": [],
     "technologies": [
-      "Python",
-      "Docker",
-      "CI/CD",
-      "Cloud Deployment"
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vercel"
     ],
-    "liveUrl": null,
-    "githubUrl": "https://github.com/Nitesh-Nandan/mcp-server-deployment",
-    "featured": false,
+    "liveUrl": "https://portfolio-gamma-black-32.vercel.app",
+    "githubUrl": "https://github.com/Nitesh-Nandan/portfolio",
+    "featured": true,
     "status": "completed",
     "challenges": [],
     "learnings": [],
     "order": 0,
-    "lastCommitDate": "2025-07-05T06:50:02Z",
-    "isDeleted": false
-  },
-  {
-    "id": 5,
-    "title": "Research Paper AI Assistant",
-    "description": [
-      "AI-powered assistant for research paper analysis",
-      "Natural language processing for academic content",
-      "Automated summarization and key insights extraction"
-    ],
-    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop",
-    "images": [],
-    "technologies": [
-      "Python",
-      "AI/ML",
-      "NLP",
-      "Research Tools"
-    ],
-    "liveUrl": null,
-    "githubUrl": "https://github.com/Nitesh-Nandan/Research-Paper-AI-Assistant",
-    "featured": false,
-    "status": "completed",
-    "challenges": [],
-    "learnings": [],
-    "order": 0,
-    "lastCommitDate": "2025-03-23T16:24:15Z",
+    "lastCommitDate": "2025-07-24T17:21:54Z",
     "isDeleted": false
   },
   {
@@ -152,7 +100,7 @@
     "learnings": [],
     "order": 0,
     "lastCommitDate": "2025-01-10T08:30:04Z",
-    "isDeleted": true
+    "isDeleted": false
   },
   {
     "id": 7,
@@ -415,32 +363,6 @@
     "isDeleted": false
   },
   {
-    "id": 17,
-    "title": "Microservice Architecture",
-    "description": [
-      "Microservices design patterns and implementations",
-      "Service communication and API design",
-      "Distributed system architecture"
-    ],
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
-    "images": [],
-    "technologies": [
-      "Microservices",
-      "API Design",
-      "Distributed Systems",
-      "Architecture"
-    ],
-    "liveUrl": null,
-    "githubUrl": "https://github.com/Nitesh-Nandan/microservice-architecture",
-    "featured": false,
-    "status": "completed",
-    "challenges": [],
-    "learnings": [],
-    "order": 0,
-    "lastCommitDate": "2023-07-29T12:08:43Z",
-    "isDeleted": false
-  },
-  {
     "id": 18,
     "title": "Kafka Learning",
     "description": [
@@ -620,7 +542,7 @@
     "learnings": [],
     "order": 0,
     "lastCommitDate": "2023-01-11T19:50:52Z",
-    "isDeleted": true
+    "isDeleted": false
   },
   {
     "id": 25,
@@ -805,55 +727,29 @@
     "isDeleted": false
   },
   {
-    "id": 32,
-    "title": "Kuber",
+    "id": 17,
+    "title": "Microservice Architecture",
     "description": [
-      "Kubernetes learning and practice projects",
-      "Container orchestration concepts",
-      "Cloud-native application deployment"
+      "Microservices design patterns and implementations",
+      "Service communication and API design",
+      "Distributed system architecture"
     ],
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
     "images": [],
     "technologies": [
-      "Kubernetes",
-      "Containers",
-      "Cloud Native",
-      "DevOps"
+      "Microservices",
+      "API Design",
+      "Distributed Systems",
+      "Architecture"
     ],
     "liveUrl": null,
-    "githubUrl": "https://github.com/Nitesh-Nandan/kuber",
+    "githubUrl": "https://github.com/Nitesh-Nandan/microservice-architecture",
     "featured": false,
     "status": "completed",
     "challenges": [],
     "learnings": [],
     "order": 0,
-    "lastCommitDate": "2021-10-10T16:56:23Z",
-    "isDeleted": true
-  },
-  {
-    "id": 33,
-    "title": "React Step By Step",
-    "description": [
-      "React.js learning journey and tutorials",
-      "Component-based development practices",
-      "Frontend development fundamentals"
-    ],
-    "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",
-    "images": [],
-    "technologies": [
-      "React",
-      "JavaScript",
-      "Frontend",
-      "Web Development"
-    ],
-    "liveUrl": null,
-    "githubUrl": "https://github.com/Nitesh-Nandan/React-Step-By-Step",
-    "featured": false,
-    "status": "completed",
-    "challenges": [],
-    "learnings": [],
-    "order": 0,
-    "lastCommitDate": "2022-12-04T04:29:52Z",
+    "lastCommitDate": "2023-07-29T12:08:43Z",
     "isDeleted": false
   },
   {
@@ -1036,6 +932,58 @@
     "learnings": [],
     "order": 0,
     "lastCommitDate": "2024-08-08T10:46:46Z",
+    "isDeleted": false
+  },
+  {
+    "id": 4,
+    "title": "MCP Server Deployment",
+    "description": [
+      "Deployment configurations for MCP servers",
+      "Docker containerization and cloud deployment",
+      "Automated CI/CD pipeline setup"
+    ],
+    "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "Docker",
+      "CI/CD",
+      "Cloud Deployment"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/mcp-server-deployment",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-07-05T06:50:02Z",
+    "isDeleted": false
+  },
+  {
+    "id": 5,
+    "title": "Research Paper AI Assistant",
+    "description": [
+      "AI-powered assistant for research paper analysis",
+      "Natural language processing for academic content",
+      "Automated summarization and key insights extraction"
+    ],
+    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "AI/ML",
+      "NLP",
+      "Research Tools"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Research-Paper-AI-Assistant",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-03-23T16:24:15Z",
     "isDeleted": false
   }
 ]

@@ -2,77 +2,142 @@
   {
     "id": 1,
     "company": "Wayfair",
-    "position": "Backend Engineer & GenAI Expert",
-    "location": "Boston, MA",
-    "startDate": "2022-01",
+    "position": "Lead Software Engineer (L3)",
+    "location": "Bengaluru, India",
+    "startDate": "2024-05",
     "endDate": null,
-    "description": "Leading backend development initiatives and GenAI integration for e-commerce platform serving millions of customers globally.",
+    "description": "Contributing to the Product Decoupling team, focusing on platform-wide architecture initiatives and onboarding support.",
     "achievements": [
-      "Architected and implemented scalable microservices handling 50K-70K RPS",
-      "Reduced system latency by 40% through optimization of database queries and caching strategies",
-      "Led GenAI integration team, implementing AI-powered product recommendations",
-      "Mentored junior developers and established best practices for backend development"
+      "Led tech transformation initiatives for Global Supplier Tech, including strategic SQL query migration.",
+      "Enabled 80% target completion for Q2 by driving cross-team coordination and mentoring.",
+      "Facilitated smooth onboarding of new engineers, enhancing productivity and team agility."
     ],
-    "technologies": ["Java", "Spring Boot", "Microservices", "Kubernetes", "Redis", "MySQL", "GenAI", "RabbitMQ"],
+    "technologies": [
+      "Java",
+      "SpringBoot",
+      "PostgreSQL",
+      "MsSql",
+      "GenAI",
+      "LangChain",
+      "BigTable",
+      "Microservices",
+      "GCP"
+    ],
     "projects": [],
     "isCurrent": true,
-    "order": 0
+    "order": 0,
+    "isDeleted": false
   },
   {
     "id": 2,
-    "company": "TechCorp Solutions",
-    "position": "Senior Software Engineer",
-    "location": "San Francisco, CA",
-    "startDate": "2020-06",
-    "endDate": "2021-12",
-    "description": "Developed and maintained distributed systems and data processing pipelines for enterprise clients.",
+    "company": "Meesho",
+    "position": "Software Development Engineer III",
+    "location": "Bengaluru, India",
+    "startDate": "2022-07",
+    "endDate": "2024-05",
+    "description": "Owned critical backend services and delivered cost-effective, scalable solutions impacting millions of users.",
     "achievements": [
-      "Built cost optimization system reducing infrastructure costs by 25%",
-      "Implemented real-time data processing pipeline handling 1M+ events per day",
-      "Led migration from monolithic to microservices architecture",
-      "Improved system reliability from 99.5% to 99.9% uptime"
+      "Reduced infrastructure cost by ~50% by integrating local caching, Redis pub-sub, and optimizing data flows.",
+      "Led development and maintenance of 5 services, including 2 P0 services with 50K–70K RPS.",
+      "Implemented gRPC-based client to optimize service communication latency and cost.",
+      "Collaborated across teams to improve DB uptime and reduce cost by 25%.",
+      "Actively mentored engineers and participated in hiring efforts."
     ],
-    "technologies": ["Python", "Django", "PostgreSQL", "Docker", "AWS", "Kafka", "ElasticSearch"],
+    "technologies": [
+      "Java",
+      "gRPC",
+      "Redis",
+      "Kafka",
+      "SpringBoot",
+      "AWS",
+      "Kubernetes",
+      "Grafana",
+      "Telegraf"
+    ],
     "projects": [],
     "isCurrent": false,
-    "order": 0
+    "order": 1,
+    "isDeleted": false
   },
   {
     "id": 3,
-    "company": "StartupFlow",
-    "position": "Full Stack Developer",
-    "location": "Austin, TX",
-    "startDate": "2019-01",
-    "endDate": "2020-05",
-    "description": "Developed end-to-end web applications and APIs for startup ecosystem, focusing on scalability and performance.",
+    "company": "Meesho",
+    "position": "Software Development Engineer II",
+    "location": "Bengaluru, India",
+    "startDate": "2021-06",
+    "endDate": "2022-06",
+    "description": "Led multiple product initiatives in the supplier acquisition team, focusing on scale, security, and developer experience.",
     "achievements": [
-      "Built supplier acquisition platform processing 10K+ applications",
-      "Implemented multi-threaded EDI parser improving processing speed by 300%",
-      "Created comprehensive testing framework reducing bugs by 60%",
-      "Developed CI/CD pipeline reducing deployment time from hours to minutes"
+      "Drove 4X supplier community growth through well-architected systems like referral, supplier data platform, and agency panel.",
+      "Took full ownership of 5 key services, including high-traffic services impacting core business.",
+      "Led monolith-to-microservices migration efforts to enhance scalability and modularity.",
+      "Improved API security by implementing rate limiting and resilient authentication flows.",
+      "Mentored junior engineers and supported service onboarding across teams."
     ],
-    "technologies": ["Java", "Spring Boot", "React", "MongoDB", "Jenkins", "Docker", "AWS"],
+    "technologies": [
+      "Java",
+      "SpringBoot",
+      "MySQL",
+      "Kafka",
+      "Redis",
+      "Prometheus",
+      "Grafana",
+      "NodeJs"
+    ],
     "projects": [],
     "isCurrent": false,
-    "order": 0
+    "order": 2,
+    "isDeleted": false
   },
   {
     "id": 4,
-    "company": "DataTech Analytics",
-    "position": "Junior Software Developer",
-    "location": "Chicago, IL",
-    "startDate": "2018-06",
-    "endDate": "2018-12",
-    "description": "Developed data analytics tools and machine learning models for business intelligence applications.",
+    "company": "imimobile (part of Cisco)",
+    "position": "Software Engineer",
+    "location": "Hyderabad, India",
+    "startDate": "2019-12",
+    "endDate": "2021-06",
+    "description": "Built scalable backend systems for high-volume messaging platforms and internal tooling.",
     "achievements": [
-      "Built computer vision system for crowd behavior analysis",
-      "Implemented ML models improving prediction accuracy by 35%",
-      "Created data visualization dashboards using modern web technologies",
-      "Contributed to open-source data processing libraries"
+      "Re-architected group de-duplication for large messaging systems, reducing group creation time by 10x.",
+      "Built robust backend systems using RabbitMQ, PHP, and Bash scripting.",
+      "Collaborated closely with cross-functional teams to deliver reliable and flexible modules."
     ],
-    "technologies": ["Python", "Machine Learning", "Computer Vision", "TensorFlow", "Flask", "React"],
+    "technologies": [
+      "PHP",
+      "RabbitMQ",
+      "MySQL",
+      "Docker",
+      "Bash",
+      "OOD"
+    ],
     "projects": [],
     "isCurrent": false,
-    "order": 0
+    "order": 3,
+    "isDeleted": false
+  },
+  {
+    "id": 5,
+    "company": "HighRadius",
+    "position": "Associate Software Engineer",
+    "location": "Hyderabad, India",
+    "startDate": "2018-05",
+    "endDate": "2019-06",
+    "description": "Worked on backend automation tools for enterprise clients, focusing on efficiency and reliability.",
+    "achievements": [
+      "Built an EDI parser from scratch to streamline financial data integration.",
+      "Developed automated agents for Sales Invoice and Bank Upload operations using multithreading and Hibernate.",
+      "Created internal git tooling that saved 30+ minutes daily for developers across the team."
+    ],
+    "technologies": [
+      "Java",
+      "Hibernate",
+      "Multithreading (ForkJoinPool)",
+      "MySQL",
+      "Shell Scripting"
+    ],
+    "projects": [],
+    "isCurrent": false,
+    "order": 4,
+    "isDeleted": false
   }
-] 
+]
