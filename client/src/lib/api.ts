@@ -7,7 +7,8 @@ import type {
   Course, 
   Article, 
   ContactContentWithParsedJson, 
-  FooterContentWithParsedJson 
+  FooterContentWithParsedJson,
+  Testimonial
 } from '@shared/schema';
 
 // Simple API configuration from environment variables
@@ -205,6 +206,14 @@ export const api = {
       return staticApiCall('footer-content.json');
     }
     return apiCall('/api/footer-content');
+  },
+
+  // Testimonials
+  getTestimonials: (): Promise<Testimonial[]> => {
+    const config = getApiConfig();
+    return config.mode === 'static' 
+      ? staticApiCall('testimonials.json') 
+      : apiCall('/api/testimonials');
   },
 
   // Contact form submission

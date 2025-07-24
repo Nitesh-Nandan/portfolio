@@ -16,8 +16,13 @@ function ProjectCard({ project }: ProjectCardProps) {
   const IconComponent = getProjectIcon(project.title);
   const iconStyles = getProjectIconStyles(project.title);
 
+  // Handle both string and array descriptions for backward compatibility
+  const descriptionArray = Array.isArray(project.description) 
+    ? project.description 
+    : [project.description];
+
   return (
-    <SectionCard key={project.id}>
+    <SectionCard key={project.id} className="group hover:shadow-lg transition-all duration-300">
       <CardHeader
         icon={
           <div className={iconStyles}>
@@ -28,9 +33,16 @@ function ProjectCard({ project }: ProjectCardProps) {
       />
       
       <CardContentArea>
-        <p className={TYPOGRAPHY_STYLES.cardSubtitle}>
-          {project.description}
-        </p>
+        <div className="space-y-1 pb-6">
+          {descriptionArray.map((item, index) => (
+            <div key={index}>
+              <span 
+                className={TYPOGRAPHY_STYLES.cardSubtitle}
+                dangerouslySetInnerHTML={{ __html: item }}
+              />
+            </div>
+          ))}
+        </div>
       </CardContentArea>
       
       <CardFooter>

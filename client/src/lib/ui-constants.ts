@@ -37,6 +37,7 @@ export const BUTTON_STYLES = {
   code: "border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400",
 } as const;
 
+
 export const EMPTY_STATE_STYLES = {
   container: "text-center py-8 col-span-full",
   icon: "h-16 w-16 text-gray-300 mx-auto mb-4",
