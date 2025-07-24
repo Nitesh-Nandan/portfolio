@@ -13,7 +13,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/Collab-Notebooks",
     "liveUrl": null,
     "featured": true,
-    "last_commit_date": "2025-01-21T09:03:03Z"
+    "last_commit_date": "2025-01-21T09:03:03Z",
+    "isDeleted": false
   },
   {
     "id": 2,
@@ -29,7 +30,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/portfolio",
     "liveUrl": "https://portfolio-gamma-black-32.vercel.app",
     "featured": true,
-    "last_commit_date": "2025-07-24T17:21:54Z"
+    "last_commit_date": "2025-07-24T17:21:54Z",
+    "isDeleted": false
   },
   {
     "id": 3,
@@ -45,7 +47,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/upstox-mcp-server",
     "liveUrl": null,
     "featured": true,
-    "last_commit_date": "2025-07-15T18:48:18Z"
+    "last_commit_date": "2025-07-15T18:48:18Z",
+    "isDeleted": false
   },
   {
     "id": 4,
@@ -61,7 +64,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/mcp-server-deployment",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2025-07-05T06:50:02Z"
+    "last_commit_date": "2025-07-05T06:50:02Z",
+    "isDeleted": false
   },
   {
     "id": 5,
@@ -77,7 +81,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/Research-Paper-AI-Assistant",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2025-03-23T16:24:15Z"
+    "last_commit_date": "2025-03-23T16:24:15Z",
+    "isDeleted": false
   },
   {
     "id": 6,
@@ -93,7 +98,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/Generative-AI",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2025-01-10T08:30:04Z"
+    "last_commit_date": "2025-01-10T08:30:04Z",
+    "isDeleted": false
   },
   {
     "id": 7,
@@ -109,7 +115,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/low-level-design",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-05-20T17:52:16Z"
+    "last_commit_date": "2024-05-20T17:52:16Z",
+    "isDeleted": false
   },
   {
     "id": 8,
@@ -125,7 +132,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/master-system-python",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-09-24T08:15:03Z"
+    "last_commit_date": "2024-09-24T08:15:03Z",
+    "isDeleted": false
   },
   {
     "id": 9,
@@ -141,7 +149,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/master-system-java",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-08-06T12:53:24Z"
+    "last_commit_date": "2024-08-06T12:53:24Z",
+    "isDeleted": false
   },
   {
     "id": 10,
@@ -157,7 +166,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/system-infra-setups",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-07-03T16:48:53Z"
+    "last_commit_date": "2024-07-03T16:48:53Z",
+    "isDeleted": false
   },
   {
     "id": 11,
@@ -173,7 +183,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/server-sent-events",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-08-15T12:02:10Z"
+    "last_commit_date": "2024-08-15T12:02:10Z",
+    "isDeleted": false
   },
   {
     "id": 12,
@@ -189,7 +200,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/spring-test-project",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-06-10T19:01:53Z"
+    "last_commit_date": "2024-06-10T19:01:53Z",
+    "isDeleted": false
   },
   {
     "id": 13,
@@ -205,7 +217,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/quiz-game",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-08-16T21:11:11Z"
+    "last_commit_date": "2024-08-16T21:11:11Z",
+    "isDeleted": false
   },
   {
     "id": 14,
@@ -221,7 +234,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/github-actions-hero",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-08-15T14:00:48Z"
+    "last_commit_date": "2024-08-15T14:00:48Z",
+    "isDeleted": false
   },
   {
     "id": 15,
@@ -237,7 +251,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/nitesh-nandan.github.io",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-08-15T12:04:07Z"
+    "last_commit_date": "2024-08-15T12:04:07Z",
+    "isDeleted": false
   },
   {
     "id": 16,
@@ -253,7 +268,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/obsidian",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2023-05-28T18:35:25Z"
+    "last_commit_date": "2023-05-28T18:35:25Z",
+    "isDeleted": false
   },
   {
     "id": 17,
@@ -269,7 +285,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/microservice-architecture",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2023-07-29T12:08:43Z"
+    "last_commit_date": "2023-07-29T12:08:43Z",
+    "isDeleted": false
   },
   {
     "id": 18,
@@ -285,7 +302,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/kafka-learn",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2023-02-19T01:17:02Z"
+    "last_commit_date": "2023-02-19T01:17:02Z",
+    "isDeleted": false
   },
   {
     "id": 19,
@@ -301,7 +319,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/system-design",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2022-11-09T16:38:28Z"
+    "last_commit_date": "2022-11-09T16:38:28Z",
+    "isDeleted": false
   },
   {
     "id": 20,
@@ -317,7 +336,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/dsa-java",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2023-07-17T14:02:55Z"
+    "last_commit_date": "2023-07-17T14:02:55Z",
+    "isDeleted": false
   },
   {
     "id": 21,
@@ -333,7 +353,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/interviewroom",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2023-08-10T19:15:53Z"
+    "last_commit_date": "2023-08-10T19:15:53Z",
+    "isDeleted": false
   },
   {
     "id": 22,
@@ -349,7 +370,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/spring-transaction",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2022-03-01T11:39:27Z"
+    "last_commit_date": "2022-03-01T11:39:27Z",
+    "isDeleted": false
   },
   {
     "id": 23,
@@ -365,7 +387,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/dsa",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-12-13T05:10:38Z"
+    "last_commit_date": "2021-12-13T05:10:38Z",
+    "isDeleted": false
   },
   {
     "id": 24,
@@ -381,7 +404,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/kubernetes-argo",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2023-01-11T19:50:52Z"
+    "last_commit_date": "2023-01-11T19:50:52Z",
+    "isDeleted": false
   },
   {
     "id": 25,
@@ -397,7 +421,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/microservice",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-10-10T20:06:53Z"
+    "last_commit_date": "2021-10-10T20:06:53Z",
+    "isDeleted": false
   },
   {
     "id": 26,
@@ -413,7 +438,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/my-app",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-10-20T02:33:23Z"
+    "last_commit_date": "2021-10-20T02:33:23Z",
+    "isDeleted": false
   },
   {
     "id": 27,
@@ -429,7 +455,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/java-project",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-10-10T17:02:14Z"
+    "last_commit_date": "2021-10-10T17:02:14Z",
+    "isDeleted": false
   },
   {
     "id": 28,
@@ -445,7 +472,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/coffee_machine",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-05-26T00:47:14Z"
+    "last_commit_date": "2021-05-26T00:47:14Z",
+    "isDeleted": false
   },
   {
     "id": 29,
@@ -461,7 +489,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/Availability-Tracker",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-05-08T14:01:09Z"
+    "last_commit_date": "2021-05-08T14:01:09Z",
+    "isDeleted": false
   },
   {
     "id": 30,
@@ -477,7 +506,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/file-handling",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-08-03T13:52:32Z"
+    "last_commit_date": "2021-08-03T13:52:32Z",
+    "isDeleted": false
   },
   {
     "id": 31,
@@ -493,7 +523,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/gatling_project",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-08-12T16:04:50Z"
+    "last_commit_date": "2021-08-12T16:04:50Z",
+    "isDeleted": false
   },
   {
     "id": 32,
@@ -509,7 +540,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/kuber",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-10-10T16:56:23Z"
+    "last_commit_date": "2021-10-10T16:56:23Z",
+    "isDeleted": true
   },
   {
     "id": 33,
@@ -525,7 +557,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/React-Step-By-Step",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2022-12-04T04:29:52Z"
+    "last_commit_date": "2022-12-04T04:29:52Z",
+    "isDeleted": true
   },
   {
     "id": 34,
@@ -541,7 +574,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/React-Fundamental",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2021-05-10T02:59:17Z"
+    "last_commit_date": "2021-05-10T02:59:17Z",
+    "isDeleted": false
   },
   {
     "id": 35,
@@ -557,7 +591,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/ood-design",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2020-11-16T05:10:04Z"
+    "last_commit_date": "2020-11-16T05:10:04Z",
+    "isDeleted": false
   },
   {
     "id": 36,
@@ -573,7 +608,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/concurrency",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2020-11-08T17:43:07Z"
+    "last_commit_date": "2020-11-08T17:43:07Z",
+    "isDeleted": false
   },
   {
     "id": 37,
@@ -589,7 +625,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/pdfs",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2020-08-06T05:26:06Z"
+    "last_commit_date": "2020-08-06T05:26:06Z",
+    "isDeleted": false
   },
   {
     "id": 38,
@@ -605,7 +642,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/Automation",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2018-09-17T08:37:11Z"
+    "last_commit_date": "2018-09-17T08:37:11Z",
+    "isDeleted": false
   },
   {
     "id": 39,
@@ -621,7 +659,8 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/node-101",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2023-11-13T07:08:22Z"
+    "last_commit_date": "2023-11-13T07:08:22Z",
+    "isDeleted": false
   },
   {
     "id": 40,
@@ -637,6 +676,7 @@
     "githubUrl": "https://github.com/Nitesh-Nandan/Nitesh-Nandan",
     "liveUrl": null,
     "featured": false,
-    "last_commit_date": "2024-08-08T10:46:46Z"
+    "last_commit_date": "2024-08-08T10:46:46Z",
+    "isDeleted": false
   }
 ] 

@@ -25,7 +25,8 @@
     ],
     "projects": [],
     "isCurrent": true,
-    "order": 0
+    "order": 0,
+    "isDeleted": false
   },
   {
     "id": 2,
@@ -52,7 +53,8 @@
     ],
     "projects": [],
     "isCurrent": false,
-    "order": 0
+    "order": 0,
+    "isDeleted": false
   },
   {
     "id": 3,
@@ -79,7 +81,8 @@
     ],
     "projects": [],
     "isCurrent": false,
-    "order": 0
+    "order": 0,
+    "isDeleted": false
   },
   {
     "id": 4,
@@ -105,6 +108,7 @@
     ],
     "projects": [],
     "isCurrent": false,
-    "order": 0
+    "order": 0,
+    "isDeleted": false
   }
 ]

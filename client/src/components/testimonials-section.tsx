@@ -67,11 +67,8 @@ export default function TestimonialsSection() {
     );
   }
 
-  // Filter out deleted testimonials
-  const activeTestimonials = testimonials?.filter(testimonial => !testimonial.isDeleted) || [];
-
-  // Don't render anything if there are no active testimonials
-  if (activeTestimonials.length === 0) {
+  // Don't render anything if there are no testimonials
+  if (!testimonials || testimonials.length === 0) {
     return null;
   }
 
@@ -83,7 +80,7 @@ export default function TestimonialsSection() {
       </div>
       
       <div className="space-y-4">
-        {activeTestimonials.map((testimonial, index) => (
+        {testimonials.map((testimonial, index) => (
           <div key={testimonial.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
             <TestimonialCard testimonial={testimonial} />
           </div>

@@ -152,7 +152,7 @@
     "learnings": [],
     "order": 0,
     "lastCommitDate": "2025-01-10T08:30:04Z",
-    "isDeleted": false
+    "isDeleted": true
   },
   {
     "id": 7,
@@ -620,7 +620,7 @@
     "learnings": [],
     "order": 0,
     "lastCommitDate": "2023-01-11T19:50:52Z",
-    "isDeleted": false
+    "isDeleted": true
   },
   {
     "id": 25,
@@ -828,7 +828,7 @@
     "learnings": [],
     "order": 0,
     "lastCommitDate": "2021-10-10T16:56:23Z",
-    "isDeleted": false
+    "isDeleted": true
   },
   {
     "id": 33,

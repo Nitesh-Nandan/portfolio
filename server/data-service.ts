@@ -56,6 +56,13 @@ class DataService {
     return this.readJsonFile(jsonFile, fallback);
   }
 
+  /**
+   * Filter out deleted items from arrays
+   */
+  private filterDeletedItems<T extends { isDeleted?: boolean }>(items: T[]): T[] {
+    return items.filter(item => !item.isDeleted);
+  }
+
   // === PERSONAL INFO ===
   async getPersonalInfo(): Promise<PersonalInfoWithParsedBio> {
     // Try database first
@@ -106,59 +113,62 @@ class DataService {
       resumeUrl: '',
       availability: 'available',
       availabilityMessage: '',
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      isDeleted: false
     } as PersonalInfoWithParsedBio);
     
-    // Ensure we return a single object, not an array
-    return Array.isArray(result) ? result[0] : result;
+    return result as PersonalInfoWithParsedBio;
   }
 
   async updatePersonalInfo(data: Partial<PersonalInfo>): Promise<void> {
     try {
-      // Prepare data for database (convert bio array to JSON string if present)
-      const dbData = { ...data };
-      if (data.bio && Array.isArray(data.bio)) {
-        dbData.bio = JSON.stringify(data.bio);
-      }
+      // Update in database
+      await db.update(personalInfo)
+        .set({
+          ...data,
+          updatedAt: new Date()
+        })
+        .where(eq(personalInfo.id, 1));
       
-      // Update database
-      await db.update(personalInfo).set(dbData).where(eq(personalInfo.id, 1));
-      
-      // Update JSON file (keep bio as array for JSON file)
-      const current = await this.readJsonFile('personal-info.json', {});
-      const updated = { ...current, ...data };
-      writeFileSync(join(this.dataPath, 'personal-info.json'), JSON.stringify(updated, null, 2));
-      
-      // Clear cache
-      this.cache.delete('personal-info.json');
+      console.log('✅ Personal info updated in database');
     } catch (error) {
-      console.error('Error updating personal info:', error);
+      console.error('❌ Failed to update personal info in database:', error);
       throw error;
     }
   }
 
   // === WORK EXPERIENCE ===
   async getWorkExperience(): Promise<WorkExperience[]> {
-    return this.getFromDbWithFallback(
+    const data = await this.getFromDbWithFallback(
       async () => {
-        const result = await db.select().from(workExperience).orderBy(desc(workExperience.order));
+        const result = await db.select().from(workExperience)
+          .where(eq(workExperience.isDeleted, false))
+          .orderBy(desc(workExperience.order));
         return result;
       },
       'work-experience.json',
       []
     ) as Promise<WorkExperience[]>;
+    
+    // Filter deleted items from JSON data as well
+    return Array.isArray(data) ? this.filterDeletedItems(data) : [];
   }
 
   // === PROJECTS ===
   async getProjects(): Promise<Project[]> {
-    return this.getFromDbWithFallback(
+    const data = await this.getFromDbWithFallback(
       async () => {
-        const result = await db.select().from(projects).orderBy(desc(projects.order));
+        const result = await db.select().from(projects)
+          .where(eq(projects.isDeleted, false))
+          .orderBy(desc(projects.order));
         return result;
       },
       'projects.json',
       []
     ) as Promise<Project[]>;
+    
+    // Filter deleted items from JSON data as well
+    return Array.isArray(data) ? this.filterDeletedItems(data) : [];
   }
 
   async getFeaturedProjects(): Promise<Project[]> {
@@ -168,14 +178,19 @@ class DataService {
 
   // === SKILLS ===
   async getSkills(): Promise<Skill[]> {
-    return this.getFromDbWithFallback(
+    const data = await this.getFromDbWithFallback(
       async () => {
-        const result = await db.select().from(skills).orderBy(desc(skills.order));
+        const result = await db.select().from(skills)
+          .where(eq(skills.isDeleted, false))
+          .orderBy(desc(skills.order));
         return result;
       },
       'skills.json',
       []
     ) as Promise<Skill[]>;
+    
+    // Filter deleted items from JSON data as well
+    return Array.isArray(data) ? this.filterDeletedItems(data) : [];
   }
 
   async getSkillsByCategory(category: string): Promise<Skill[]> {
@@ -185,14 +200,18 @@ class DataService {
 
   // === BOOKS ===
   async getBooks(): Promise<Book[]> {
-    return this.getFromDbWithFallback(
+    const data = await this.getFromDbWithFallback(
       async () => {
-        const result = await db.select().from(books);
+        const result = await db.select().from(books)
+          .where(eq(books.isDeleted, false));
         return result;
       },
       'books.json',
       []
     ) as Promise<Book[]>;
+    
+    // Filter deleted items from JSON data as well
+    return Array.isArray(data) ? this.filterDeletedItems(data) : [];
   }
 
   async getBooksByStatus(status: string): Promise<Book[]> {
@@ -202,14 +221,19 @@ class DataService {
 
   // === COURSES ===
   async getCourses(): Promise<Course[]> {
-    return this.getFromDbWithFallback(
+    const data = await this.getFromDbWithFallback(
       async () => {
-        const result = await db.select().from(courses).orderBy(desc(courses.order));
+        const result = await db.select().from(courses)
+          .where(eq(courses.isDeleted, false))
+          .orderBy(desc(courses.order));
         return result;
       },
       'courses.json',
       []
     ) as Promise<Course[]>;
+    
+    // Filter deleted items from JSON data as well
+    return Array.isArray(data) ? this.filterDeletedItems(data) : [];
   }
 
   async getCoursesByStatus(status: string): Promise<Course[]> {
@@ -224,14 +248,19 @@ class DataService {
 
   // === ARTICLES ===
   async getArticles(): Promise<Article[]> {
-    return this.getFromDbWithFallback(
+    const data = await this.getFromDbWithFallback(
       async () => {
-        const result = await db.select().from(articles).orderBy(desc(articles.order));
+        const result = await db.select().from(articles)
+          .where(eq(articles.isDeleted, false))
+          .orderBy(desc(articles.order));
         return result;
       },
       'articles.json',
       []
     ) as Promise<Article[]>;
+    
+    // Filter deleted items from JSON data as well
+    return Array.isArray(data) ? this.filterDeletedItems(data) : [];
   }
 
   async getArticlesByStatus(status: string): Promise<Article[]> {
@@ -246,7 +275,7 @@ class DataService {
 
   // === TESTIMONIALS ===
   async getTestimonials(): Promise<Testimonial[]> {
-    return this.getFromDbWithFallback(
+    const data = await this.getFromDbWithFallback(
       async () => {
         const result = await db.select().from(testimonials)
           .where(eq(testimonials.isDeleted, false))
@@ -256,6 +285,9 @@ class DataService {
       'testimonials.json',
       []
     ) as Promise<Testimonial[]>;
+    
+    // Filter deleted items from JSON data as well
+    return Array.isArray(data) ? this.filterDeletedItems(data) : [];
   }
 
   async getActiveTestimonials(): Promise<Testimonial[]> {

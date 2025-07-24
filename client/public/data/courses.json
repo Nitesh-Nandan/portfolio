@@ -17,7 +17,8 @@
       "MCP"
     ],
     "featured": true,
-    "order": 1
+    "order": 1,
+    "isDeleted": false
   },
   {
     "id": 2,
@@ -39,7 +40,8 @@
       "LangChain"
     ],
     "featured": true,
-    "order": 2
+    "order": 2,
+    "isDeleted": false
   },
   {
     "id": 3,
@@ -59,7 +61,8 @@
       "Java"
     ],
     "featured": true,
-    "order": 3
+    "order": 3,
+    "isDeleted": false
   },
   {
     "id": 4,
@@ -78,7 +81,8 @@
       "java"
     ],
     "featured": false,
-    "order": 4
+    "order": 4,
+    "isDeleted": false
   },
   {
     "id": 5,
@@ -97,7 +101,8 @@
       "Personal Development"
     ],
     "featured": false,
-    "order": 5
+    "order": 5,
+    "isDeleted": false
   },
   {
     "id": 6,
@@ -116,7 +121,8 @@
       "java"
     ],
     "featured": false,
-    "order": 6
+    "order": 6,
+    "isDeleted": false
   },
   {
     "id": 7,
@@ -134,6 +140,7 @@
       "LLMs"
     ],
     "featured": false,
-    "order": 7
+    "order": 7,
+    "isDeleted": false
   }
 ]

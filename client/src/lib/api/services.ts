@@ -35,6 +35,13 @@ abstract class BaseApiService {
     const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
     return `/api/${cleanEndpoint}`;
   }
+
+  /**
+   * Filter out deleted items from arrays
+   */
+  protected filterDeletedItems<T extends { isDeleted?: boolean }>(items: T[]): T[] {
+    return items.filter(item => !item.isDeleted);
+  }
 }
 
 /**
@@ -61,9 +68,11 @@ export class PersonalInfoService extends BaseApiService {
  */
 export class WorkExperienceService extends BaseApiService {
   async getWorkExperience(): Promise<WorkExperience[]> {
-    return apiConfig.isStaticMode()
-      ? this.makeStaticRequest('work-experience.json')
-      : this.makeRequest(this.getRequestUrl('/work-experience'));
+    const data = apiConfig.isStaticMode()
+      ? await this.makeStaticRequest<WorkExperience[]>('work-experience.json')
+      : await this.makeRequest<WorkExperience[]>(this.getRequestUrl('/work-experience'));
+    
+    return this.filterDeletedItems(data);
   }
 }
 
@@ -72,15 +81,18 @@ export class WorkExperienceService extends BaseApiService {
  */
 export class ProjectsService extends BaseApiService {
   async getProjects(): Promise<Project[]> {
-    return apiConfig.isStaticMode()
-      ? this.makeStaticRequest('projects.json')
-      : this.makeRequest(this.getRequestUrl('/projects'));
+    const data = apiConfig.isStaticMode()
+      ? await this.makeStaticRequest<Project[]>('projects.json')
+      : await this.makeRequest<Project[]>(this.getRequestUrl('/projects'));
+    
+    return this.filterDeletedItems(data);
   }
 
   async getFeaturedProjects(): Promise<Project[]> {
     if (apiConfig.isStaticMode()) {
       const all = await this.makeStaticRequest<Project[]>('projects.json');
-      return all.filter(p => p.featured);
+      const filtered = this.filterDeletedItems(all);
+      return filtered.filter(p => p.featured);
     }
     return this.makeRequest(this.getRequestUrl('/projects/featured'));
   }
@@ -91,15 +103,18 @@ export class ProjectsService extends BaseApiService {
  */
 export class SkillsService extends BaseApiService {
   async getSkills(): Promise<Skill[]> {
-    return apiConfig.isStaticMode()
-      ? this.makeStaticRequest('skills.json')
-      : this.makeRequest(this.getRequestUrl('/skills'));
+    const data = apiConfig.isStaticMode()
+      ? await this.makeStaticRequest<Skill[]>('skills.json')
+      : await this.makeRequest<Skill[]>(this.getRequestUrl('/skills'));
+    
+    return this.filterDeletedItems(data);
   }
 
   async getSkillsByCategory(category: string): Promise<Skill[]> {
     if (apiConfig.isStaticMode()) {
       const all = await this.makeStaticRequest<Skill[]>('skills.json');
-      return all.filter(s => s.category === category);
+      const filtered = this.filterDeletedItems(all);
+      return filtered.filter(s => s.category === category);
     }
     return this.makeRequest(this.getRequestUrl(`/skills?category=${encodeURIComponent(category)}`));
   }
@@ -111,30 +126,36 @@ export class SkillsService extends BaseApiService {
 export class LearningService extends BaseApiService {
   // Books
   async getBooks(): Promise<Book[]> {
-    return apiConfig.isStaticMode()
-      ? this.makeStaticRequest('books.json')
-      : this.makeRequest(this.getRequestUrl('/books'));
+    const data = apiConfig.isStaticMode()
+      ? await this.makeStaticRequest<Book[]>('books.json')
+      : await this.makeRequest<Book[]>(this.getRequestUrl('/books'));
+    
+    return this.filterDeletedItems(data);
   }
 
   async getBooksByStatus(status: string): Promise<Book[]> {
     if (apiConfig.isStaticMode()) {
       const all = await this.makeStaticRequest<Book[]>('books.json');
-      return all.filter(b => b.status === status);
+      const filtered = this.filterDeletedItems(all);
+      return filtered.filter(b => b.status === status);
     }
     return this.makeRequest(this.getRequestUrl(`/books/${encodeURIComponent(status)}`));
   }
 
   // Courses
   async getCourses(): Promise<Course[]> {
-    return apiConfig.isStaticMode()
-      ? this.makeStaticRequest('courses.json')
-      : this.makeRequest(this.getRequestUrl('/courses'));
+    const data = apiConfig.isStaticMode()
+      ? await this.makeStaticRequest<Course[]>('courses.json')
+      : await this.makeRequest<Course[]>(this.getRequestUrl('/courses'));
+    
+    return this.filterDeletedItems(data);
   }
 
   async getCoursesByStatus(status: string): Promise<Course[]> {
     if (apiConfig.isStaticMode()) {
       const all = await this.makeStaticRequest<Course[]>('courses.json');
-      return all.filter(c => c.status === status);
+      const filtered = this.filterDeletedItems(all);
+      return filtered.filter(c => c.status === status);
     }
     return this.makeRequest(this.getRequestUrl(`/courses/${encodeURIComponent(status)}`));
   }
@@ -142,22 +163,26 @@ export class LearningService extends BaseApiService {
   async getFeaturedCourses(): Promise<Course[]> {
     if (apiConfig.isStaticMode()) {
       const all = await this.makeStaticRequest<Course[]>('courses.json');
-      return all.filter(c => c.featured);
+      const filtered = this.filterDeletedItems(all);
+      return filtered.filter(c => c.featured);
     }
     return this.makeRequest(this.getRequestUrl('/courses/featured'));
   }
 
   // Articles
   async getArticles(): Promise<Article[]> {
-    return apiConfig.isStaticMode()
-      ? this.makeStaticRequest('articles.json')
-      : this.makeRequest(this.getRequestUrl('/articles'));
+    const data = apiConfig.isStaticMode()
+      ? await this.makeStaticRequest<Article[]>('articles.json')
+      : await this.makeRequest<Article[]>(this.getRequestUrl('/articles'));
+    
+    return this.filterDeletedItems(data);
   }
 
   async getArticlesByStatus(status: string): Promise<Article[]> {
     if (apiConfig.isStaticMode()) {
       const all = await this.makeStaticRequest<Article[]>('articles.json');
-      return all.filter(a => a.status === status);
+      const filtered = this.filterDeletedItems(all);
+      return filtered.filter(a => a.status === status);
     }
     return this.makeRequest(this.getRequestUrl(`/articles/${encodeURIComponent(status)}`));
   }
@@ -165,7 +190,8 @@ export class LearningService extends BaseApiService {
   async getFeaturedArticles(): Promise<Article[]> {
     if (apiConfig.isStaticMode()) {
       const all = await this.makeStaticRequest<Article[]>('articles.json');
-      return all.filter(a => a.featured);
+      const filtered = this.filterDeletedItems(all);
+      return filtered.filter(a => a.featured);
     }
     return this.makeRequest(this.getRequestUrl('/articles/featured'));
   }
@@ -188,9 +214,11 @@ export class ContentService extends BaseApiService {
   }
 
   async getTestimonials(): Promise<Testimonial[]> {
-    return apiConfig.isStaticMode()
-      ? this.makeStaticRequest('testimonials.json')
-      : this.makeRequest(this.getRequestUrl('/testimonials'));
+    const data = apiConfig.isStaticMode()
+      ? await this.makeStaticRequest<Testimonial[]>('testimonials.json')
+      : await this.makeRequest<Testimonial[]>(this.getRequestUrl('/testimonials'));
+    
+    return this.filterDeletedItems(data);
   }
 
   async submitContact(data: ContactFormData): Promise<{ message: string }> {
