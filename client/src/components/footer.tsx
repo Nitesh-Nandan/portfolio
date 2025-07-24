@@ -1,9 +1,10 @@
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
 import { usePersonalInfo, useFooterContent } from "@/hooks/use-data-queries";
+import { DataLoadingState, DataErrorState } from "@/components/ui/loading-states";
 
 export default function Footer() {
   const { data: personalInfo, loading: personalInfoLoading, error: personalInfoError } = usePersonalInfo();
-  const { data: footerContent, isLoading: footerContentLoading, error: footerContentError } = useFooterContent();
+  const { data: footerContent, loading: footerContentLoading, error: footerContentError } = useFooterContent();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -19,7 +20,7 @@ export default function Footer() {
       <footer className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-gray-300">
-            Loading footer content...
+            <DataLoadingState message="Loading footer content..." />
           </div>
         </div>
       </footer>
@@ -33,7 +34,13 @@ export default function Footer() {
       <footer className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-gray-300">
-            Unable to load footer content. Please try again later.
+            <DataErrorState 
+              message="Unable to load footer content. Please try again later."
+              onRetry={() => {
+                // Refetch both data sources
+                window.location.reload();
+              }}
+            />
           </div>
         </div>
       </footer>

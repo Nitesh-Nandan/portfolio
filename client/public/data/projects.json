@@ -40,7 +40,7 @@
       "JWT",
       "Stripe API"
     ],
-    "liveUrl": "https://github.com/yourusername/ecommerce-api",
+    "liveUrl": null,
     "githubUrl": "https://github.com/yourusername/ecommerce-api",
     "featured": true,
     "status": "completed",
@@ -65,7 +65,7 @@
       "Express",
       "Material-UI"
     ],
-    "liveUrl": null,
+    "liveUrl": "https://taskapp.com",
     "githubUrl": "https://github.com/yourusername/task-app",
     "featured": true,
     "status": "completed",
