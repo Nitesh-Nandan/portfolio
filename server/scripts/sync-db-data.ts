@@ -115,24 +115,66 @@ async function syncData() {
   
   try {
     // Sync personal info (single record)
-    const personalData = readJsonFile<PersonalInfo>('personal-info.json');
-    await upsertSingleRecord(personalInfo, personalData, 'Personal Info');
+    const personalData = readJsonFile<any>('personal-info.json');
+    if (personalData && personalData.id) {
+      const personalDbData = {
+        ...personalData,
+        bio: JSON.stringify(personalData.bio), // Convert array to JSON string for database
+        isDeleted: personalData.is_deleted,
+        // Remove the snake_case version to avoid conflicts
+        is_deleted: undefined
+      };
+      await upsertSingleRecord(personalInfo, personalDbData, 'Personal Info');
+    }
 
     // Sync work experience (multiple records)
     const workData = readJsonFile<WorkExperience[]>('work-experience.json');
     await upsertRecords(workExperience, workData || [], 'Work Experience');
 
     // Sync projects (multiple records)
-    const projectData = readJsonFile<Project[]>('projects.json');
-    await upsertRecords(projects, projectData || [], 'Projects');
+    const projectData = readJsonFile<any[]>('projects.json');
+    if (projectData) {
+      // Transform snake_case to camelCase for projects
+      const transformedProjects = projectData.map(project => ({
+        ...project,
+        isDeleted: project.is_deleted,
+        // Remove the snake_case version to avoid conflicts
+        is_deleted: undefined
+      }));
+      await upsertRecords(projects, transformedProjects, 'Projects');
+    } else {
+      await upsertRecords(projects, [], 'Projects');
+    }
 
     // Sync skills (multiple records)
-    const skillData = readJsonFile<Skill[]>('skills.json');
-    await upsertRecords(skills, skillData || [], 'Skills');
+    const skillData = readJsonFile<any[]>('skills.json');
+    if (skillData) {
+      // Transform snake_case to camelCase for skills
+      const transformedSkills = skillData.map(skill => ({
+        ...skill,
+        isDeleted: skill.is_deleted,
+        // Remove the snake_case version to avoid conflicts
+        is_deleted: undefined
+      }));
+      await upsertRecords(skills, transformedSkills, 'Skills');
+    } else {
+      await upsertRecords(skills, [], 'Skills');
+    }
 
     // Sync books (multiple records)
-    const bookData = readJsonFile<Book[]>('books.json');
-    await upsertRecords(books, bookData || [], 'Books');
+    const bookData = readJsonFile<any[]>('books.json');
+    if (bookData) {
+      // Transform snake_case to camelCase for books
+      const transformedBooks = bookData.map(book => ({
+        ...book,
+        isDeleted: book.is_deleted,
+        // Remove the snake_case version to avoid conflicts
+        is_deleted: undefined
+      }));
+      await upsertRecords(books, transformedBooks, 'Books');
+    } else {
+      await upsertRecords(books, [], 'Books');
+    }
 
     // Sync courses (multiple records)
     const courseData = readJsonFile<Course[]>('courses.json');
@@ -143,8 +185,19 @@ async function syncData() {
     await upsertRecords(articles, articleData || [], 'Articles');
 
     // Sync testimonials (multiple records)
-    const testimonialData = readJsonFile<Testimonial[]>('testimonials.json');
-    await upsertRecords(testimonials, testimonialData || [], 'Testimonials');
+    const testimonialData = readJsonFile<any[]>('testimonials.json');
+    if (testimonialData) {
+      // Transform snake_case to camelCase for testimonials
+      const transformedTestimonials = testimonialData.map(testimonial => ({
+        ...testimonial,
+        isDeleted: testimonial.is_deleted,
+        // Remove the snake_case version to avoid conflicts
+        is_deleted: undefined
+      }));
+      await upsertRecords(testimonials, transformedTestimonials, 'Testimonials');
+    } else {
+      await upsertRecords(testimonials, [], 'Testimonials');
+    }
 
     // Sync contact content (single record with JSON parsing)
     const contactContentData = readJsonFile<ContactContentWithParsedJson>('contact-content.json');

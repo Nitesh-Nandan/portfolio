@@ -2,6 +2,7 @@ import { httpClient } from './http-client';
 import { apiConfig } from './config';
 import type { 
   PersonalInfo, 
+  PersonalInfoWithParsedBio,
   WorkExperience, 
   Project, 
   Skill, 
@@ -27,7 +28,12 @@ abstract class BaseApiService {
   }
 
   protected getRequestUrl(endpoint: string): string {
-    return apiConfig.isStaticMode() ? endpoint : endpoint;
+    if (apiConfig.isStaticMode()) {
+      return endpoint;
+    }
+    // Add /api prefix and ensure proper path construction
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+    return `/api/${cleanEndpoint}`;
   }
 }
 
@@ -35,7 +41,7 @@ abstract class BaseApiService {
  * Personal Information Service
  */
 export class PersonalInfoService extends BaseApiService {
-  async getPersonalInfo(): Promise<PersonalInfo> {
+  async getPersonalInfo(): Promise<PersonalInfoWithParsedBio> {
     return apiConfig.isStaticMode()
       ? this.makeStaticRequest('personal-info.json')
       : this.makeRequest(this.getRequestUrl('/personal-info'));

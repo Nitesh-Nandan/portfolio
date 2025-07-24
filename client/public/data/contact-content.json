@@ -6,15 +6,9 @@
   "connectTitle": "Connect",
   "contactInfoTitle": "Get in touch",
   "statusMessage": "Feel free to reach out if you need my skills or have an exciting project to collaborate on.",
-  "letsConnect": {
-    "heading": "Let's Connect",
-    "intro": "Hi there! I'm a passionate <strong>Backend Engineer</strong> specializing in scalable distributed systems, microservices architecture, and GenAI solutions.",
-    "description": "Whether you want to collaborate on exciting projects, discuss technology, or just say hello - I'd love to hear from you!",
-    "cta": "Drop me a message below!"
-  },
   "socialLinks": {
     "linkedin": "https://www.linkedin.com/in/niteshnandan",
-    "github": "https://github.com/Nitesh-Nandan",
+    "github": "https://github.com/Nitesh-Nandan/",
     "twitter": "https://x.com/TryNitesh",
     "email": "mailto:niteshnitp5686@gmail.com"
   }

@@ -31,7 +31,9 @@ export class HttpClient {
       ? new URL(url, config.baseUrl).toString()
       : url;
 
-    console.log('🌐 HTTP Client request:', { url, fullUrl, config, options });
+    if (import.meta.env.DEV) {
+      console.log('🌐 HTTP Client request:', { url, fullUrl });
+    }
     return this.executeWithRetry(fullUrl, fetchOptions, timeout, retries);
   }
 
@@ -43,22 +45,12 @@ export class HttpClient {
     const url = `${config.staticPath}/${file}`;
     
     try {
-      if (import.meta.env.DEV) {
-        console.log(`📁 Static Call: ${url}`);
-        console.log(`📁 Config:`, config);
-      }
-      
       const response = await fetch(url);
       if (!response.ok) {
-        console.error(`❌ Static data error: ${response.status} ${response.statusText}`);
         throw this.createApiError(response, `Static Data Error`);
       }
       
-      const data = await response.json();
-      if (import.meta.env.DEV) {
-        console.log(`✅ Static data loaded: ${file}`, data);
-      }
-      return data;
+      return response.json();
     } catch (error) {
       console.error(`❌ Failed to fetch static data ${url}:`, error);
       throw error;
@@ -78,10 +70,6 @@ export class HttpClient {
 
     for (let attempt = 0; attempt <= retries; attempt++) {
       try {
-        if (import.meta.env.DEV) {
-          console.log(`🌐 API Call (attempt ${attempt + 1}): ${url}`);
-        }
-
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), timeout);
         

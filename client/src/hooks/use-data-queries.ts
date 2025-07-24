@@ -3,6 +3,7 @@ import { useApiCall, useApiQuery } from './use-api';
 import { api } from '@/lib/api';
 import type { 
   PersonalInfo, 
+  PersonalInfoWithParsedBio,
   WorkExperience, 
   Project, 
   Skill, 
@@ -15,12 +16,12 @@ import type {
 } from '@shared/schema';
 
 // Default fallback data
-const DEFAULT_PERSONAL_INFO: PersonalInfo = {
+const DEFAULT_PERSONAL_INFO: PersonalInfoWithParsedBio = {
   id: 1,
   firstName: '',
   lastName: '',
   title: '',
-  bio: '',
+  bio: [''],
   email: '',
   phone: '',
   location: '',
@@ -34,13 +35,10 @@ const DEFAULT_PERSONAL_INFO: PersonalInfo = {
 
 // Personal Information Hooks
 export const usePersonalInfo = () => {
-  console.log('🔍 usePersonalInfo hook called');
-  const result = useApiCall(
+  return useApiCall(
     api.getPersonalInfo,
     DEFAULT_PERSONAL_INFO
   );
-  console.log('🔍 usePersonalInfo result:', result);
-  return result;
 };
 
 // Work Experience Hooks

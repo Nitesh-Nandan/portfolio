@@ -147,7 +147,7 @@ function transformPersonalInfo(row) {
         firstName: row.first_name,
         lastName: row.last_name,
         title: row.title,
-        bio: row.bio,
+        bio: JSON.parse(row.bio), // Parse the JSON string into an array
         email: row.email,
         phone: row.phone,
         location: row.location,

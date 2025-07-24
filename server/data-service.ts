@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { eq, desc } from 'drizzle-orm';
 import { db } from './db';
 import { personalInfo, workExperience, projects, skills, books, courses, articles, testimonials, contactContent, footerContent, contactMessages } from '@shared/schema';
-import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, Testimonial, ContactContentWithParsedJson, FooterContentWithParsedJson, ContactMessage, InsertContactMessage } from '@shared/schema';
+import type { PersonalInfo, WorkExperience, Project, Skill, Book, Course, Article, Testimonial, ContactContentWithParsedJson, FooterContentWithParsedJson, PersonalInfoWithParsedBio, ContactMessage, InsertContactMessage } from '@shared/schema';
 
 class DataService {
   private dataPath = join(dirname(fileURLToPath(import.meta.url)), 'data/cache');
@@ -57,37 +57,71 @@ class DataService {
   }
 
   // === PERSONAL INFO ===
-  async getPersonalInfo(): Promise<PersonalInfo> {
-    return this.getFromDbWithFallback(
-      async () => {
-        const result = await db.select().from(personalInfo).limit(1);
-        return result[0] || null;
-      },
-      'personal-info.json',
-      {
-        id: 1,
-        firstName: '',
-        lastName: '',
-        title: '',
-        bio: '',
-        email: '',
-        phone: '',
-        location: '',
-        profileImage: '',
-        resumeUrl: '',
-        availability: 'available',
-        availabilityMessage: '',
-        updatedAt: new Date()
-      } as PersonalInfo
-    ) as Promise<PersonalInfo>;
+  async getPersonalInfo(): Promise<PersonalInfoWithParsedBio> {
+    // Try database first
+    try {
+      const dbResult = await db.select().from(personalInfo).limit(1);
+      if (dbResult[0]) {
+        const rawData = dbResult[0];
+        // Parse bio from database (it's stored as JSON string)
+        let bioArray: string[];
+        try {
+          bioArray = JSON.parse(rawData.bio);
+        } catch {
+          bioArray = [rawData.bio || ''];
+        }
+        
+        // If the first element is also a JSON string, parse it again
+        if (bioArray.length === 1 && typeof bioArray[0] === 'string') {
+          try {
+            const parsed = JSON.parse(bioArray[0]);
+            if (Array.isArray(parsed)) {
+              bioArray = parsed;
+            }
+          } catch {
+            // Keep original if parsing fails
+          }
+        }
+        
+        return {
+          ...rawData,
+          bio: bioArray
+        };
+      }
+    } catch (error) {
+      console.error('Database error, falling back to JSON:', error);
+    }
+
+    // Fallback to JSON file (bio is already an array)
+    return this.readJsonFile('personal-info.json', {
+      id: 1,
+      firstName: '',
+      lastName: '',
+      title: '',
+      bio: [''],
+      email: '',
+      phone: '',
+      location: '',
+      profileImage: '',
+      resumeUrl: '',
+      availability: 'available',
+      availabilityMessage: '',
+      updatedAt: new Date()
+    } as PersonalInfoWithParsedBio);
   }
 
   async updatePersonalInfo(data: Partial<PersonalInfo>): Promise<void> {
     try {
-      // Update database
-      await db.update(personalInfo).set(data).where(eq(personalInfo.id, 1));
+      // Prepare data for database (convert bio array to JSON string if present)
+      const dbData = { ...data };
+      if (data.bio && Array.isArray(data.bio)) {
+        dbData.bio = JSON.stringify(data.bio);
+      }
       
-      // Update JSON file
+      // Update database
+      await db.update(personalInfo).set(dbData).where(eq(personalInfo.id, 1));
+      
+      // Update JSON file (keep bio as array for JSON file)
       const current = await this.readJsonFile('personal-info.json', {});
       const updated = { ...current, ...data };
       writeFileSync(join(this.dataPath, 'personal-info.json'), JSON.stringify(updated, null, 2));

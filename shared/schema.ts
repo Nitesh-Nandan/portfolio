@@ -245,3 +245,7 @@ export interface FooterContentWithParsedJson extends Omit<FooterContent, 'quickL
   quickLinks: QuickLink[];
   socialLinks: SocialLinks;
 }
+
+export interface PersonalInfoWithParsedBio extends Omit<PersonalInfo, 'bio'> {
+  bio: string[];
+}

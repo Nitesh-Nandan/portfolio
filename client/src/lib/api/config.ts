@@ -28,14 +28,9 @@ export class ApiConfiguration {
     // Debug logging in development
     if (import.meta.env.DEV) {
       console.log('🔍 API Configuration:', {
-        VITE_API_MODE: mode,
-        VITE_API_BASE_URL: baseUrl,
-        VITE_STATIC_DATA_PATH: staticPath,
-        ENV_VARS: {
-          VITE_API_MODE: import.meta.env.VITE_API_MODE,
-          VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
-          VITE_STATIC_DATA_PATH: import.meta.env.VITE_STATIC_DATA_PATH
-        }
+        mode,
+        baseUrl,
+        staticPath
       });
     }
     
