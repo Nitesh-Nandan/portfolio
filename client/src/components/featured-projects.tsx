@@ -7,6 +7,36 @@ import { SectionCard, CardHeader, CardContentArea, CardFooter } from "@/componen
 import { TechnologyBadges } from "@/components/ui/technology-badges";
 import { ProjectActions } from "@/components/ui/project-actions";
 import { EmptyState } from "@/components/ui/empty-state";
+import { ExternalLink, Github } from "lucide-react";
+
+// Helper components for FeaturedProjects buttons
+function DemoButton({ liveUrl }: { liveUrl: string }) {
+  return (
+    <a 
+      href={liveUrl} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200"
+    >
+      <ExternalLink className="h-3 w-3" />
+      Demo
+    </a>
+  );
+}
+
+function CodeButton({ githubUrl }: { githubUrl: string }) {
+  return (
+    <a 
+      href={githubUrl} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 rounded-md transition-colors duration-200"
+    >
+      <Github className="h-3 w-3" />
+      Code
+    </a>
+  );
+}
 
 interface ProjectCardProps {
   project: Project;
@@ -45,12 +75,14 @@ function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </CardContentArea>
       
-      <CardFooter>
+      <CardFooter className="space-y-4 mt-auto">
         <TechnologyBadges technologies={project.technologies} />
-        <ProjectActions 
-          liveUrl={project.liveUrl ?? undefined}
-          githubUrl={project.githubUrl ?? undefined}
-        />
+        <div className="flex items-center justify-start pt-2">
+          <div className="flex gap-3">
+            {project.liveUrl && <DemoButton liveUrl={project.liveUrl} />}
+            {project.githubUrl && <CodeButton githubUrl={project.githubUrl} />}
+          </div>
+        </div>
       </CardFooter>
     </SectionCard>
   );
@@ -69,7 +101,7 @@ export default function FeaturedProjects() {
       {projects.map((project) => (
         <ProjectCard key={project.id} project={project} />
       ))}
-      
+
       {isEmpty && (
         <EmptyState message="No featured projects available." />
       )}
