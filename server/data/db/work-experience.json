@@ -14,7 +14,9 @@
       "Mentored junior developers and established best practices for backend development"
     ],
     "technologies": ["Java", "Spring Boot", "Microservices", "Kubernetes", "Redis", "MySQL", "GenAI", "RabbitMQ"],
-    "isCurrent": true
+    "projects": [],
+    "isCurrent": true,
+    "order": 0
   },
   {
     "id": 2,
@@ -31,7 +33,9 @@
       "Improved system reliability from 99.5% to 99.9% uptime"
     ],
     "technologies": ["Python", "Django", "PostgreSQL", "Docker", "AWS", "Kafka", "ElasticSearch"],
-    "isCurrent": false
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
   },
   {
     "id": 3,
@@ -48,7 +52,9 @@
       "Developed CI/CD pipeline reducing deployment time from hours to minutes"
     ],
     "technologies": ["Java", "Spring Boot", "React", "MongoDB", "Jenkins", "Docker", "AWS"],
-    "isCurrent": false
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
   },
   {
     "id": 4,
@@ -65,6 +71,8 @@
       "Contributed to open-source data processing libraries"
     ],
     "technologies": ["Python", "Machine Learning", "Computer Vision", "TensorFlow", "Flask", "React"],
-    "isCurrent": false
+    "projects": [],
+    "isCurrent": false,
+    "order": 0
   }
 ] 

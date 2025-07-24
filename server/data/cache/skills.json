@@ -30,6 +30,16 @@
     "is_deleted": false
   },
   {
+    "id": 19,
+    "name": "MCP Server",
+    "category": "Backend",
+    "proficiency": 8,
+    "yearsExperience": 4,
+    "featured": true,
+    "order": 4,
+    "is_deleted": false
+  },
+  {
     "id": 4,
     "name": "Microservices",
     "category": "Backend",

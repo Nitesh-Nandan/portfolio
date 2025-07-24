@@ -177,6 +177,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Testimonials
+  app.get("/api/testimonials", async (req, res) => {
+    try {
+      const testimonials = await dataService.getTestimonials();
+      res.json(testimonials);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      res.status(500).json({ message: "Failed to fetch testimonials" });
+    }
+  });
+
+  app.get("/api/testimonials/active", async (req, res) => {
+    try {
+      const testimonials = await dataService.getActiveTestimonials();
+      res.json(testimonials);
+    } catch (error) {
+      console.error("Error fetching active testimonials:", error);
+      res.status(500).json({ message: "Failed to fetch active testimonials" });
+    }
+  });
+
   // Contact Content
   app.get("/api/contact-content", async (req, res) => {
     try {

@@ -3,6 +3,7 @@ import { useApiCall, useApiQuery } from './use-api';
 import { api } from '@/lib/api';
 import type { 
   PersonalInfo, 
+  PersonalInfoWithParsedBio,
   WorkExperience, 
   Project, 
   Skill, 
@@ -15,12 +16,12 @@ import type {
 } from '@shared/schema';
 
 // Default fallback data
-const DEFAULT_PERSONAL_INFO: PersonalInfo = {
+const DEFAULT_PERSONAL_INFO: PersonalInfoWithParsedBio = {
   id: 1,
   firstName: '',
   lastName: '',
   title: '',
-  bio: '',
+  bio: [''],
   email: '',
   phone: '',
   location: '',
@@ -137,10 +138,10 @@ export const useFooterContent = () => useApiCall(
     copyrightText: 'All rights reserved.',
     isDeleted: false,
     quickLinks: [
-      { label: 'Home', href: '/' },
-      { label: 'Projects', href: '/projects' },
-      { label: 'Experience', href: '/experience' },
-      { label: 'Contact', href: '/contact' }
+      { label: 'Home', path: '/' },
+      { label: 'Projects', path: '/projects' },
+      { label: 'Experience', path: '/experience' },
+      { label: 'Contact', path: '/contact' }
     ],
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/niteshnandan',

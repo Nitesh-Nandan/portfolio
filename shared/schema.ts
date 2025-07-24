@@ -33,6 +33,7 @@ export const workExperience = pgTable("work_experience", {
   description: text("description"),
   achievements: text("achievements").array(),
   technologies: text("technologies").array(),
+  projects: text("projects").array(),
   isCurrent: boolean("is_current").default(false),
   order: integer("order").default(0),
   isDeleted: boolean("is_deleted").default(false),
@@ -243,4 +244,8 @@ export interface ContactContentWithParsedJson extends Omit<ContactContent, 'soci
 export interface FooterContentWithParsedJson extends Omit<FooterContent, 'quickLinksJson' | 'socialLinksJson'> {
   quickLinks: QuickLink[];
   socialLinks: SocialLinks;
+}
+
+export interface PersonalInfoWithParsedBio extends Omit<PersonalInfo, 'bio'> {
+  bio: string[];
 }
