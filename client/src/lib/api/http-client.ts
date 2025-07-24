@@ -31,6 +31,7 @@ export class HttpClient {
       ? new URL(url, config.baseUrl).toString()
       : url;
 
+    console.log('🌐 HTTP Client request:', { url, fullUrl, config, options });
     return this.executeWithRetry(fullUrl, fetchOptions, timeout, retries);
   }
 

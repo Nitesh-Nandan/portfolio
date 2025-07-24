@@ -65,6 +65,8 @@ export class ApiConfiguration {
   public getStaticPath(): string {
     return this.config.staticPath;
   }
+
+
 }
 
 // Export singleton instance

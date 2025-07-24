@@ -34,10 +34,13 @@ const DEFAULT_PERSONAL_INFO: PersonalInfo = {
 
 // Personal Information Hooks
 export const usePersonalInfo = () => {
-  return useApiCall(
+  console.log('🔍 usePersonalInfo hook called');
+  const result = useApiCall(
     api.getPersonalInfo,
     DEFAULT_PERSONAL_INFO
   );
+  console.log('🔍 usePersonalInfo result:', result);
+  return result;
 };
 
 // Work Experience Hooks
@@ -137,10 +140,10 @@ export const useFooterContent = () => useApiCall(
     copyrightText: 'All rights reserved.',
     isDeleted: false,
     quickLinks: [
-      { label: 'Home', href: '/' },
-      { label: 'Projects', href: '/projects' },
-      { label: 'Experience', href: '/experience' },
-      { label: 'Contact', href: '/contact' }
+      { label: 'Home', path: '/' },
+      { label: 'Projects', path: '/projects' },
+      { label: 'Experience', path: '/experience' },
+      { label: 'Contact', path: '/contact' }
     ],
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/niteshnandan',
