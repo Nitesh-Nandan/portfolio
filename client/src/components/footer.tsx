@@ -132,9 +132,9 @@ export default function Footer() {
               >
                 <Mail className="h-5 w-5" />
               </a>
-              {contactInfo.resumeUrl && (
+              {personalInfo?.resumeUrl && (
                 <a 
-                  href={contactInfo.resumeUrl} 
+                  href={personalInfo.resumeUrl} 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 p-2.5 rounded-lg hover:scale-105"
@@ -161,7 +161,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-
             </ul>
           </div>
           
