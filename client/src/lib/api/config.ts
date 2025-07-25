@@ -61,6 +61,9 @@ export class ApiConfiguration {
     return this.config.staticPath;
   }
 
+  public getContactUrl(): string {
+    return envConfig.api.contactUrl;
+  }
 
 }
 

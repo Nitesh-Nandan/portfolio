@@ -13,6 +13,7 @@ import type {
   FooterContentWithParsedJson,
   Testimonial
 } from '@shared/schema';
+import type { RequestOptions } from './types';
 import type { ContactFormData, AdminActionResponse } from './types';
 
 /**
@@ -39,7 +40,7 @@ abstract class BaseApiService {
   /**
    * Filter out deleted items from arrays
    */
-  protected filterDeletedItems<T extends { isDeleted?: boolean }>(items: T[]): T[] {
+  protected filterDeletedItems<T extends { isDeleted?: boolean | null }>(items: T[]): T[] {
     return items.filter(item => !item.isDeleted);
   }
 }
@@ -225,13 +226,27 @@ export class ContentService extends BaseApiService {
     if (apiConfig.isStaticMode()) {
       // In static mode, just simulate success
       console.log('📧 Contact form submission (static mode):', data);
-      return { message: 'Thank you for your message! I will get back to you soon.' };
+      this.makeRequest(`${apiConfig.getContactUrl()}/api/contact`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_CONTACT_ACCESS_TOKEN}`
+        },
+        body: JSON.stringify(data),
+        timeout: 30000, // 30 seconds timeout for external contact API
+      } as RequestOptions);
+      return { message: 'Thank you for your message! I will get back to you soon.' }; 
     }
+    
     return this.makeRequest(this.getRequestUrl('/contact'), {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.ACCESS_TOKEN}`
+      },
       body: JSON.stringify(data),
-    });
+      timeout: 30000, // 30 seconds timeout for contact API
+    } as RequestOptions);
   }
 }
 
