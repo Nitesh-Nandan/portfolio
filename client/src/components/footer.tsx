@@ -161,19 +161,7 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              {contactInfo.resumeUrl && (
-                <li>
-                  <a 
-                    href={contactInfo.resumeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left w-full cursor-pointer block flex items-center"
-                  >
-                    <FileText className="h-4 w-4 mr-2 flex-shrink-0" />
-                    Resume
-                  </a>
-                </li>
-              )}
+
             </ul>
           </div>
           
