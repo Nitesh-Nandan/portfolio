@@ -7,7 +7,7 @@ import { Skeleton } from './skeleton';
 export function DataLoadingState({ message = 'Loading...' }: { message?: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 space-y-4">
-      <LoadingSpinner size="lg" />
+      <LoadingSpinner />
       <p className="text-gray-500 text-sm">{message}</p>
     </div>
   );

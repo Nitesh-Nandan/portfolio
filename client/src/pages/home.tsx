@@ -6,7 +6,7 @@ import RecentReads from "@/components/recent-reads";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Briefcase, MessageCircle, BookOpen } from "lucide-react";
+import { ArrowRight, Briefcase, MessageCircle, BookOpen, FileText } from "lucide-react";
 import { Link } from "wouter";
 import { useSkills, usePersonalInfo, useFooterContent } from "@/hooks/use-data-queries";
 import { SocialLinks } from "@/components/ui/social-links";
@@ -49,7 +49,7 @@ function HeroSection() {
                 <div className="w-full h-full bg-gray-200 animate-pulse" />
               ) : (
                 <img 
-                  src={personalInfo?.profileImage || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"} 
+                  src={personalInfo?.profileImage || "/images/profile-4.png"} 
                   alt={`${personalInfo?.firstName} ${personalInfo?.lastName} - Professional`}
                   className="w-full h-full object-cover"
                 />
@@ -110,6 +110,18 @@ function HeroSection() {
                 }}
                 size="md"
               />
+              {/* Resume Link */}
+              {personalInfo?.resumeUrl && (
+                <a 
+                  href={personalInfo.resumeUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="ml-4 p-3 h-10 w-10 rounded-full bg-purple-50 text-purple-600 hover:bg-purple-100 hover:text-purple-700 transition-all duration-200 group"
+                  title="Download Resume"
+                >
+                  <FileText className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+                </a>
+              )}
             </div>
             
             {/* Action Buttons */}

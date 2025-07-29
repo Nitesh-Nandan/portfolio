@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter, FileText } from "lucide-react";
 import { usePersonalInfo, useFooterContent } from "@/hooks/use-data-queries";
 import { DataLoadingState, DataErrorState } from "@/components/ui/loading-states";
 import { Link } from "wouter";
@@ -132,6 +132,17 @@ export default function Footer() {
               >
                 <Mail className="h-5 w-5" />
               </a>
+              {personalInfo?.resumeUrl && (
+                <a 
+                  href={personalInfo.resumeUrl} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 text-white transition-all duration-300 p-2.5 rounded-lg hover:scale-105"
+                  title="Download Resume"
+                >
+                  <FileText className="h-5 w-5" />
+                </a>
+              )}
             </div>
           </div>
           

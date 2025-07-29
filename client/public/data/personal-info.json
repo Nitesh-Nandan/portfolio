@@ -12,8 +12,8 @@
   "phone": "+91 9955328756",
   "location": "Bengaluru, Karnataka, India",
   "profileImage": "/images/profile-4.png",
-  "resumeUrl": "",
+  "resumeUrl": "/files/NiteshNandanResume.pdf",
   "availability": "available",
   "availabilityMessage": "Available for new projects",
-  "is_deleted": false
+  "isDeleted": false
 }

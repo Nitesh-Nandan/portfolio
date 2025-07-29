@@ -120,9 +120,7 @@ async function syncData() {
       const personalDbData = {
         ...personalData,
         bio: JSON.stringify(personalData.bio), // Convert array to JSON string for database
-        isDeleted: personalData.is_deleted,
-        // Remove the snake_case version to avoid conflicts
-        is_deleted: undefined
+        isDeleted: personalData.isDeleted
       };
       await upsertSingleRecord(personalInfo, personalDbData, 'Personal Info');
     }
@@ -137,9 +135,8 @@ async function syncData() {
       // Transform snake_case to camelCase for projects
       const transformedProjects = projectData.map(project => ({
         ...project,
-        isDeleted: project.is_deleted,
-        // Remove the snake_case version to avoid conflicts
-        is_deleted: undefined
+        lastCommitDate: project.last_commit_date,
+        isDeleted: project.isDeleted
       }));
       await upsertRecords(projects, transformedProjects, 'Projects');
     } else {
@@ -152,9 +149,7 @@ async function syncData() {
       // Transform snake_case to camelCase for skills
       const transformedSkills = skillData.map(skill => ({
         ...skill,
-        isDeleted: skill.is_deleted,
-        // Remove the snake_case version to avoid conflicts
-        is_deleted: undefined
+        isDeleted: skill.isDeleted
       }));
       await upsertRecords(skills, transformedSkills, 'Skills');
     } else {
@@ -167,9 +162,7 @@ async function syncData() {
       // Transform snake_case to camelCase for books
       const transformedBooks = bookData.map(book => ({
         ...book,
-        isDeleted: book.is_deleted,
-        // Remove the snake_case version to avoid conflicts
-        is_deleted: undefined
+        isDeleted: book.isDeleted
       }));
       await upsertRecords(books, transformedBooks, 'Books');
     } else {
@@ -190,9 +183,7 @@ async function syncData() {
       // Transform snake_case to camelCase for testimonials
       const transformedTestimonials = testimonialData.map(testimonial => ({
         ...testimonial,
-        isDeleted: testimonial.is_deleted,
-        // Remove the snake_case version to avoid conflicts
-        is_deleted: undefined
+        isDeleted: testimonial.isDeleted
       }));
       await upsertRecords(testimonials, transformedTestimonials, 'Testimonials');
     } else {
