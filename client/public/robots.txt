@@ -1,0 +1,30 @@
+# Robots.txt for Nitesh Nandan's Portfolio
+# Lead Software Engineer at Wayfair | GenAI Enthusiast | Builder at Heart
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Allow crawling of important assets
+Allow: /images/
+Allow: /files/
+Allow: /data/
+
+# Disallow admin area (development only)
+Disallow: /admin
+
+# Disallow API endpoints (if any)
+Disallow: /api/
+
+# Disallow temporary or cache files
+Disallow: /cache/
+Disallow: /temp/
+
+# Crawl delay for respectful crawling (optional)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://niteshnandan.in/sitemap.xml
+
+# Image sitemap for better image SEO
+Sitemap: https://niteshnandan.in/sitemap-images.xml 

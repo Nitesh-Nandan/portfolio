@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home page with profile image -->
+  <url>
+    <loc>https://niteshnandan.in/</loc>
+    <image:image>
+      <image:loc>https://niteshnandan.in/images/profile-4.png</image:loc>
+      <image:title>Nitesh Nandan - Lead Software Engineer at Wayfair</image:title>
+      <image:caption>Professional headshot of Nitesh Nandan, Lead Software Engineer specializing in GenAI and distributed systems</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Projects page with project images -->
+  <url>
+    <loc>https://niteshnandan.in/projects</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&amp;h=400&amp;fit=crop</image:loc>
+      <image:title>Collab Notebooks - Collaborative Jupyter Environment</image:title>
+      <image:caption>Data science collaboration platform with real-time features</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&amp;h=400&amp;fit=crop</image:loc>
+      <image:title>Upstox MCP Server - Trading Platform Integration</image:title>
+      <image:caption>Model Context Protocol server for real-time trading operations</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&amp;h=400&amp;fit=crop</image:loc>
+      <image:title>Portfolio Website - React TypeScript Portfolio</image:title>
+      <image:caption>Modern portfolio built with React, TypeScript, and Tailwind CSS</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&amp;h=400&amp;fit=crop</image:loc>
+      <image:title>Generative AI Projects</image:title>
+      <image:caption>Collection of generative AI experiments and model training</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Favicon and brand assets -->
+  <url>
+    <loc>https://niteshnandan.in/</loc>
+    <image:image>
+      <image:loc>https://niteshnandan.in/favicon.svg</image:loc>
+      <image:title>Nitesh Nandan Portfolio Favicon</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://niteshnandan.in/favicon-gradient.svg</image:loc>
+      <image:title>Nitesh Nandan Portfolio Gradient Favicon</image:title>
+    </image:image>
+  </url>
+  
+</urlset> 
