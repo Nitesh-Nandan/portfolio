@@ -50,20 +50,20 @@ export default function ContactPage() {
               <h1 
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8"
                 dangerouslySetInnerHTML={{ 
-                  __html: contactContent?.letsConnect?.heading || "Let's Connect" 
+                  __html: contactContent?.heading || "Let's Connect" 
                 }}
               />
               <div className="max-w-3xl mx-auto space-y-6">
                 <div 
                   className="text-xl text-muted-foreground leading-relaxed"
                   dangerouslySetInnerHTML={{ 
-                    __html: contactContent?.letsConnect?.intro || "Hi there! I'm a passionate <strong>Backend Engineer</strong> specializing in scalable distributed systems, microservices architecture, and GenAI solutions." 
+                    __html: contactContent?.subheading || "Hi there! I'm a passionate <strong>Backend Engineer</strong> specializing in scalable distributed systems, microservices architecture, and GenAI solutions." 
                   }}
                 />
                 <div 
                   className="text-lg text-muted-foreground leading-relaxed"
                   dangerouslySetInnerHTML={{ 
-                    __html: contactContent?.letsConnect?.description || "Whether you want to collaborate on exciting projects, discuss technology, or just say hello - I'd love to hear from you!" 
+                    __html: contactContent?.statusMessage || "Whether you want to collaborate on exciting projects, discuss technology, or just say hello - I'd love to hear from you!" 
                   }}
                 />
               
@@ -115,7 +115,7 @@ export default function ContactPage() {
                 <div 
                   className="text-lg text-foreground font-medium pt-4"
                   dangerouslySetInnerHTML={{ 
-                    __html: contactContent?.letsConnect?.cta || "Drop me a message below!" 
+                    __html: contactContent?.formTitle || "Drop me a message below!" 
                   }}
                 />
               </div>

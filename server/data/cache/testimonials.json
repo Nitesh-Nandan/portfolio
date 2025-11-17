@@ -1,12 +1,1 @@
-[
-  {
-    "id": 1,
-    "name": "Sarah Johnson",
-    "role": "Senior Engineering Manager",
-    "company": "TechCorp",
-    "content": "Nitesh is an exceptional backend engineer who consistently delivers high-quality, scalable solutions. His expertise in microservices architecture and GenAI has been invaluable to our team.",
-    "rating": 5,
-    "avatar": "SJ",
-    "is_deleted": false
-  }
-]
+[]

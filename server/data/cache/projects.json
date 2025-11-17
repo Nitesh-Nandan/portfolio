@@ -1,10 +1,62 @@
 [
   {
     "id": 1,
-    "title": "Personal Portfolio Website",
+    "title": "Collab Notebooks",
     "description": [
-      "A modern, responsive portfolio website built with <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>",
-      "Features a clean design with <em>dark mode toggle</em> and optimized performance"
+      "Collaborative Jupyter notebook environment for data science projects",
+      "Real-time collaboration features with version control integration",
+      "Support for multiple programming languages and data visualization"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Jupyter Notebook",
+      "Python",
+      "Data Science"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Collab-Notebooks",
+    "featured": true,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-01-21T09:03:03Z",
+    "isDeleted": false
+  },
+  {
+    "id": 3,
+    "title": "Upstox MCP Server",
+    "description": [
+      "Model Context Protocol server for Upstox trading platform integration",
+      "Real-time market data and trading operations",
+      "Secure API endpoints with authentication"
+    ],
+    "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "MCP",
+      "Trading API",
+      "WebSocket"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/upstox-mcp-server",
+    "featured": true,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-07-15T18:48:18Z",
+    "isDeleted": false
+  },
+  {
+    "id": 2,
+    "title": "Portfolio",
+    "description": [
+      "Modern portfolio website built with React and TypeScript",
+      "Responsive design with dark mode and smooth animations",
+      "Deployed on Vercel with CI/CD pipeline"
     ],
     "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
     "images": [],
@@ -12,66 +64,926 @@
       "React",
       "TypeScript",
       "Tailwind CSS",
-      "Node.js",
-      "Express"
+      "Vercel"
     ],
-    "liveUrl": "https://yourportfolio.com",
-    "githubUrl": "https://github.com/yourusername/portfolio",
+    "liveUrl": "https://portfolio-gamma-black-32.vercel.app",
+    "githubUrl": "https://github.com/Nitesh-Nandan/portfolio",
     "featured": true,
     "status": "completed",
     "challenges": [],
     "learnings": [],
-    "order": 1,
-    "is_deleted": false
+    "order": 0,
+    "lastCommitDate": "2025-07-24T17:21:54Z",
+    "isDeleted": false
   },
   {
-    "id": 2,
-    "title": "E-commerce Backend API",
+    "id": 6,
+    "title": "Generative AI",
     "description": [
-      "RESTful API for an e-commerce platform with <strong>user authentication</strong> and authorization",
-      "Comprehensive <strong>product management</strong> system with inventory tracking"
+      "Collection of generative AI projects and experiments",
+      "Text generation and creative AI applications",
+      "Model training and fine-tuning implementations"
     ],
-    "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
     "images": [],
     "technologies": [
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "JWT",
-      "Stripe API"
+      "Python",
+      "AI/ML",
+      "Generative Models",
+      "Deep Learning"
     ],
     "liveUrl": null,
-    "githubUrl": "https://github.com/yourusername/ecommerce-api",
-    "featured": true,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Generative-AI",
+    "featured": false,
     "status": "completed",
     "challenges": [],
     "learnings": [],
-    "order": 2,
-    "is_deleted": false
+    "order": 0,
+    "lastCommitDate": "2025-01-10T08:30:04Z",
+    "isDeleted": false
   },
   {
-    "id": 3,
-    "title": "Task Management App",
+    "id": 7,
+    "title": "Low Level Design",
     "description": [
-      "A collaborative task management application with <strong>real-time updates</strong> using <code>Socket.io</code>",
-      "Advanced <strong>file attachment</strong> system with cloud storage integration"
+      "Object-oriented design patterns and principles",
+      "System architecture and component design",
+      "Java implementations of design patterns"
     ],
-    "image": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Design Patterns",
+      "OOP",
+      "System Design"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/low-level-design",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-05-20T17:52:16Z",
+    "isDeleted": false
+  },
+  {
+    "id": 8,
+    "title": "Master System Python",
+    "description": [
+      "System design implementations in Python",
+      "Distributed systems and microservices",
+      "Performance optimization and scalability patterns"
+    ],
+    "image": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "System Design",
+      "Microservices",
+      "Distributed Systems"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/master-system-python",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-09-24T08:15:03Z",
+    "isDeleted": false
+  },
+  {
+    "id": 9,
+    "title": "Master System Java",
+    "description": [
+      "System design patterns implemented in Java",
+      "Enterprise architecture and design principles",
+      "Scalable and maintainable code structures"
+    ],
+    "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "System Design",
+      "Enterprise Architecture",
+      "Design Patterns"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/master-system-java",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-06T12:53:24Z",
+    "isDeleted": false
+  },
+  {
+    "id": 10,
+    "title": "System Infrastructure Setups",
+    "description": [
+      "Infrastructure automation and deployment scripts",
+      "Cloud platform configurations and setup",
+      "DevOps practices and tooling"
+    ],
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "DevOps",
+      "Infrastructure",
+      "Cloud Computing"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/system-infra-setups",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-07-03T16:48:53Z",
+    "isDeleted": false
+  },
+  {
+    "id": 11,
+    "title": "Server Sent Events",
+    "description": [
+      "Real-time communication using Server-Sent Events",
+      "Event-driven architecture implementation",
+      "Client-server bidirectional communication"
+    ],
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "SSE",
+      "Real-time",
+      "Event-driven"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/server-sent-events",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-15T12:02:10Z",
+    "isDeleted": false
+  },
+  {
+    "id": 12,
+    "title": "Spring Test Project",
+    "description": [
+      "Spring Boot application with testing frameworks",
+      "Unit and integration testing implementations",
+      "Test-driven development practices"
+    ],
+    "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Testing",
+      "JUnit"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/spring-test-project",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-06-10T19:01:53Z",
+    "isDeleted": false
+  },
+  {
+    "id": 13,
+    "title": "Quiz Game",
+    "description": [
+      "Interactive quiz application with scoring system",
+      "Multiple choice questions and user feedback",
+      "Responsive design for mobile and desktop"
+    ],
+    "image": "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Game Development"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/quiz-game",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-16T21:11:11Z",
+    "isDeleted": false
+  },
+  {
+    "id": 14,
+    "title": "GitHub Actions Hero",
+    "description": [
+      "CI/CD pipeline automation with GitHub Actions",
+      "Automated testing and deployment workflows",
+      "Build and release management"
+    ],
+    "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "GitHub Actions",
+      "CI/CD",
+      "Automation",
+      "DevOps"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/github-actions-hero",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-15T14:00:48Z",
+    "isDeleted": false
+  },
+  {
+    "id": 15,
+    "title": "Nitesh Nandan GitHub IO",
+    "description": [
+      "Personal GitHub Pages website",
+      "Static site generation and hosting",
+      "Professional profile and project showcase"
+    ],
+    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "GitHub Pages",
+      "HTML",
+      "CSS",
+      "Static Site"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/nitesh-nandan.github.io",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-15T12:04:07Z",
+    "isDeleted": false
+  },
+  {
+    "id": 16,
+    "title": "Obsidian Vault",
+    "description": [
+      "Personal knowledge management system",
+      "Note-taking and documentation organization",
+      "Markdown-based content management"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Obsidian",
+      "Markdown",
+      "Knowledge Management",
+      "Documentation"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/obsidian",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-05-28T18:35:25Z",
+    "isDeleted": false
+  },
+  {
+    "id": 18,
+    "title": "Kafka Learning",
+    "description": [
+      "Apache Kafka implementation and learning projects",
+      "Message streaming and event processing",
+      "Real-time data pipeline development"
+    ],
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Apache Kafka",
+      "Event Streaming",
+      "Real-time Processing"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/kafka-learn",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-02-19T01:17:02Z",
+    "isDeleted": false
+  },
+  {
+    "id": 19,
+    "title": "System Design",
+    "description": [
+      "System design patterns and implementations",
+      "Scalable architecture solutions",
+      "Performance optimization techniques"
+    ],
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "System Design",
+      "Architecture",
+      "Scalability"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/system-design",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2022-11-09T16:38:28Z",
+    "isDeleted": false
+  },
+  {
+    "id": 20,
+    "title": "DSA Java",
+    "description": [
+      "Data structures and algorithms in Java",
+      "Problem-solving implementations and solutions",
+      "Algorithm optimization and analysis"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Data Structures",
+      "Algorithms",
+      "Problem Solving"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/dsa-java",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-07-17T14:02:55Z",
+    "isDeleted": false
+  },
+  {
+    "id": 21,
+    "title": "Interview Room",
+    "description": [
+      "Interview preparation and practice problems",
+      "Coding challenges and solutions",
+      "Technical interview resources"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Interview Prep",
+      "Coding Challenges",
+      "Problem Solving"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/interviewroom",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-08-10T19:15:53Z",
+    "isDeleted": false
+  },
+  {
+    "id": 22,
+    "title": "Spring Transaction",
+    "description": [
+      "Spring transaction management implementations",
+      "Database transaction handling and rollback",
+      "ACID properties and consistency"
+    ],
+    "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Spring",
+      "Transactions",
+      "Database"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/spring-transaction",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2022-03-01T11:39:27Z",
+    "isDeleted": false
+  },
+  {
+    "id": 23,
+    "title": "DSA",
+    "description": [
+      "Data structures and algorithms practice",
+      "Fundamental programming concepts",
+      "Problem-solving methodologies"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Data Structures",
+      "Algorithms",
+      "Programming"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/dsa",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-12-13T05:10:38Z",
+    "isDeleted": false
+  },
+  {
+    "id": 24,
+    "title": "Kubernetes Argo",
+    "description": [
+      "Kubernetes deployment with Argo CD",
+      "GitOps workflow and continuous deployment",
+      "Container orchestration and management"
+    ],
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Kubernetes",
+      "Argo CD",
+      "GitOps",
+      "DevOps"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/kubernetes-argo",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-01-11T19:50:52Z",
+    "isDeleted": false
+  },
+  {
+    "id": 25,
+    "title": "Microservice",
+    "description": [
+      "Microservices architecture implementation",
+      "Service decomposition and API design",
+      "Inter-service communication patterns"
+    ],
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Microservices",
+      "API Design",
+      "Architecture"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/microservice",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-10-10T20:06:53Z",
+    "isDeleted": false
+  },
+  {
+    "id": 26,
+    "title": "My App",
+    "description": [
+      "Java application development project",
+      "Core Java concepts and implementations",
+      "Object-oriented programming practices"
+    ],
+    "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "OOP",
+      "Application Development",
+      "Core Java"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/my-app",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-10-20T02:33:23Z",
+    "isDeleted": false
+  },
+  {
+    "id": 27,
+    "title": "Java Project",
+    "description": [
+      "Java programming fundamentals and practice",
+      "Basic Java concepts and syntax",
+      "Programming exercises and examples"
+    ],
+    "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Programming",
+      "Fundamentals",
+      "Core Java"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/java-project",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-10-10T17:02:14Z",
+    "isDeleted": false
+  },
+  {
+    "id": 28,
+    "title": "Coffee Machine",
+    "description": [
+      "Coffee machine simulation project",
+      "State management and object modeling",
+      "Java programming practice application"
+    ],
+    "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Simulation",
+      "State Management",
+      "OOP"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/coffee_machine",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-05-26T00:47:14Z",
+    "isDeleted": false
+  },
+  {
+    "id": 29,
+    "title": "Availability Tracker",
+    "description": [
+      "Availability tracking and scheduling system",
+      "Time management and resource allocation",
+      "JavaScript-based web application"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "JavaScript",
+      "Scheduling",
+      "Time Management",
+      "Web App"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Availability-Tracker",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-05-08T14:01:09Z",
+    "isDeleted": false
+  },
+  {
+    "id": 30,
+    "title": "File Handling",
+    "description": [
+      "File operations and data processing",
+      "Input/output operations in Java",
+      "File system manipulation utilities"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "File I/O",
+      "Data Processing",
+      "Utilities"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/file-handling",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-08-03T13:52:32Z",
+    "isDeleted": false
+  },
+  {
+    "id": 31,
+    "title": "Gatling Project",
+    "description": [
+      "Performance testing with Gatling framework",
+      "Load testing and stress testing scenarios",
+      "Scala-based testing automation"
+    ],
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Scala",
+      "Gatling",
+      "Performance Testing",
+      "Load Testing"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/gatling_project",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2021-08-12T16:04:50Z",
+    "isDeleted": false
+  },
+  {
+    "id": 17,
+    "title": "Microservice Architecture",
+    "description": [
+      "Microservices design patterns and implementations",
+      "Service communication and API design",
+      "Distributed system architecture"
+    ],
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Microservices",
+      "API Design",
+      "Distributed Systems",
+      "Architecture"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/microservice-architecture",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-07-29T12:08:43Z",
+    "isDeleted": false
+  },
+  {
+    "id": 34,
+    "title": "React Fundamental",
+    "description": [
+      "React fundamentals and core concepts",
+      "Component lifecycle and state management",
+      "Basic React application development"
+    ],
+    "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",
     "images": [],
     "technologies": [
       "React",
-      "Socket.io",
-      "MongoDB",
-      "Express",
-      "Material-UI"
+      "JavaScript",
+      "Frontend",
+      "Web Development"
     ],
-    "liveUrl": "https://taskapp.com",
-    "githubUrl": "https://github.com/yourusername/task-app",
-    "featured": true,
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/React-Fundamental",
+    "featured": false,
     "status": "completed",
     "challenges": [],
     "learnings": [],
-    "order": 3,
-    "is_deleted": false
+    "order": 0,
+    "lastCommitDate": "2021-05-10T02:59:17Z",
+    "isDeleted": false
+  },
+  {
+    "id": 35,
+    "title": "OOD Design",
+    "description": [
+      "Object-oriented design principles",
+      "Design patterns and best practices",
+      "Java OOP implementation examples"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "OOP",
+      "Design Patterns",
+      "Object-Oriented Design"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/ood-design",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2020-11-16T05:10:04Z",
+    "isDeleted": false
+  },
+  {
+    "id": 36,
+    "title": "Concurrency",
+    "description": [
+      "Java concurrency and multithreading",
+      "Thread management and synchronization",
+      "Concurrent programming patterns"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Java",
+      "Concurrency",
+      "Multithreading",
+      "Synchronization"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/concurrency",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2020-11-08T17:43:07Z",
+    "isDeleted": false
+  },
+  {
+    "id": 37,
+    "title": "PDFs",
+    "description": [
+      "PDF document management and processing",
+      "Document storage and organization",
+      "File management utilities"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "PDF",
+      "Document Management",
+      "File Organization",
+      "Storage"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/pdfs",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2020-08-06T05:26:06Z",
+    "isDeleted": false
+  },
+  {
+    "id": 38,
+    "title": "Automation",
+    "description": [
+      "Shell scripting and automation tools",
+      "System administration automation",
+      "Process automation and optimization"
+    ],
+    "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Shell",
+      "Automation",
+      "Scripting",
+      "System Administration"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Automation",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2018-09-17T08:37:11Z",
+    "isDeleted": false
+  },
+  {
+    "id": 39,
+    "title": "Node 101",
+    "description": [
+      "Node.js fundamentals and basics",
+      "Server-side JavaScript development",
+      "Backend development with Node.js"
+    ],
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Node.js",
+      "JavaScript",
+      "Backend",
+      "Server-side"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/node-101",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2023-11-13T07:08:22Z",
+    "isDeleted": false
+  },
+  {
+    "id": 40,
+    "title": "Nitesh Nandan",
+    "description": [
+      "Personal GitHub profile and portfolio",
+      "Professional information and achievements",
+      "GitHub profile customization"
+    ],
+    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "GitHub",
+      "Profile",
+      "Portfolio",
+      "Personal Branding"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Nitesh-Nandan",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2024-08-08T10:46:46Z",
+    "isDeleted": false
+  },
+  {
+    "id": 4,
+    "title": "MCP Server Deployment",
+    "description": [
+      "Deployment configurations for MCP servers",
+      "Docker containerization and cloud deployment",
+      "Automated CI/CD pipeline setup"
+    ],
+    "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "Docker",
+      "CI/CD",
+      "Cloud Deployment"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/mcp-server-deployment",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-07-05T06:50:02Z",
+    "isDeleted": false
+  },
+  {
+    "id": 5,
+    "title": "Research Paper AI Assistant",
+    "description": [
+      "AI-powered assistant for research paper analysis",
+      "Natural language processing for academic content",
+      "Automated summarization and key insights extraction"
+    ],
+    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop",
+    "images": [],
+    "technologies": [
+      "Python",
+      "AI/ML",
+      "NLP",
+      "Research Tools"
+    ],
+    "liveUrl": null,
+    "githubUrl": "https://github.com/Nitesh-Nandan/Research-Paper-AI-Assistant",
+    "featured": false,
+    "status": "completed",
+    "challenges": [],
+    "learnings": [],
+    "order": 0,
+    "lastCommitDate": "2025-03-23T16:24:15Z",
+    "isDeleted": false
   }
 ]

@@ -2,7 +2,7 @@
   "id": 1,
   "firstName": "Nitesh",
   "lastName": "Nandan",
-  "title": "Senior Software Engineer at Wayfair (L3) | GenAI Enthusiast | Builder at Heart",
+  "title": "Lead Software Engineer at Wayfair (L3) | GenAI Enthusiast | Builder at Heart",
   "bio": [
     "7+ years of experience building <strong>scalable, reliable systems</strong>.",
     "Proven in architecting <em>distributed microservices</em> and delivering <strong>high-throughput, real-time solutions</strong>.",
@@ -12,8 +12,8 @@
   "phone": "+91 9955328756",
   "location": "Bengaluru, Karnataka, India",
   "profileImage": "/images/profile-4.png",
-  "resumeUrl": "",
+  "resumeUrl": "/files/NiteshNandanResume.pdf",
   "availability": "available",
   "availabilityMessage": "Available for new projects",
-  "is_deleted": false
+  "isDeleted": false
 }

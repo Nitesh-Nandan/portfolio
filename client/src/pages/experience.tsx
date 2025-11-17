@@ -23,8 +23,8 @@ export default function ExperiencePage() {
     queryFn: api.getTestimonials,
   });
 
-  // Check if there are any active testimonials
-  const hasActiveTestimonials = testimonials?.some(testimonial => !testimonial.is_deleted) || false;
+  // Check if there are any testimonials
+  const hasTestimonials = testimonials && testimonials.length > 0;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -44,7 +44,7 @@ export default function ExperiencePage() {
           </div>
           
           {/* Dynamic Layout based on testimonials availability */}
-          {hasActiveTestimonials ? (
+          {hasTestimonials ? (
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               {/* Work Experience - 75% width */}
               <div className="lg:col-span-3">

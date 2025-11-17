@@ -3,6 +3,7 @@ export const config = {
   // Backend API Configuration
   api: {
     baseUrl: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
+    contactUrl: import.meta.env.VITE_API_CONTACT_URL || 'https://simple-backend-69gi.onrender.com',
     timeout: parseInt(import.meta.env.VITE_API_TIMEOUT || '10000'),
   },
   

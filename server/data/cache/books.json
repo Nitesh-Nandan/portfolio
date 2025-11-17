@@ -18,7 +18,7 @@
       "distributed"
     ],
     "featured": true,
-    "is_deleted": false
+    "isDeleted": false
   },
   {
     "id": 2,
@@ -38,7 +38,7 @@
       "scalability"
     ],
     "featured": true,
-    "is_deleted": false
+    "isDeleted": false
   },
   {
     "id": 4,
@@ -58,7 +58,7 @@
       "software-engineering"
     ],
     "featured": true,
-    "is_deleted": false
+    "isDeleted": false
   },
   {
     "id": 5,
@@ -78,7 +78,7 @@
       "career"
     ],
     "featured": false,
-    "is_deleted": false
+    "isDeleted": false
   },
   {
     "id": 3,
@@ -98,6 +98,6 @@
       "distributed-systems"
     ],
     "featured": false,
-    "is_deleted": false
+    "isDeleted": false
   }
 ]

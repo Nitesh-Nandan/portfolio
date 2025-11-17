@@ -36,7 +36,7 @@ async function syncFallbackData() {
         // Sync Personal Info
         console.log('📄 Syncing personal information...');
         const personalInfoData = await db.execute(
-            'SELECT * FROM personal_info WHERE is_deleted = false ORDER BY id LIMIT 1'
+            'SELECT * FROM personal_info WHERE "isDeleted" = false ORDER BY id LIMIT 1'
         );
         if (personalInfoData.rows.length > 0) {
             const personalInfo = transformPersonalInfo(personalInfoData.rows[0]);
@@ -48,7 +48,7 @@ async function syncFallbackData() {
         // Sync Skills
         console.log('🛠️ Syncing skills...');
         const skillsData = await db.execute(
-            'SELECT * FROM skills WHERE is_deleted = false ORDER BY "order", name'
+            'SELECT * FROM skills WHERE "isDeleted" = false ORDER BY "order", name'
         );
         const skills = skillsData.rows.map(row => transformSkill(row));
         writeJsonFile(dataDir, 'skills.json', skills);
@@ -56,7 +56,7 @@ async function syncFallbackData() {
         // Sync Work Experience
         console.log('💼 Syncing work experience...');
         const workExpData = await db.execute(
-            'SELECT * FROM work_experience WHERE is_deleted = false ORDER BY "order", start_date DESC'
+            'SELECT * FROM work_experience WHERE "isDeleted" = false ORDER BY "order", start_date DESC'
         );
         const workExperience = workExpData.rows.map(row => transformWorkExperience(row));
         writeJsonFile(dataDir, 'work-experience.json', workExperience);
@@ -64,7 +64,7 @@ async function syncFallbackData() {
         // Sync Books
         console.log('📚 Syncing books...');
         const booksData = await db.execute(
-            'SELECT * FROM books WHERE is_deleted = false ORDER BY featured DESC, start_date DESC'
+            'SELECT * FROM books WHERE "isDeleted" = false ORDER BY featured DESC, start_date DESC'
         );
         const books = booksData.rows.map(row => transformBook(row));
         writeJsonFile(dataDir, 'books.json', books);
@@ -72,7 +72,7 @@ async function syncFallbackData() {
         // Sync Projects (if needed)
         console.log('🚀 Syncing projects...');
         const projectsData = await db.execute(
-            'SELECT * FROM projects WHERE is_deleted = false ORDER BY featured DESC, "order"'
+            'SELECT * FROM projects WHERE "isDeleted" = false ORDER BY featured DESC, "order"'
         );
         const projects = projectsData.rows.map(row => transformProject(row));
         writeJsonFile(dataDir, 'projects.json', projects);
@@ -80,7 +80,7 @@ async function syncFallbackData() {
         // Sync Articles
         console.log('📰 Syncing articles...');
         const articlesData = await db.execute(
-            'SELECT * FROM articles WHERE is_deleted = false ORDER BY "order"'
+            'SELECT * FROM articles WHERE "isDeleted" = false ORDER BY "order"'
         );
         const articles = articlesData.rows.map(row => transformArticle(row));
         writeJsonFile(dataDir, 'articles.json', articles);
@@ -88,7 +88,7 @@ async function syncFallbackData() {
         // Sync Testimonials
         console.log('💬 Syncing testimonials...');
         const testimonialsData = await db.execute(
-            'SELECT * FROM testimonials WHERE is_deleted = false ORDER BY "order"'
+            'SELECT * FROM testimonials WHERE "isDeleted" = false ORDER BY "order"'
         );
         const testimonials = testimonialsData.rows.map(row => transformTestimonial(row));
         writeJsonFile(dataDir, 'testimonials.json', testimonials);
@@ -96,7 +96,7 @@ async function syncFallbackData() {
         // Sync Courses
         console.log('🎓 Syncing courses...');
         const coursesData = await db.execute(
-            'SELECT * FROM courses WHERE is_deleted = false ORDER BY "order"'
+            'SELECT * FROM courses WHERE "isDeleted" = false ORDER BY "order"'
         );
         const courses = coursesData.rows.map(row => transformCourse(row));
         writeJsonFile(dataDir, 'courses.json', courses);
@@ -104,7 +104,7 @@ async function syncFallbackData() {
         // Sync Contact Content (single record)
         console.log('📬 Syncing contact content...');
         const contactContentData = await db.execute(
-            'SELECT * FROM contact_content WHERE is_deleted = false ORDER BY id LIMIT 1'
+            'SELECT * FROM contact_content WHERE "isDeleted" = false ORDER BY id LIMIT 1'
         );
         if (contactContentData.rows.length > 0) {
             const contactContent = transformContactContent(contactContentData.rows[0]);
@@ -114,7 +114,7 @@ async function syncFallbackData() {
         // Sync Footer Content (single record)
         console.log('🔗 Syncing footer content...');
         const footerContentData = await db.execute(
-            'SELECT * FROM footer_content WHERE is_deleted = false ORDER BY id LIMIT 1'
+            'SELECT * FROM footer_content WHERE "isDeleted" = false ORDER BY id LIMIT 1'
         );
         if (footerContentData.rows.length > 0) {
             const footerContent = transformFooterContent(footerContentData.rows[0]);
@@ -155,7 +155,7 @@ function transformPersonalInfo(row) {
         resumeUrl: row.resume_url,
         availability: row.availability,
         availabilityMessage: row.availability_message,
-        is_deleted: row.is_deleted
+        isDeleted: row.isDeleted
     };
 }
 
@@ -170,7 +170,7 @@ function transformSkill(row) {
         yearsExperience: row.years_experience,
         featured: row.featured,
         order: row.order,
-        is_deleted: row.is_deleted
+        isDeleted: row.isDeleted
     };
 }
 
@@ -206,7 +206,7 @@ function transformBook(row) {
         quotes: row.quotes || [],
         tags: row.tags || [],
         featured: row.featured,
-        is_deleted: row.is_deleted
+        isDeleted: row.isDeleted
     };
 }
 
@@ -232,7 +232,8 @@ function transformProject(row) {
         learnings: row.learnings || [],
         metrics: row.metrics,
         order: row.order,
-        is_deleted: row.is_deleted
+        lastCommitDate: row.last_commit_date,
+        isDeleted: row.isDeleted
     };
 }
 
@@ -281,7 +282,7 @@ function transformTestimonial(row) {
         content: row.content,
         rating: row.rating,
         avatar: row.avatar,
-        is_deleted: row.is_deleted
+        isDeleted: row.isDeleted
     };
 }
 
